@@ -1,0 +1,208 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>nodeJS bombparty</Name>
+    <RootNamespace>nodeJS bombparty</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>1d88deef-a9eb-4e42-ade3-db964c6ef2c2</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>Main.js</StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <StartWebBrowser>false</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="BD\Database.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="BD\Connection\configuration.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\API\jklmAPI.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Game\wordError.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Player\playerCpPic.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Player\playerNat.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\Chat\Message.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\Bot\Bot.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\Room\Modules\Configuration.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\Room\Modules\Game.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\Room\Modules\Rules.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\Room\Room.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Misc\Functions.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Game\Player\Player.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Database\query.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Database\occurSyl.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Database\occurWord.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Database\totalWords.js" />
+    <Content Include="Socket\Events\CommandsEvents\Database\totalSyl.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Game\suicide.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Game\wpm.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Game\autoJoin.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Player\playerBL.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Room\searchMessage.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\EventsManager\GameEventManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\clearUsedWords.js" />
+    <Content Include="Socket\Events\GameEvents\Player\bonusAlphabetCompleted.js" />
+    <Content Include="Socket\Events\GameEvents\Player\updatePlayer.js" />
+    <Content Include="Socket\Events\GameEvents\setRules.js" />
+    <Content Include="Socket\Events\GameEvents\Player\livesLost.js" />
+    <Content Include="Socket\Events\GameEvents\setMilestone.js" />
+    <Content Include="Socket\Events\GameEvents\happyBirthday.js" />
+    <Content Include="Socket\Events\GameEvents\setStartTime.js" />
+    <Content Include="Socket\Events\GameEvents\setRulesLocked.js" />
+    <Content Include="Socket\Events\GameEvents\Player\failWord.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\Player\correctWord.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\addPlayer.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\removePlayer.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\nextTurn.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\setPlayerWord.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\joinGame.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\setup.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\GameEvents\Socket\connectionEtablished.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\EventsManager\RoomEventManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\RoomEvents\Chat\chat.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\RoomEvents\Chat\getChatterProfiles.js" />
+    <Content Include="Socket\Events\RoomEvents\Socket\connectionEtablished.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\RoomEvents\Socket\roomEntry.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\RoomEvents\userBanned.js" />
+    <Content Include="Socket\Events\RoomEvents\kicked.js" />
+    <Content Include="Socket\Events\RoomEvents\setSelfRoles.js" />
+    <Content Include="Socket\Events\RoomEvents\Chat\chatterRemoved.js" />
+    <Content Include="Socket\Events\RoomEvents\Chat\chatterAdded.js" />
+    <Content Include="Socket\Events\RoomEvents\setPlayerCount.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Packets.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Main.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Sockets\GameSocket.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Sockets\RoomSocket.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Websocket.js" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BD\Connection\" />
+    <Folder Include="Game\Chat\" />
+    <Folder Include="Game\API\" />
+    <Folder Include="BD\" />
+    <Folder Include="Game\Bot\" />
+    <Folder Include="Socket\Events\CommandsEvents\" />
+    <Folder Include="Game\Room\" />
+    <Folder Include="Game\Room\Modules\" />
+    <Folder Include="Misc\" />
+    <Folder Include="Game\" />
+    <Folder Include="Game\Player\" />
+    <Folder Include="Socket\" />
+    <Folder Include="Socket\Events\" />
+    <Folder Include="Socket\Events\CommandsEvents\Game\" />
+    <Folder Include="Socket\Events\CommandsEvents\Database\" />
+    <Folder Include="Socket\Events\CommandsEvents\Room\" />
+    <Folder Include="Socket\Events\CommandsEvents\Player\" />
+    <Folder Include="Socket\Events\GameEvents\" />
+    <Folder Include="Socket\Events\GameEvents\Socket\" />
+    <Folder Include="Socket\Events\GameEvents\Player\" />
+    <Folder Include="Socket\Events\EventsManager\" />
+    <Folder Include="Socket\Events\RoomEvents\" />
+    <Folder Include="Socket\Events\RoomEvents\Chat\" />
+    <Folder Include="Socket\Events\RoomEvents\Socket\" />
+    <Folder Include="Socket\Sockets\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+</Project>

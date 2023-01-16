@@ -1,0 +1,77 @@
+﻿
+//Wait until the condition is true
+function waitFor(conditionFunction) {
+    const poll = resolve => {
+        if (conditionFunction()) resolve();
+        else setTimeout(_ => poll(resolve), 500);
+    }
+    return new Promise(poll);
+}
+
+function binarySearch(arr, x) {
+    let left = 0;
+    let right = arr.length - 1;
+    while (left <= right) {
+        let middle = Math.floor((left + right) / 2);
+        if (arr[middle] === x) {
+            return middle;
+        } else if (arr[middle] < x) {
+            left = middle + 1;
+        } else {
+            right = middle - 1;
+        }
+    }
+    return -1;
+}
+
+function removeSameElements(arr1, set2) {
+    return arr1.filter(function (element) {
+        return !set2.has(element.word);
+    });
+}
+
+function getLetterIndex(keyboard, letter) {
+    for (let i = 0; i < keyboard.length; i++) {
+        for (let j = 0; j < keyboard[i].length; j++) {
+            if (keyboard[i][j] === letter) {
+                return [i, j];
+            }
+        }
+    }
+}
+
+function getCloseLetter(letter) {
+
+    const keyboard = [
+        ["&", "é", '"', "'", "(", "-", "è", "_", "ç", "à"],
+        ["a", "z", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["q", "s", "d", "f", "g", "h", "j", "k", "l", "m"],
+        ["w", "x", "c", "v", "b", "n"]
+    ];
+
+    let letterIndex = getLetterIndex(keyboard, letter);
+    let similarLetters = []
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            if (i === 0 && j === 0) continue;
+            let row = letterIndex[0] + i;
+            let col = letterIndex[1] + j;
+            if (row < 0 || row >= keyboard.length) continue;
+            if (col < 0 || col >= keyboard[row].length) continue;
+            similarLetters.push(keyboard[row][col]);
+        }
+    }
+    return similarLetters;
+}
+
+function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
+function isInt(value) {
+    return !isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))
+}
+
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter }
