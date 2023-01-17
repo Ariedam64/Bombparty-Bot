@@ -157,6 +157,10 @@ class Database {
         }
     }
 
+    async getBestWordWithBonusLetters(letters) {
+
+    }
+
     query(csQuery) {
         this.client.query(csQuery, (err, res) => {
             if (err) {
