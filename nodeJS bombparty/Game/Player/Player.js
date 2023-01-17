@@ -95,10 +95,6 @@ class Player {
         }
     }
 
-    resetBonusLetters() {
-        this.set_bonusLetters([])
-    }
-
     getNeededBonusLetters(bonusAlphabet) {
         var neededBonusLetters = ""
         for (const letter of bonusAlphabet) {

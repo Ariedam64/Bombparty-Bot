@@ -128,7 +128,7 @@
     <Content Include="Socket\Events\GameEvents\nextTurn.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\GameEvents\setPlayerWord.js">
+    <Content Include="Socket\Events\GameEvents\Player\setPlayerWord.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\GameEvents\joinGame.js">

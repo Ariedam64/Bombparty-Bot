@@ -83,25 +83,6 @@ class Database {
         }
     }
 
-    /*checkIfWordExistInTable(table, word) { // -1: error, 0: notFound, 1: found
-        this.client.query('SELECT 1 FROM ' + table + ' WHERE word = ($1);', [word], (err, res) => {
-            if (err) {
-                if (this.DEBUG) { console.log(`Impossible de vérifier si le mot ${word} existe dans la table ${table}`) }
-                return -1
-            }
-            else {
-                if (res.rows >= 1) {
-                    if (this.DEBUG) { console.log(`Le mot ${word} existe dans la table ${table}`) }
-                    return 1
-                }
-                else {
-                    if (this.DEBUG) { console.log(`Le mot ${word} n'existe pas dans la table ${table}`) }
-                    return 0
-                }
-            }
-        })
-    }*/
-
     /* SYLLABLES */
 
     addNewSyllable(table, syllable) {
