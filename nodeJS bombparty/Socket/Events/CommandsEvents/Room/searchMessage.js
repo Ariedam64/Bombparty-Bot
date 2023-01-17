@@ -2,10 +2,15 @@
 function searchMessage(arguments, bot) {
 
     if (arguments == "" || arguments == null) {
-        bot.sendGameMessage('Erreur: Aucun message renseigné (ex: $searchMessage "je le dirais pas deux fois"')
+        bot.sendGameMessage('Cette commande permet de trouver un message posté dans les 1000 derniers message room. La commande prend en paramètres un message entre guillemets')
+        bot.sendGameMessage('Utilisation: $searchMessage "pokémon"')
     }
-    else if (!(arguments.includes('"')) || arguments.split('"').length - 1 < 2)
-        bot.sendGameMessage("Erreur: Le message n'est pas entre guillemet")
+    else if (arguments.split(" ").length > 1) {
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$searchMessage" pour mieux comprendre son utilisation')
+    }
+    else if (!(arguments.includes('"')) || arguments.split('"').length - 1 < 2) {
+        bot.sendGameMessage('Vous avez fourni un message sans guillemet. Utilisez la commande "$searchMessage" pour mieux comprendre son utilisation')
+    }
     else {
         var messageToFind = arguments.substring(1).slice(0, -1)
 
@@ -18,7 +23,7 @@ function searchMessage(arguments, bot) {
             bot.sendGameMessage(messagesFound[0])
         }
         else {
-            bot.sendGameMessage(messagesFound.length + " messages trouvés")
+            bot.sendGameMessage(messagesFound.length + " messages trouvés, renseigné un message plus précis")
         }
     }
 }

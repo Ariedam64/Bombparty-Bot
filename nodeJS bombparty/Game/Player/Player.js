@@ -77,7 +77,14 @@ class Player {
         this.set_lives(jsonData.lives)
         this.set_word(jsonData.word)
         this.set_wasWordValidated(jsonData.wasWordValidated)
-        this.set_bonusLetters(jsonData.bonusLetters)
+
+        if (this.get_bonusLetters().length == 0) {
+            this.set_bonusLetters(jsonData.bonusLetters)
+        }
+        else {
+            this.bonusLetters = []
+        }
+        
     }
 
     addBonusLetters(bonusLetters, bonusAlphabet) {

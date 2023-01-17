@@ -1,23 +1,25 @@
 ﻿async function totalSyl(arguments, bot) {
 
     if (arguments == "" || arguments == null) {
-        bot.sendGameMessage("Erreur: Aucune langue renseigné (ex: $totalSyllables fr)")
+        bot.sendGameMessage('Cette commande permet d\'obtenir le nombre total de syllabes d\'une langue présent dans la base de données. La commande prend en paramètres une langue')
+        bot.sendGameMessage('Langues diponsibles: fr - en - es - de - it - pt')
+        bot.sendGameMessage('Utilisation: $totalSyllable fr')
+    }
+    else if (arguments.split(" ").length > 1) {
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$totalSyllable" pour mieux comprendre son utilisation')
+    }
+    else if (argument != "fr" && arguments != "en" && arguments != "es" && arguments != "pt" && arguments != "de" && arguments != "it") {
+        bot.sendGameMessage('La langue fourni est introuvable. Voici les langues disponibles: fr, en, es, de, it et pt')
     }
     else {
-
-        if (arguments != "fr" && arguments != "es" && arguments != "en" && arguments != "de" && arguments != "pt") {
-            bot.sendGameMessage("Langue introuvable. Voici les langues disponibles: fr, en, es, de et pt")
+        var totalSyllables = await bot.get_database().getTotalSyllables(arguments)
+        if (totalSyllables != -1) {
+            bot.sendGameMessage("La langue " + arguments + " contient " + totalSyllables + " syllables différentes dans la base de données")
         }
         else {
-            var totalSyllables = await bot.get_database().getTotalSyllables(arguments)
-            if (totalSyllables != -1) {
-                bot.sendGameMessage(totalSyllables + " syllables différentes")
-            }
-            else {
-                bot.sendGameMessage("Erreur bdd")
-            }
-            
+            bot.sendGameMessage("Impossible d'éffectuer la requête vers la base de données")
         }
+
     }
 }
 

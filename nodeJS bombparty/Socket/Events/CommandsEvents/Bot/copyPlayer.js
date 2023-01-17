@@ -1,7 +1,11 @@
 ﻿function playerCpPic(arguments, bot) {
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage("Erreur: Aucun joueur renseigné (ex: $pcp Ayaya | $pcp 12")
+        bot.sendGameMessage('Cette commande permet au bot de copier le pseudo et l\'image d\'un joueur présent dans la partie. La commande prend en paramètre le pseudo ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $copyProfile Ayaya OU $copyProfile 8')
+    }
+    else if (arguments.split(" ").length > 1) {
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$copyProfile" pour mieux comprendre son utilisation')
     }
     else {
         var playerList = bot.get_room().getPlayerByNickname(arguments)
@@ -11,11 +15,11 @@
             bot.sendGameMessage("Joueur introuvable")
         }
         else if (player != false) {
-            bot.sendGameMessage("Copie du joueur " + player.nickname)
+            bot.sendGameMessage("Copie du joueur " + player.nickname + " en cours")
             bot.copyImagePlayer(player)
         }
         else if (playerList.length == 1) {
-            bot.sendGameMessage("Copie du joueur " + playerList[0].nickname)
+            bot.sendGameMessage("Copie du joueur " + playerList[0].nickname + " en cours")
             bot.copyImagePlayer(playerList[0])
         }
         else {

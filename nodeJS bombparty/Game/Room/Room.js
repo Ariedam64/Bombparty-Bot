@@ -29,7 +29,7 @@ class Room {
         this.players = []; //List players objects
         this.chatMessages = [] //List ChatMessages objects
 
-        this.maxChatMessage = 100
+        this.maxChatMessage = 1000
 
         this.lastPlayerJoined = null
         this.lastPlayerLeft = null

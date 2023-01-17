@@ -37,13 +37,16 @@
     <Content Include="Game\API\jklmAPI.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Game\wordError.js">
+    <Content Include="Socket\Events\CommandsEvents\Bot\wordError.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Player\playerCpPic.js">
+    <Content Include="Socket\Events\CommandsEvents\help.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Player\playerNat.js">
+    <Content Include="Socket\Events\CommandsEvents\Bot\copyPlayer.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Player\nationnality.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
@@ -73,29 +76,26 @@
     <Content Include="Game\Player\Player.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Database\query.js">
+    <Content Include="Socket\Events\CommandsEvents\Database\occurrenceSyllable.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Database\occurSyl.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Socket\Events\CommandsEvents\Database\occurWord.js">
+    <Content Include="Socket\Events\CommandsEvents\Database\occurrenceWord.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\CommandsEvents\Database\totalWords.js" />
     <Content Include="Socket\Events\CommandsEvents\Database\totalSyl.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Game\suicide.js">
+    <Content Include="Socket\Events\CommandsEvents\Bot\suicide.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Game\wpm.js">
+    <Content Include="Socket\Events\CommandsEvents\Bot\wordsPerMinute.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Game\autoJoin.js">
+    <Content Include="Socket\Events\CommandsEvents\Bot\autoJoin.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Player\playerBL.js">
+    <Content Include="Socket\Events\CommandsEvents\Player\bonusLetters.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\CommandsEvents\Room\searchMessage.js">
@@ -191,8 +191,8 @@
     <Folder Include="Game\Player\" />
     <Folder Include="Socket\" />
     <Folder Include="Socket\Events\" />
-    <Folder Include="Socket\Events\CommandsEvents\Game\" />
     <Folder Include="Socket\Events\CommandsEvents\Database\" />
+    <Folder Include="Socket\Events\CommandsEvents\Bot\" />
     <Folder Include="Socket\Events\CommandsEvents\Room\" />
     <Folder Include="Socket\Events\CommandsEvents\Player\" />
     <Folder Include="Socket\Events\GameEvents\" />

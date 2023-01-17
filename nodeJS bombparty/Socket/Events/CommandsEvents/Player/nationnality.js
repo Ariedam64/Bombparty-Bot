@@ -1,7 +1,11 @@
-﻿function playerNat(arguments, bot) {
+﻿function nationnality(arguments, bot) {
 
-    if (arguments == null) {
-        bot.sendGameMessage("Erreur: Aucun joueur renseigné (ex: $playerBL Ayaya | $playerBL 12")
+    if (arguments == null || arguments == "") {
+        bot.sendGameMessage('Cette commande permet la nationnalité d\'un joueur présent dans la partie. La commande prend en paramètre le pseudo ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $nationnality Ayaya OU $nationnality 8')
+    }
+    else if (arguments.split(" ").length > 1) {
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$nationnality" pour mieux comprendre son utilisation')
     }
     else {
 
@@ -27,4 +31,4 @@
     }
 }
 
-module.exports = playerNat
+module.exports = nationnality

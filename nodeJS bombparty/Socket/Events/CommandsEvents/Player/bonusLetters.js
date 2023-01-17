@@ -1,7 +1,12 @@
-﻿function playerBL(arguments, bot) {
+﻿function bonusLetters(arguments, bot) {
 
-    if (arguments == null) {
-        bot.sendGameMessage("Erreur: Aucun joueur renseigné (ex: $playerBL Ayaya | $playerBL 12")
+
+    if (arguments == null || arguments == "") {
+        bot.sendGameMessage('Cette commande permet de récupérer les lettres bonus manquantes d\'un joueur. La commande prend en paramètre le pseudo ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $bonusLetters Ayaya OU $bonusLetters 8')
+    }
+    else if (arguments.split(" ").length > 1) {
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$bonusLetters" pour mieux comprendre son utilisation')
     }
     else {
 
@@ -20,10 +25,10 @@
             bot.sendGameMessage("Lettre bonus manquante du joueur " + playerList[0].nickname + " : " + bonusLetters)
         }
         else {
-            bot.sendGameMessage(playerList.length + " joueurs trouvés")
+            bot.sendGameMessage("Plusieurs joueurs trouvé, renseigné plutôt le peerId du joueur")
         }
     }
 }
 
 
-module.exports = playerBL
+module.exports = bonusLetters

@@ -1,16 +1,16 @@
-const searchMessage = require("../CommandsEvents/Room/searchMessage");
-const playerBL = require("../CommandsEvents/Player/playerBL");
+﻿const searchMessage = require("../CommandsEvents/Room/searchMessage");
+const bonusLetters = require("../CommandsEvents/Player/bonusLetters");
 const totalSyllables = require("../CommandsEvents/Database/totalSyl");
 const totalWords = require("../CommandsEvents/Database/totalWords");
-const occurSyl = require("../CommandsEvents/Database/occurSyl");
-const occurWord = require("../CommandsEvents/Database/occurWord");
-const wpm = require("../CommandsEvents/Game/wpm");
-const query = require("../CommandsEvents/Database/query");
-const suicide = require("../CommandsEvents/Game/suicide");
-const wordError = require("../CommandsEvents/Game/wordError");
-const autoJoin = require("../CommandsEvents/Game/autoJoin");
-const playerNat = require("../CommandsEvents/Player/playerNat");
-const playerCpPic = require("../CommandsEvents/Player/playerCpPic");
+const suicide = require("../CommandsEvents/Bot/suicide");
+const wordError = require("../CommandsEvents/Bot/wordError");
+const autoJoin = require("../CommandsEvents/Bot/autoJoin");
+const nationnality = require("../CommandsEvents/Player/nationnality");
+const copyPlayer = require("../CommandsEvents/Bot/copyPlayer");
+const help = require("../CommandsEvents/help");
+const occurrenceSyllable = require("../CommandsEvents/Database/occurrenceSyllable");
+const occurrenceWord = require("../CommandsEvents/Database/occurrenceWord");
+const wordsPerMinute = require("../CommandsEvents/Bot/wordsPerMinute");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -21,76 +21,165 @@ function processEvent(data, bot, DEBUG) {
 
     switch (event) {
 
+        /* 
+         * r: Room
+         * g: Game
+         * p: Player
+         * b: Bot
+         * d: Database
+         * 
+         */
+
+
+        /* ROOM */
+
+        //-- SEARCH MESSAGE
         case 'searchMessage':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             searchMessage(arguments, bot)
             break;
 
+        case 'rsm':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            searchMessage(arguments, bot)
+            break;
+
+        /* PLAYER */
+
+        //-- Bonus letters
+        case 'bonusLetters':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            bonusLetters(arguments, bot)
+            break;
+
         case 'pbl':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            playerBL(arguments, bot)
+            bonusLetters(arguments, bot)
             break;
 
-        case 'pnat':
+        //-- Nationnality
+        case 'nationnality':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            playerNat(arguments, bot)
+            nationnality(arguments, bot)
             break;
 
-        case 'pcp':
+        case 'pn':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            playerCpPic(arguments, bot)
+            nationnality(arguments, bot)
             break;
 
-        case 'totalSyllabes':
+        /* DATABASE */
+
+        //-- Total syllables
+        case 'totalSyllables':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             totalSyllables(arguments, bot)
             break;
 
+        case 'dts':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            totalSyllables(arguments, bot)
+            break;
+
+        //-- Total words
         case 'totalWords':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             totalWords(arguments, bot)
             break;
 
-        case 'occurSyl':
+        case 'dtw':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            occurSyl(arguments, bot)
+            totalWords(arguments, bot)
             break;
 
-        case 'occurWord':
+        //-- Occurrence syllable
+        case 'occurrenceSyllable':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            occurWord(arguments, bot)
+            occurrenceSyllable(arguments, bot)
             break;
 
-        case 'autoJoin':
+        case 'dos':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            autoJoin(arguments, bot)
+            occurrenceSyllable(arguments, bot)
             break;
 
-
-        case 'wpm':
+        //-- Occurrence word
+        case 'occurrenceWord':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            wpm(arguments, bot)
+            occurrenceWord(arguments, bot)
             break;
 
-        case 'query':
+        case 'dow':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            query(arguments, bot)
+            occurrenceWord(arguments, bot)
             break;
 
-        case 'suicide':
-            if (DEBUG) { console.log("Command event: " + event + " OK") }
-            suicide(arguments, bot)
-            break;
-            wordError
+        /* BOT */
 
+        //-- Word error
         case 'wordError':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             wordError(arguments, bot)
             break;
 
+        case 'bwe':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            wordError(arguments, bot)
+            break;
+
+        //-- AutoJoin
+        case 'autoJoin':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            autoJoin(arguments, bot)
+            break;
+
+        case 'baj':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            autoJoin(arguments, bot)
+            break;
+
+        //-- Copy profile
+        case 'copyProfile':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            copyPlayer(arguments, bot)
+            break;
+
+        case 'bcp':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            copyPlayer(arguments, bot)
+            break;
+
+        //-- Suicide
+        case 'suicide':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            suicide(arguments, bot)
+            break;
+
+        case 'bs':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            suicide(arguments, bot)
+            break;
+
+        //-- Words per minute
+        case 'wordsPerMinute':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            wordsPerMinute(arguments, bot)
+            break;
+
+        case 'bwpm':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            wordsPerMinute(arguments, bot)
+            break;
+
+        /* HELP */
+        case 'help':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            help(arguments, bot)
+            break;
+
         default:
             if (DEBUG) { console.log("Command event: " + event + " ERROR") }
-            bot.sendGameMessage('La commande: "' + event + '" n\'existe pas')
+            bot.sendGameMessage('La commande: "' + event + '" n\'existe pas. Fait "$help" pour voir la liste des commandes disponibles')
             break;
     }
 }
