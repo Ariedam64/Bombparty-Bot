@@ -17,6 +17,10 @@ async function setMilestone(jsonData, bot) {
             bot.get_wsGame().emit("joinRound")
         }    
 
+        for (const player of bot.get_room().get_players()) {
+            player.resetGameInfo() //Reset player state
+        }
+
     }
     else { //If game is started or start
 

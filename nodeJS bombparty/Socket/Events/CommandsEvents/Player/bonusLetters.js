@@ -5,9 +5,6 @@
         bot.sendGameMessage('Cette commande permet de récupérer les lettres bonus manquantes d\'un joueur. La commande prend en paramètre le pseudo ou le peerId du joueur')
         bot.sendGameMessage('Utilisation: $bonusLetters Ayaya OU $bonusLetters 8')
     }
-    else if (arguments.split(" ").length > 1) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$bonusLetters" pour mieux comprendre son utilisation')
-    }
     else {
 
         var playerList = bot.get_room().getPlayerByNickname(arguments)

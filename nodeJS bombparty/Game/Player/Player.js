@@ -73,18 +73,17 @@ class Player {
     }
 
     updateGameInfo(jsonData) {
-
         this.set_lives(jsonData.lives)
         this.set_word(jsonData.word)
         this.set_wasWordValidated(jsonData.wasWordValidated)
+        this.set_bonusLetters(jsonData.bonusLetters)
+    }
 
-        if (this.get_bonusLetters().length == 0) {
-            this.set_bonusLetters(jsonData.bonusLetters)
-        }
-        else {
-            this.bonusLetters = []
-        }
-        
+    resetGameInfo() {
+        this.set_lives(null)
+        this.set_word(null)
+        this.set_wasWordValidated(null)
+        this.resetBonusLetters()
     }
 
     addBonusLetters(bonusLetters, bonusAlphabet) {
@@ -93,6 +92,10 @@ class Player {
                 this.bonusLetters.push(letter)
             }
         }
+    }
+
+    resetBonusLetters() {
+        this.bonusLetters = []
     }
 
     getNeededBonusLetters(bonusAlphabet) {

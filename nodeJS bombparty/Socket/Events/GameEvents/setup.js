@@ -14,12 +14,12 @@ async function setup(jsonData, bot) {
         var milestone = jsonData[1].milestone
         bot.get_room().game.updateMilestoneSeating(milestone)//room game update
 
-
         await funct.sleep(Math.floor(Math.floor(Math.random() * (Math.floor(1200) - Math.ceil(250)) + Math.ceil(250))));
 
         if (bot.get_isAutoJoin()) {
             bot.get_wsGame().emit("joinRound")
         }   
+
 
     }
     else {//If game is started
