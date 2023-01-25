@@ -3,7 +3,7 @@
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet au bot de rejoindre la partie automatiquement. La commande prend en paramètre la valeur "on" ou "off"')
-        bot.sendGameMessage('Utilisation: $autoJoin on/off')
+        bot.sendGameMessage('Utilisation: $autoJoin on')
     }
     else if (arguments.split(" ").length > 1) {
         bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$autoJoin" pour mieux comprendre son utilisation')

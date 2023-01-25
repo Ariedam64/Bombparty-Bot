@@ -19,7 +19,17 @@ class Player {
         this.wasWordValidated = null;
         this.word = null;
 
+        this.isTrack = false;
+        this.limitTrack = null;
+
+        this.isReactionTime = false
+        this.reactionsTimes = []
+        this.maxReactionsTimes = 50;
+        this.startReactionTime = 0.0
+        this.endReactionTime = 0.0
+
         this.maxMessage = 50;
+
     }
 
     /* GETTERS */
@@ -36,6 +46,11 @@ class Player {
     get_wasWordValidated() { return this.wasWordValidated };
     get_word() { return this.word };
 
+    get_limitTrack() { return this.limitTrack }
+    get_isTrack() { return this.isTrack }
+    get_reactionsTimes() { return this.reactionsTimes }
+    get_maxReactionsTimes() { return this.maxReactionsTimes }
+    get_isReactionTime() {return this.isReactionTime }
     get_maxMessage() { return this.maxMessage };
 
     /* SETTERS */
@@ -52,6 +67,11 @@ class Player {
     set_wasWordValidated(newWasWordValidated) { this.wasWordValidated = newWasWordValidated };
     set_word(newWord) { this.word = newWord };
 
+    set_limitTrack(newLimitTrack) { this.limitTrack = newLimitTrack }
+    set_isTrack(newIsTrack) { this.isTrack = newIsTrack }
+    set_reactionsTimes(newReactionstTimes) { this.reactionsTimes = newReactionstTimes }
+    set_maxReactionsTimes(newMaxReactionsTimes) { this.maxReactionsTimes = newMaxReactionsTimes }
+    set_isReactionTime(newIsReactionTime) { this.isReactionTime = newIsReactionTime }
     set_maxMessage(newMaxMessage) { this.maxMessage = newMaxMessage };
 
 
@@ -113,6 +133,23 @@ class Player {
             this.get_messages().shift()
         }
         this.get_messages().push(message)
+    }
+
+    appendReactionTime(reactionTime) {
+        if (this.get_reactionsTimes().length == this.get_maxReactionsTimes()) {
+            this.get_reactionsTimes().shift()
+        }
+        this.get_reactionsTimes().push(reactionTime)
+    }
+
+    getReactionTimeAverage() {
+        let reactionsTimes = parseFloat(0.0)
+
+        for (const reactionTime of this.get_reactionsTimes()) {
+            reactionsTimes = parseFloat(reactionsTimes) + parseFloat(reactionTime)
+        }
+        var average = reactionsTimes / this.get_reactionsTimes().length
+        return average.toFixed(2)
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿const pgConfig = require('./Connection/configuration.js')
 const { Client } = require('pg')
+const funct = require("../Misc/Functions.js")
 
 class Database {
 
@@ -138,21 +139,51 @@ class Database {
         }
     }
 
-    async getBestWordWithBonusLetters(letters) {
+    async getBestWordWithBonusLetters(table, syllable, letters, wordsAlreadyPut) {
+        try {
 
-    }
+            if (letters.length > 8) {
+                letters = funct.sortString(table, letters)
+                letters = letters.slice(0,8)
+            } 
 
-    query(csQuery) {
-        this.client.query(csQuery, (err, res) => {
-            if (err) {
-                if (this.DEBUG) { console.log(`Erreur custom requête`) }
-                return -1
+            let query = ''
+            if (letters.length > 1) {
+                query = `SELECT word,
+                                COUNT(DISTINCT letter) as matched_letters,
+                                occurrence
+                        FROM words.${table}, unnest(regexp_split_to_array(regexp_replace(word,'[^${letters}]','','g'),'')) as letters(letter)
+                        WHERE word ~* '(${syllable})' `
+
+            } else {
+                query = `SELECT word,
+                                COUNT(DISTINCT letter) as matched_letters,
+                                occurrence
+                        FROM words.${table}, LATERAL (SELECT unnest(regexp_matches(word,'[${letters}]')) as letter) as letters
+                        WHERE word ~* '(${syllable})' `
+
+            }
+
+            for (const word of wordsAlreadyPut) {
+                query += `AND word != '` + word + `' `
+            }
+
+            query += `GROUP BY word, occurrence
+                        ORDER BY matched_letters DESC,LENGTH(word), occurrence DESC
+                        LIMIT 5`
+
+            const res = await this.client.query(query)
+            if (res == null) {
+                return 0
             }
             else {
-                if (this.DEBUG) { console.log(`Custom requête effectué`) }
                 return res.rows
-            }
-        })
+            }    
+        }
+        catch (err) {
+            console.log(err.stack)
+            return -1
+        }
     }
 
 
@@ -162,7 +193,7 @@ class Database {
 
 }
 
-const dataBase = new Database(true)
+const dataBase = new Database(false)
 
 
 module.exports = dataBase;

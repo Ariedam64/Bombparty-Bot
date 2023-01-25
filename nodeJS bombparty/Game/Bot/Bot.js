@@ -2,11 +2,8 @@ const Player = require('../Player/Player.js');
 const funct = require('../../Misc/Functions')
 const RoomSocket = require('../../Socket/Sockets/RoomSocket.js');
 const Database = require('../../BD/dataBase')
-const jschardet = require('jschardet');
-const iconv = require('iconv-lite');
-const StringDecoder = require('string_decoder').StringDecoder;
 
-class Bot extends Player{
+class Bot extends Player {
 
     constructor(nickname = "Bot", picture = null, auth = null, language = "fr-FR") {
 
@@ -29,11 +26,12 @@ class Bot extends Player{
         this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
-        this.wpm = 110
-        this.wordErrorPercentage = 0.05
+        this.wpmTimer = 12500
+        this.wpm = 80
+        this.wordErrorPercentage = 0.08
     }
 
-    /* Getters */ 
+    /* Getters */
     get_userToken() { return this.userToken };
     get_database() { return this.database };
     get_room() { return this.room };
@@ -67,14 +65,14 @@ class Bot extends Player{
 
     updateBotInfoAfterJoin(jsonData) {
 
-       this.set_peerId(jsonData[0].selfPeerId)
-       this.set_roles(jsonData[0].selfRoles)
+        this.set_peerId(jsonData[0].selfPeerId)
+        this.set_roles(jsonData[0].selfRoles)
     }
 
     _toString() {
         super._toString()
         console.log(
-            "userToken: " + this.get_userToken() 
+            "userToken: " + this.get_userToken()
         )
     }
 
@@ -109,47 +107,65 @@ class Bot extends Player{
             });
     }
 
+    disconnectToRoom() {
+        this.get_wsGame().connection.close()
+        this.get_wsRoom().connection.close()
+    }
+
     /* Game */
 
     async simulateWord(word, WPM, errorPercentage, index = 0) { // Simulate human word
 
         if (word.length > 15) { //If word is long, short a little bit the WPM
-            WPM = WPM * 0.7
+            WPM = WPM * 0.8
         }
 
-        var letterDelay = (12000 / WPM)
+        var syllableOccurrence = await this.get_database().getSyllableOccurence("fr", this.get_room().game.get_syllable())
+
+        var letterDelay = (this.wpmTimer / WPM)
         var error = Math.random()
+
         if (index == 0) { //Wait when round start
-            var waitSec = Math.floor(Math.random() * (Math.floor(1200) - Math.ceil(400)) + Math.ceil(400))
+            var min = -0.00009 * Math.pow(WPM, 3) + 0.0471441176471 * Math.pow(WPM, 2) - 8.58597058824 * WPM + 981.235294118
+            var max = -0.00018 * Math.pow(WPM, 3) + 0.101378571429 * Math.pow(WPM, 2) - 19.9529285714 * WPM + 2089.57142857
+            if (syllableOccurrence < 20) {
+                var waitSec = Math.floor(Math.random() * (max * 0.7 - min * 0.5 + 1) + min * 0.5)
+            }
+            else {
+                var waitSec = Math.floor(Math.random() * (max - min + 1) + min)
+            }
             await funct.sleep(Math.floor(waitSec));
         }
-        if (error <= errorPercentage) { 
+
+        if (error <= errorPercentage) {
             //Enter incorrect word
             if (Math.floor(Math.random()) > 0.5) { this.simulateIncorrectWord(word, WPM, index, letterDelay) }
             //Write incorrect word, but realised it, erase and write correct word
             else { this.simulateIncorrectWord(word, WPM, index, letterDelay) }
         }
         //Enter correct word
-        else { this.simulateCorrectWord(word, WPM, index, letterDelay) } 
+        else { this.simulateCorrectWord(word, WPM, index, letterDelay) }
     }
 
-    async simulateCorrectWord(word, WPM, index = 0, letterDelay) {      
+    async simulateCorrectWord(word, WPM, index = 0, letterDelay) {
 
-        var previousLetter = word.slice(index-1, index )
+        var previousLetter = word.slice(index - 1, index)
         var currentLetter = word.slice(index, index + 1)
         var wordSinceStart = word.slice(0, index + 1)
-        
+
+
         if (index > 1) {
             //If key is close to previous key speed up WPM
-            if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { letterDelay = (12000 / (WPM * 1.4)); }
+            if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { var newLetterDelay = Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) }
+            else { var newLetterDelay = Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35) }
         }
 
         this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
         index++;
-        if (index < word.length && this.get_isPlaying()) {
+        if (index < word.length) {
             setTimeout(() => {
                 this.simulateCorrectWord(word, WPM, index, letterDelay); //recursive function to emit the new letter
-            }, letterDelay);
+            }, newLetterDelay);
         }
     }
 
@@ -178,16 +194,17 @@ class Bot extends Player{
 
         if (index > 1) {
             //If key is close to previous key speed up WPM
-            if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { letterDelay = (12000 / (WPM * 1.4)); }
+            if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { var newLetterDelay = Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) }
+            else { var newLetterDelay = Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35) }
         }
 
         this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
         index++;
-        if (index < word.length && this.get_isPlaying()) {
+        if (index < word.length) {
             setTimeout(() => {
                 this.simulateIncorrectWord(word, WPM, index, letterDelay); //recursive function to emit the new letter
-            }, letterDelay);
-        }       
+            }, newLetterDelay);
+        }
     }
 
     async simulateIncorrectWord2(word, WPM, index = 0) { //Write incorrect word but erase it and enter correct word
@@ -202,7 +219,8 @@ class Bot extends Player{
         await this.get_wsRoom().connection.close()
         this.wsRoom = new RoomSocket("RoomSocket", false, false)
         this.wsRoom.set_bot(this)
-        this.connectToRoom(this.get_room())     
+        this.connectToRoom(this.get_room())
+
     }
 
     /* Chat */

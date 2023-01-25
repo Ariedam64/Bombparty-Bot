@@ -5,9 +5,6 @@ function searchMessage(arguments, bot) {
         bot.sendGameMessage('Cette commande permet de trouver un message posté dans les 1000 derniers message room. La commande prend en paramètres un message entre guillemets')
         bot.sendGameMessage('Utilisation: $searchMessage "pokémon"')
     }
-    else if (arguments.split(" ").length > 1) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$searchMessage" pour mieux comprendre son utilisation')
-    }
     else if (!(arguments.includes('"')) || arguments.split('"').length - 1 < 2) {
         bot.sendGameMessage('Vous avez fourni un message sans guillemet. Utilisez la commande "$searchMessage" pour mieux comprendre son utilisation')
     }

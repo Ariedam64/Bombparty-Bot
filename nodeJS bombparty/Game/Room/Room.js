@@ -167,7 +167,7 @@ class Room {
     searchMessage(messageContains, botNickname) {
         var listMessagesFound = []
         for (const chatMessage of this.get_chatMessages()) {
-            if (chatMessage.message.get_message().includes(messageContains) && (!(chatMessage.message.get_message().includes("$searchMessage"))) && chatMessage.nickname != botNickname) {
+            if (chatMessage.message.get_message().includes(messageContains) && (!(chatMessage.message.get_message().includes("$searchMessage"))) && (!(chatMessage.message.get_message().includes("$rsm")))  && chatMessage.nickname != botNickname) {
                 var stringMessage = (chatMessage.message.get_postedTime() + " " + chatMessage.nickname + ": " + chatMessage.message.get_message())
                 listMessagesFound.push(stringMessage)
             }

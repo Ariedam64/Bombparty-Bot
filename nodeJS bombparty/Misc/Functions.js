@@ -74,4 +74,31 @@ function isInt(value) {
     return !isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))
 }
 
-module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter }
+function sortString(table, string) {
+    switch (table) {
+        case 'fr':
+            var order = "eiasrntolucmpdghbfvqj";
+            break
+        case 'es':
+            var order = "eiasrntolucmpdghbfvqj";
+            break
+        case 'en':
+            var order = "eiasrntolucmpdghbfvqj";
+            break
+            var order = "eiasrntolucmpdghbfvqj";
+        case 'de':
+            break
+        case 'pt':
+            var order = "eiasrntolucmpdghbfvqj";
+            break
+        case 'it':
+            var order = "eiasrntolucmpdghbfvqj";
+            break
+    }
+    
+    return string.split('')
+        .sort((a, b) => order.indexOf(a) - order.indexOf(b))
+        .join('');
+}
+
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString }

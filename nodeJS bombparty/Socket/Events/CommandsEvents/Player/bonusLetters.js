@@ -13,16 +13,16 @@
         if (playerList.length == 0 && player == false) {
             bot.sendGameMessage("Joueur introuvable")
         }
-        else if (player != false) {
+        else if (player != false) {           
             bonusLetters = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet()).toUpperCase()
-            bot.sendGameMessage("Lettre bonus manquante du joueur " + player.nickname + " : " + bonusLetters)
+            bot.sendGameMessage("Lettre(s) bonus manquante()s du joueur " + player.nickname + " : " + bonusLetters)
         }
         else if (playerList.length == 1) {
             bonusLetters = playerList[0].getNeededBonusLetters(bot.get_room().get_bonusAlphabet()).toUpperCase()
-            bot.sendGameMessage("Lettre bonus manquante du joueur " + playerList[0].nickname + " : " + bonusLetters)
+            bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + playerList[0].nickname + " : " + bonusLetters)
         }
         else {
-            bot.sendGameMessage("Plusieurs joueurs trouvé, renseigné plutôt le peerId du joueur")
+            bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")
         }
     }
 }

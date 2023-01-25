@@ -1,11 +1,10 @@
-﻿function playerCpPic(arguments, bot) {
+﻿
+
+function playerCpPic(arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet au bot de copier le pseudo et l\'image d\'un joueur présent dans la partie. La commande prend en paramètre le pseudo ou le peerId du joueur')
         bot.sendGameMessage('Utilisation: $copyProfile Ayaya OU $copyProfile 8')
-    }
-    else if (arguments.split(" ").length > 1) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$copyProfile" pour mieux comprendre son utilisation')
     }
     else {
         var playerList = bot.get_room().getPlayerByNickname(arguments)
@@ -23,7 +22,7 @@
             bot.copyImagePlayer(playerList[0])
         }
         else {
-            bot.sendGameMessage("Plusieurs joueurs trouvé, renseigné plutôt le peerId du joueur")
+            bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")
         }
     }
 }

@@ -13,17 +13,15 @@
             bot.sendGameMessage("Joueur introuvable")
         }
         else if (player != false) {
-            nationnality = player.get_language().split("-")[1]
-            if (nationnality == null) { nationnality = "Bot" }
+            nationnality = player.get_language()
             bot.sendGameMessage("Nationnalité du joueur " + player.nickname + ": " + nationnality)
         }
         else if (playerList.length == 1) {
-            nationnality = playerList[0].get_language().split("-")[1]
-            if (nationnality == null) { nationnality = "Bot" }
+            nationnality = playerList[0].get_language()
             bot.sendGameMessage("Nationnalité du joueur " + playerList[0].nickname + ": " + nationnality)
         }
         else {
-            bot.sendGameMessage("Plusieurs joueurs trouvé, renseigné plutôt le peerId du joueur")
+            bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")
         }
     }
 }

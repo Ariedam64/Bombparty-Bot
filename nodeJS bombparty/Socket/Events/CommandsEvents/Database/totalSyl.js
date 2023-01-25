@@ -8,7 +8,7 @@
     else if (arguments.split(" ").length > 1) {
         bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$totalSyllable" pour mieux comprendre son utilisation')
     }
-    else if (argument != "fr" && arguments != "en" && arguments != "es" && arguments != "pt" && arguments != "de" && arguments != "it") {
+    else if (arguments != "fr" && arguments != "en" && arguments != "es" && arguments != "pt" && arguments != "de" && arguments != "it") {
         bot.sendGameMessage('La langue fourni est introuvable. Voici les langues disponibles: fr, en, es, de, it et pt')
     }
     else {

@@ -11,6 +11,8 @@ const help = require("../CommandsEvents/help");
 const occurrenceSyllable = require("../CommandsEvents/Database/occurrenceSyllable");
 const occurrenceWord = require("../CommandsEvents/Database/occurrenceWord");
 const wordsPerMinute = require("../CommandsEvents/Bot/wordsPerMinute");
+const track = require("../CommandsEvents/Player/tracker");
+const reactionTime = require("../CommandsEvents/Player/reactionTime");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -29,7 +31,6 @@ function processEvent(data, bot, DEBUG) {
          * d: Database
          * 
          */
-
 
         /* ROOM */
 
@@ -66,6 +67,28 @@ function processEvent(data, bot, DEBUG) {
         case 'pn':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             nationnality(arguments, bot)
+            break;
+
+        //-- Reaction time
+        case 'reactionTime':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            reactionTime(arguments, bot)
+            break;
+
+        case 'prt':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            reactionTime(arguments, bot)
+            break;
+
+        //-- Track
+        case 'track':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            track(arguments, bot)
+            break;
+
+        case 'pt':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            track(arguments, bot)
             break;
 
         /* DATABASE */
@@ -179,7 +202,7 @@ function processEvent(data, bot, DEBUG) {
 
         default:
             if (DEBUG) { console.log("Command event: " + event + " ERROR") }
-            bot.sendGameMessage('La commande: "' + event + '" n\'existe pas. Fait "$help" pour voir la liste des commandes disponibles')
+            bot.sendGameMessage('La commande: "' + event + '" n\'existe pas. Faites "$help" pour voir la liste des commandes disponibles')
             break;
     }
 }
