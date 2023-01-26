@@ -5,7 +5,7 @@ const totalWords = require("../CommandsEvents/Database/totalWords");
 const suicide = require("../CommandsEvents/Bot/suicide");
 const wordError = require("../CommandsEvents/Bot/wordError");
 const autoJoin = require("../CommandsEvents/Bot/autoJoin");
-const nationnality = require("../CommandsEvents/Player/nationnality");
+const nationality = require("../CommandsEvents/Player/nationality");
 const copyPlayer = require("../CommandsEvents/Bot/copyPlayer");
 const help = require("../CommandsEvents/help");
 const occurrenceSyllable = require("../CommandsEvents/Database/occurrenceSyllable");
@@ -13,6 +13,7 @@ const occurrenceWord = require("../CommandsEvents/Database/occurrenceWord");
 const wordsPerMinute = require("../CommandsEvents/Bot/wordsPerMinute");
 const track = require("../CommandsEvents/Player/tracker");
 const reactionTime = require("../CommandsEvents/Player/reactionTime");
+const playStyle = require("../CommandsEvents/Bot/playStyle");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -59,14 +60,14 @@ function processEvent(data, bot, DEBUG) {
             break;
 
         //-- Nationnality
-        case 'nationnality':
+        case 'natinnality':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            nationnality(arguments, bot)
+            nationality(arguments, bot)
             break;
 
         case 'pn':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            nationnality(arguments, bot)
+            nationality(arguments, bot)
             break;
 
         //-- Reaction time
@@ -159,6 +160,17 @@ function processEvent(data, bot, DEBUG) {
         case 'baj':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             autoJoin(arguments, bot)
+            break;
+
+        //-- PlayStyle
+        case 'playStyle':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            playStyle(arguments, bot)
+            break;
+
+        case 'bps':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            playStyle(arguments, bot)
             break;
 
         //-- Copy profile

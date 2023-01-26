@@ -1,5 +1,7 @@
 ﻿
-function searchMessage(arguments, bot) {
+const pasteBin = require('../../../../Misc/PasteBin/api')
+
+async function searchMessage(arguments, bot) {
 
     if (arguments == "" || arguments == null) {
         bot.sendGameMessage('Cette commande permet de trouver un message posté dans les 1000 derniers message room. La commande prend en paramètres un message entre guillemets')
@@ -20,7 +22,14 @@ function searchMessage(arguments, bot) {
             bot.sendGameMessage(messagesFound[0])
         }
         else {
-            bot.sendGameMessage(messagesFound.length + " messages trouvés, renseigné un message plus précis")
+            var messageToPaste = ""
+            for (const message of messagesFound) {
+                messageToPaste += message + "\n"
+            }
+
+            var pastLink = await pasteBin.pasteMessage(messageToPaste)
+            console.log(pastLink)
+            bot.sendGameMessage("Plusieurs messages trouvés: " + pastLink)
         }
     }
 }

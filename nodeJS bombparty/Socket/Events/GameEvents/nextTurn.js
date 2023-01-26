@@ -24,14 +24,10 @@ async function nextTurn(jsonData, bot) {
             bot.set_isPlaying(true)
 
             if (bot.get_isSuicide()) {
-
                 bot.get_wsGame().emit("setWord", "💥", true)
             }
             else {
-                var word = bot.get_room().getWordWithHighOccurrence(foundWordArray)
-                if (word != null) {
-                    bot.simulateWord(word, bot.get_wpm(), bot.get_wordErrorPercentage())
-                }
+                bot.playWithPlayStyle(foundWordArray)      
             }
         }
         else { //Other players turn

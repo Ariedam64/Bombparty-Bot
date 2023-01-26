@@ -1,8 +1,8 @@
-﻿function nationnality(arguments, bot) {
+﻿function nationality(arguments, bot) {
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage('Cette commande permet la nationnalité d\'un joueur présent dans la partie. La commande prend en paramètre le pseudo ou le peerId du joueur')
-        bot.sendGameMessage('Utilisation: $nationnality Ayaya OU $nationnality 8')
+        bot.sendGameMessage('Cette commande permet la nationalité d\'un joueur présent dans la partie. La commande prend en paramètre le pseudo ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $nationality Ayaya OU $nationality 8')
     }
     else {
 
@@ -14,11 +14,11 @@
         }
         else if (player != false) {
             nationnality = player.get_language()
-            bot.sendGameMessage("Nationnalité du joueur " + player.nickname + ": " + nationnality)
+            bot.sendGameMessage("Nationalité du joueur " + player.nickname + ": " + nationnality)
         }
         else if (playerList.length == 1) {
             nationnality = playerList[0].get_language()
-            bot.sendGameMessage("Nationnalité du joueur " + playerList[0].nickname + ": " + nationnality)
+            bot.sendGameMessage("Nationalité du joueur " + playerList[0].nickname + ": " + nationnality)
         }
         else {
             bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")
@@ -26,4 +26,4 @@
     }
 }
 
-module.exports = nationnality
+module.exports = nationality

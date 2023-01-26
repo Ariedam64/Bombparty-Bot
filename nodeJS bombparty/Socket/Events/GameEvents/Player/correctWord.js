@@ -3,7 +3,7 @@ function correctWord(jsonData, bot) {
     try {
         var playerPeerId = jsonData[1].playerPeerId
         var bonusLetters = jsonData[1].bonusLetters
-        var correctWord = bot.get_room().getPlayerByPeerId(playerPeerId).get_word().replace(/[^a-zA-Z-]/gi, '')
+        var correctWord = bot.get_room().getPlayerByPeerId(playerPeerId).get_word().replace(/[^a-zA-Z-']/gi, '')
 
         bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime = false
 

@@ -37,6 +37,13 @@
     <Content Include="Game\API\jklmAPI.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Misc\PasteBin\configuration.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Misc\PasteBin\api.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Socket\Events\CommandsEvents\Bot\playStyle.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\wordError.js">
       <SubType>Code</SubType>
     </Content>
@@ -50,7 +57,7 @@
     <Content Include="Socket\Events\CommandsEvents\Player\tracker.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Player\nationnality.js">
+    <Content Include="Socket\Events\CommandsEvents\Player\nationality.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
@@ -187,6 +194,7 @@
     <Folder Include="Game\API\" />
     <Folder Include="BD\" />
     <Folder Include="Game\Bot\" />
+    <Folder Include="Misc\PasteBin\" />
     <Folder Include="Socket\Events\CommandsEvents\" />
     <Folder Include="Game\Room\" />
     <Folder Include="Game\Room\Modules\" />

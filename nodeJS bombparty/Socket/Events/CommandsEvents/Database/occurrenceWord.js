@@ -2,7 +2,7 @@
 
     if (arguments == "" || arguments == null) {
         bot.sendGameMessage('Cette commande permet de récupérer le nombre d\'occurrences d\'un mot présent dans la base de données. La commande prend en paramètres une langue et le mot entre guillemets')
-        bot.sendGameMessage('Langues diponsibles: fr - en - es - de - it - pt')
+        bot.sendGameMessage('Langues diponsibles: fr, en, es, de, it, pt')
         bot.sendGameMessage('Utilisation: $occurrenceWord fr "manger"')
     }
     else if (arguments.split(" ").length > 2) {

@@ -23,6 +23,7 @@ class Bot extends Player {
         this.wsRoom.set_bot(this)
 
         //Game state
+        this.playStyle = "Human"
         this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
@@ -42,6 +43,7 @@ class Bot extends Player {
     get_isSuicide() { return this.isSuicide }
     get_isPlaying() { return this.isPlaying }
     get_isAutoJoin() { return this.isAutoJoin }
+    get_playStyle() { return this.playStyle }
 
     /* Setter */
     set_room(newRoom) { this.room = newRoom }
@@ -53,6 +55,7 @@ class Bot extends Player {
     set_isSuicide(newIsSuicide) { this.isSuicide = newIsSuicide; }
     set_isPlaying(newIsPlaying) { this.isPlaying = newIsPlaying; }
     set_isAutoJoin(newIsAutoJoin) { this.isAutoJoin = newIsAutoJoin; }
+    set_playStyle(newPlayeStyle) { this.playStyle = newPlayeStyle }
 
     /* FUNCTIONS */
 
@@ -85,10 +88,10 @@ class Bot extends Player {
             .then(_ => {
                 //Make the data
                 var data = {
-                    "nickname": this.get_nickname(),
-                    "language": this.get_language(),
                     "roomCode": this.get_room().get_roomCode(),
-                    "userToken": this.get_userToken()
+                    "userToken": this.get_userToken(),
+                    "nickname": this.get_nickname(),
+                    "language": this.get_language()
                 }
                 if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
                 if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)
@@ -113,6 +116,22 @@ class Bot extends Player {
     }
 
     /* Game */
+
+    playWithPlayStyle(foundWordArray) {
+        switch (this.playStyle.toLowerCase()) {
+            case 'human':
+                var word = this.get_room().getWordWithHighOccurrence(foundWordArray)
+                if (word != null) {
+                    this.simulateWord(word, this.get_wpm(), this.get_wordErrorPercentage())
+                }
+                break
+            case 'bot':
+                var word = foundWordArray[Math.floor(Math.random() * foundWordArray.length)]
+                console.log(word.word)
+                this.get_wsGame().emit("setWord", word.word, true);
+                break
+        }
+    }
 
     async simulateWord(word, WPM, errorPercentage, index = 0) { // Simulate human word
 
@@ -153,6 +172,7 @@ class Bot extends Player {
         var currentLetter = word.slice(index, index + 1)
         var wordSinceStart = word.slice(0, index + 1)
 
+        console.log(index)
 
         if (index > 1) {
             //If key is close to previous key speed up WPM
