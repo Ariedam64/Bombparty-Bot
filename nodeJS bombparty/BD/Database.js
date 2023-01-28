@@ -181,7 +181,6 @@ class Database {
             }    
         }
         catch (err) {
-            console.log(err.stack)
             return -1
         }
     }

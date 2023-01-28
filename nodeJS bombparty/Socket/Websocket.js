@@ -4,7 +4,7 @@ const packet = require('./Packets.js')
 
 class Websocket {
 
-    constructor(name, wsDEBUG = true, eventDEBUG = true, url = 'wss://falcon.jklm.fun/socket.io/?EIO=4&transport=websocket', transport = 'websocket') {
+    constructor(name, bot, wsDEBUG = true, eventDEBUG = true, url = 'wss://falcon.jklm.fun/socket.io/?EIO=4&transport=websocket', transport = 'websocket') {
 
         if (this.constructor === Websocket) { //Abstract class
             throw new TypeError('Abstract class "Websocket" cannot be instantiated directly');
@@ -13,6 +13,7 @@ class Websocket {
         this.url = url;
         this.transport = transport;
         this.name = name;
+        this.bot = bot;
         this.wsDEBUG = wsDEBUG;
         this.eventDEBUG = eventDEBUG;
 
@@ -20,14 +21,14 @@ class Websocket {
         this.ready = false;
 
         this.connection = null;
-        this.bot = null;
+
 
         //Create websocket connection
         this.connection = new ws(this.url);
 
         //on_open socket
         this.connection.onopen = () => {
-            console.log(this.name + ": Connected!");
+            console.log("[" + this.bot.get_room().get_roomCode() + "]" +this.name + ": Connected!");
             this.connected = true;
         }
 
@@ -35,18 +36,18 @@ class Websocket {
         this.connection.onmessage = message => {
 
             if (this.wsDEBUG) {
-                console.log(this.name + ': ↓ ' + message.data);
+                console.log("[" + this.bot.get_room().get_roomCode() + "]" +this.name + ': ↓ ' + message.data);
             }   
         }
 
         //on_error socket
         this.connection.onerror = error => {
-            console.log(this.name + ': ${error}');
+            console.log("[" + this.bot.get_room().get_roomCode() + "]" +this.name + ': ' + error);
         }
 
         //on_close socket
         this.connection.onclose = () => {
-            console.log(this.name + ': Disconnected!');
+            console.log("[" + this.bot.get_room().get_roomCode() + "]" + this.name + ': Disconnected!');
             this.connected = false;
         }
     }
@@ -65,7 +66,7 @@ class Websocket {
     //Send message to the websocket
     sendMessage(message) {
         if (this.wsDEBUG) { 
-            console.log(this.name + ': ↑ ' + message);
+            console.log("[" + this.bot.get_room().get_roomCode() + "]" +this.name + ': ↑ ' + message);
         }
         this.connection.send(message);
     }

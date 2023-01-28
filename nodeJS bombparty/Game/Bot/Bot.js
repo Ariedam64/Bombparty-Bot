@@ -88,8 +88,7 @@ class Bot extends Player {
 
         if (webSocketLink.toString().includes("wss")) {
 
-            this.wsRoom = new RoomSocket("RoomSocket", false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
-            this.wsRoom.set_bot(this)
+            this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
             this.room = room;
             this.room.set_roomLink(webSocketLink)
@@ -110,7 +109,7 @@ class Bot extends Player {
                 });
         }
         else {
-            console.log("Impossible de se connecter à la room " + room)
+            console.log("Impossible de se connecter à la room " + room.get_roomCode())
         }
 
 

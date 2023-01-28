@@ -5,15 +5,15 @@ const Websocket = require('../Websocket.js')
 
 class GameSocket extends Websocket {
 
-    constructor(name = "GameSocket", wsDEBUG = false, eventDEBUG = false, url = 'wss://falcon.jklm.fun/socket.io/?EIO=4&transport=websocket', transport = 'websocket') {
+    constructor(name = "GameSocket", bot, wsDEBUG = false, eventDEBUG = false, url = 'wss://falcon.jklm.fun/socket.io/?EIO=4&transport=websocket', transport = 'websocket') {
 
-        super(name, wsDEBUG, eventDEBUG, url, transport); //Call constructor of child class (Websocket)
+        super(name, bot, wsDEBUG, eventDEBUG, url, transport); //Call constructor of child class (Websocket)
 
         //on_message socket
         this.connection.onmessage = message => {
 
             if (this.wsDEBUG) {
-                console.log(this.name + ': ↓ ' + message.data);
+                console.log("[" + this.bot.get_room().get_roomCode() + "]" +this.name + ': ↓ ' + message.data);
             }
 
             //Events packets

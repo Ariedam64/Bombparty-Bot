@@ -1,3 +1,5 @@
+const performance = require('performance-now');
+
 function correctWord(jsonData, bot) {
 
     try {
@@ -6,6 +8,10 @@ function correctWord(jsonData, bot) {
         var correctWord = bot.get_room().getPlayerByPeerId(playerPeerId).get_word().replace(/[^a-zA-Z-']/gi, '')
 
         bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime = false
+
+        bot.get_room().getPlayerByPeerId(playerPeerId).set_endWpmTime(performance())
+        let duration = (bot.get_room().getPlayerByPeerId(playerPeerId).get_endWpmTime() - bot.get_room().getPlayerByPeerId(playerPeerId).get_startWpmTime()).toFixed(3);
+        bot.get_room().getPlayerByPeerId(playerPeerId).appendWpmTime(duration)
 
         bot.get_room().getPlayerByPeerId(playerPeerId).addBonusLetters(bonusLetters, bot.get_room().get_bonusAlphabet()) //Update bonusLetter of the player
         bot.get_room().getPlayerByPeerId(playerPeerId).set_wasWordValidated(true)

@@ -6,15 +6,23 @@ function setPlayerWord(jsonData, bot) {
     var word = jsonData[2]
 
     if (bot.get_room().getPlayerByPeerId(playerPeerId) != false) {
-        if (word.length == 1 && bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime == true) {
-            bot.get_room().getPlayerByPeerId(playerPeerId).endReactionTime = performance();
 
-            let duration = (bot.get_room().getPlayerByPeerId(playerPeerId).endReactionTime - bot.get_room().getPlayerByPeerId(playerPeerId).startReactionTime).toFixed(3);
+        if (word.length == 1) {
 
-            bot.get_room().getPlayerByPeerId(playerPeerId).appendReactionTime(duration)
+            bot.get_room().getPlayerByPeerId(playerPeerId).set_startWpmTime(performance()) //WPM
 
-            bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime = false
+            if (bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime == true) {
+
+                bot.get_room().getPlayerByPeerId(playerPeerId).endReactionTime = performance(); //Reaction time
+
+                let duration = (bot.get_room().getPlayerByPeerId(playerPeerId).endReactionTime - bot.get_room().getPlayerByPeerId(playerPeerId).startReactionTime).toFixed(3);
+
+                bot.get_room().getPlayerByPeerId(playerPeerId).appendReactionTime(duration)
+
+                bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime = false
+            }
         }
+        
         bot.get_room().getPlayerByPeerId(playerPeerId).set_word(word)
     }
     

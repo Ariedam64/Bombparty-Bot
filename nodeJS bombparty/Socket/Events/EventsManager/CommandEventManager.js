@@ -15,6 +15,7 @@ const track = require("../CommandsEvents/Player/tracker");
 const reactionTime = require("../CommandsEvents/Player/reactionTime");
 const playStyle = require("../CommandsEvents/Bot/playStyle");
 const messages = require("../CommandsEvents/Player/messages");
+const speed = require("../CommandsEvents/Player/speed");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -69,6 +70,17 @@ function processEvent(data, bot, DEBUG) {
         case 'pm':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             messages(arguments, bot)
+            break;
+
+        //-- Speed
+        case 'speed':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            speed(arguments, bot)
+            break;
+
+        case 'ps':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            speed(arguments, bot)
             break;
 
         //-- Nationnality

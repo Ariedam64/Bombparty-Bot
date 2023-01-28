@@ -28,6 +28,11 @@ class Player {
         this.startReactionTime = 0.0
         this.endReactionTime = 0.0
 
+        this.wpmTimes = []
+        this.maxWpmTimes = 50;
+        this.startWpmTime = 0.0
+        this.endWpmTime = 0.0
+
         this.maxMessage = 250;
 
     }
@@ -50,7 +55,13 @@ class Player {
     get_isTrack() { return this.isTrack }
     get_reactionsTimes() { return this.reactionsTimes }
     get_maxReactionsTimes() { return this.maxReactionsTimes }
-    get_isReactionTime() {return this.isReactionTime }
+    get_isReactionTime() { return this.isReactionTime }
+
+    get_wpmTimes() { return this.wpmTimes }
+    get_maxWpmTimes() { return this.maxWpmTimes }
+    get_startWpmTime() { return this.startWpmTime }
+    get_endWpmTime() { return this.endWpmTime }
+
     get_maxMessage() { return this.maxMessage };
 
     /* SETTERS */
@@ -72,6 +83,12 @@ class Player {
     set_reactionsTimes(newReactionstTimes) { this.reactionsTimes = newReactionstTimes }
     set_maxReactionsTimes(newMaxReactionsTimes) { this.maxReactionsTimes = newMaxReactionsTimes }
     set_isReactionTime(newIsReactionTime) { this.isReactionTime = newIsReactionTime }
+
+    set_wpmTimes(newWpmTimes) { this.wpmTimes = newWpmTimes }
+    set_maxWpmTimes(newMaxWpmTimes) { this.maxWpmTimes = newMaxWpmTimes }
+    set_startWpmTime(newStartWpmTime) { this.startWpmTime = newStartWpmTime }
+    set_endWpmTime(newEndWpmTime) { this.endWpmTime = newEndWpmTime }
+
     set_maxMessage(newMaxMessage) { this.maxMessage = newMaxMessage };
 
 
@@ -142,6 +159,13 @@ class Player {
         this.get_reactionsTimes().push(reactionTime)
     }
 
+    appendWpmTime(WpmTime) {
+        if (this.get_wpmTimes().length == this.get_maxWpmTimes()) {
+            this.get_wpmTimes().shift()
+        }
+        this.get_wpmTimes().push(WpmTime)
+    }
+
     getReactionTimeAverage() {
         let reactionsTimes = parseFloat(0.0)
 
@@ -150,6 +174,17 @@ class Player {
         }
         var average = reactionsTimes / this.get_reactionsTimes().length
         return average.toFixed(2)
+    }
+
+    getWpmAverage() {
+        let totalTimeWpm = parseFloat(0.0)
+
+        for (const wpmTime of this.get_wpmTimes()) {        
+            totalTimeWpm = parseFloat(totalTimeWpm) + parseFloat(wpmTime)
+        }
+        var average = (this.get_wpmTimes().length * 60000) / totalTimeWpm
+
+        return average.toFixed(0)
     }
 }
 
