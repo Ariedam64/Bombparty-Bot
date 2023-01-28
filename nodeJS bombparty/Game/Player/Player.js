@@ -28,6 +28,7 @@ class Player {
         this.startReactionTime = 0.0
         this.endReactionTime = 0.0
 
+        this.wpmWords = []
         this.wpmTimes = []
         this.maxWpmTimes = 50;
         this.startWpmTime = 0.0
@@ -57,6 +58,7 @@ class Player {
     get_maxReactionsTimes() { return this.maxReactionsTimes }
     get_isReactionTime() { return this.isReactionTime }
 
+    get_wpmWords() { return this.wpmWords }
     get_wpmTimes() { return this.wpmTimes }
     get_maxWpmTimes() { return this.maxWpmTimes }
     get_startWpmTime() { return this.startWpmTime }
@@ -84,6 +86,7 @@ class Player {
     set_maxReactionsTimes(newMaxReactionsTimes) { this.maxReactionsTimes = newMaxReactionsTimes }
     set_isReactionTime(newIsReactionTime) { this.isReactionTime = newIsReactionTime }
 
+    set_wpmWords(newWpmWords) { this.wpmWords = newWpmWords }
     set_wpmTimes(newWpmTimes) { this.wpmTimes = newWpmTimes }
     set_maxWpmTimes(newMaxWpmTimes) { this.maxWpmTimes = newMaxWpmTimes }
     set_startWpmTime(newStartWpmTime) { this.startWpmTime = newStartWpmTime }
@@ -166,6 +169,13 @@ class Player {
         this.get_wpmTimes().push(WpmTime)
     }
 
+    appendWpmWordLength(wordLength) {
+        if (this.get_wpmWords().length == this.get_maxWpmTimes()) {
+            this.get_wpmWords().shift()
+        }
+        this.get_wpmWords().push(wordLength)
+    }
+
     getReactionTimeAverage() {
         let reactionsTimes = parseFloat(0.0)
 
@@ -178,11 +188,17 @@ class Player {
 
     getWpmAverage() {
         let totalTimeWpm = parseFloat(0.0)
+        let totalWords = 0
 
         for (const wpmTime of this.get_wpmTimes()) {        
             totalTimeWpm = parseFloat(totalTimeWpm) + parseFloat(wpmTime)
         }
-        var average = (this.get_wpmTimes().length * 60000) / totalTimeWpm
+
+        for (const wordLength of this.wpmWords) {
+            totalWords += wordLength
+        }
+
+        var average = (totalWords * 60000) / totalTimeWpm
 
         return average.toFixed(0)
     }

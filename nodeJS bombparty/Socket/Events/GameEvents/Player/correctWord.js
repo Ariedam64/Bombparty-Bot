@@ -11,6 +11,17 @@ function correctWord(jsonData, bot) {
 
         bot.get_room().getPlayerByPeerId(playerPeerId).set_endWpmTime(performance())
         let duration = (bot.get_room().getPlayerByPeerId(playerPeerId).get_endWpmTime() - bot.get_room().getPlayerByPeerId(playerPeerId).get_startWpmTime()).toFixed(3);
+
+        var compteur = 1
+        var strVide = ""
+        for (var i = 0; i < correctWord.length; i++) {
+            strVide += correctWord.charAt(i)
+            if (strVide.length % 7 === 0) {
+                compteur++
+            }
+        }
+
+        bot.get_room().getPlayerByPeerId(playerPeerId).appendWpmWordLength(compteur)
         bot.get_room().getPlayerByPeerId(playerPeerId).appendWpmTime(duration)
 
         bot.get_room().getPlayerByPeerId(playerPeerId).addBonusLetters(bonusLetters, bot.get_room().get_bonusAlphabet()) //Update bonusLetter of the player
