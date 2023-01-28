@@ -27,9 +27,7 @@ class Websocket {
 
         //on_open socket
         this.connection.onopen = () => {
-            if (this.wsDEBUG) {
-                console.log(this.name + ": Connected!");
-            }
+            console.log(this.name + ": Connected!");
             this.connected = true;
         }
 

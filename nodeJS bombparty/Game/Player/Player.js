@@ -28,7 +28,7 @@ class Player {
         this.startReactionTime = 0.0
         this.endReactionTime = 0.0
 
-        this.maxMessage = 50;
+        this.maxMessage = 250;
 
     }
 

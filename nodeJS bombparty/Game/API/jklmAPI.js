@@ -1,4 +1,5 @@
 const axios = require('axios');
+const request = require('request');
 
 async function getRooms() {
     return axios.get('https://jklm.fun/api/rooms')
@@ -16,4 +17,18 @@ async function getRooms() {
         });
 }
 
-module.exports = { getRooms };
+async function joinRoom(room) {
+
+    const data = { roomCode: room };
+
+    return axios.post('https://jklm.fun/api/joinRoom', data)
+        .then(response => {   
+
+            return response.data["url"].replace("https","wss")
+        })
+        .catch(error => {
+            return error;
+        });
+}
+
+module.exports = { getRooms, joinRoom };

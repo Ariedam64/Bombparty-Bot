@@ -14,6 +14,7 @@ const wordsPerMinute = require("../CommandsEvents/Bot/wordsPerMinute");
 const track = require("../CommandsEvents/Player/tracker");
 const reactionTime = require("../CommandsEvents/Player/reactionTime");
 const playStyle = require("../CommandsEvents/Bot/playStyle");
+const messages = require("../CommandsEvents/Player/messages");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -57,6 +58,17 @@ function processEvent(data, bot, DEBUG) {
         case 'pbl':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             bonusLetters(arguments, bot)
+            break;
+
+        //-- Messages
+        case 'messages':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            messages(arguments, bot)
+            break;
+
+        case 'pm':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            messages(arguments, bot)
             break;
 
         //-- Nationnality

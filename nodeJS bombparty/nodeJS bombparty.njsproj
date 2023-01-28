@@ -53,6 +53,9 @@
     <Content Include="Socket\Events\CommandsEvents\Bot\copyPlayer.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Socket\Events\CommandsEvents\Player\messages.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Socket\Events\CommandsEvents\Player\reactionTime.js" />
     <Content Include="Socket\Events\CommandsEvents\Player\tracker.js">
       <SubType>Code</SubType>

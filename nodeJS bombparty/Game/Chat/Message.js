@@ -14,6 +14,10 @@ class Message {
     set_postedTime(newPostedTime) { this.postedTime = newPostedTime }
     set_message(newMessage) { this.message = newMessage }
 
+    _toString() {
+        return (this.postedTime + " " + this.message)
+    }
+
 }
 
 //Export the class

@@ -16,6 +16,7 @@ class Room {
         this.roomCode = roomCode;
         this.gameId = gameId;
         this.roomName = roomName;
+        this.roomLink = null
 
         this.leaderPeerId = null;
         this.bonusAlphabet = null;
@@ -52,6 +53,7 @@ class Room {
     get_lastPlayerLeft() { return this.lastPlayerLeft };
     get_maxChatMessage() { return this.maxChatMessage };
     get_chatMessages() { return this.chatMessages };
+    get_roomLink() { return this.roomLink }
 
 
 
@@ -71,6 +73,7 @@ class Room {
     set_lastPlayerLeft(newLastPlayerLeft) { this.lastPlayerLeft = newLastPlayerLeft };
     set_maxChatMessage(newMaxChatMessage) { this.maxChatMessage = newMaxChatMessage }
     set_chatMessages(newChatMessages) { this.chatMessages = newChatMessages };
+    set_roomLink(newRoomLink) { this.roomLink = newRoomLink }
     
 
 

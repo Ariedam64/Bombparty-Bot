@@ -28,7 +28,6 @@ async function searchMessage(arguments, bot) {
             }
 
             var pastLink = await pasteBin.pasteMessage(messageToPaste)
-            console.log(pastLink)
             bot.sendGameMessage("Plusieurs messages trouvés: " + pastLink)
         }
     }

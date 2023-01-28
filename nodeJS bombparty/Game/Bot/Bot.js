@@ -1,7 +1,8 @@
-const Player = require('../Player/Player.js');
+﻿const Player = require('../Player/Player.js');
 const funct = require('../../Misc/Functions')
 const RoomSocket = require('../../Socket/Sockets/RoomSocket.js');
 const Database = require('../../BD/dataBase')
+const api = require('../API/jklmAPI.js')
 
 class Bot extends Player {
 
@@ -19,8 +20,7 @@ class Bot extends Player {
         this.room = null;
         this.wsGame = null;
 
-        this.wsRoom = new RoomSocket("RoomSocket", false, false);
-        this.wsRoom.set_bot(this)
+        this.wsRoom = null;
 
         //Game state
         this.playStyle = "Human"
@@ -82,23 +82,39 @@ class Bot extends Player {
     /* Socket */
 
     //Connect to room
-    connectToRoom(room) {
-        this.room = room;
-        funct.waitFor(_ => this.get_wsRoom().get_ready() === true) //Wait until ws is ready to send
-            .then(_ => {
-                //Make the data
-                var data = {
-                    "roomCode": this.get_room().get_roomCode(),
-                    "userToken": this.get_userToken(),
-                    "nickname": this.get_nickname(),
-                    "language": this.get_language()
-                }
-                if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
-                if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)
+    async connectToRoom(room) {
 
-                //Send data to connect
-                this.get_wsRoom().emit0("joinRoom", data);
-            });
+        var webSocketLink = await api.joinRoom(room.get_roomCode())
+
+        if (webSocketLink.toString().includes("wss")) {
+
+            this.wsRoom = new RoomSocket("RoomSocket", false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
+            this.wsRoom.set_bot(this)
+
+            this.room = room;
+            this.room.set_roomLink(webSocketLink)
+            funct.waitFor(_ => this.get_wsRoom().get_ready() === true) //Wait until ws is ready to send
+                .then(_ => {
+                    //Make the data
+                    var data = {
+                        "roomCode": this.get_room().get_roomCode(),
+                        "userToken": this.get_userToken(),
+                        "nickname": this.get_nickname(),
+                        "language": this.get_language()
+                    }
+                    if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
+                    if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)
+
+                    //Send data to connect   
+                    this.get_wsRoom().emit0("joinRoom", data)
+                });
+        }
+        else {
+            console.log("Impossible de se connecter à la room " + room)
+        }
+
+
+        
     }
 
     //Connect to game
@@ -237,7 +253,7 @@ class Bot extends Player {
         this.nickname = player.nickname
         await this.get_wsGame().connection.close()
         await this.get_wsRoom().connection.close()
-        this.wsRoom = new RoomSocket("RoomSocket", false, false)
+        this.wsRoom = new RoomSocket("RoomSocket", false, false, this.get_room().get_roomLink() + '/socket.io/?EIO=4&transport=websocket')
         this.wsRoom.set_bot(this)
         this.connectToRoom(this.get_room())
 
