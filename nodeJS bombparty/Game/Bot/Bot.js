@@ -188,9 +188,7 @@ class Bot extends Player {
         var currentLetter = word.slice(index, index + 1)
         var wordSinceStart = word.slice(0, index + 1)
 
-        console.log(index)
-
-        if (index > 1) {
+        if (index > -1) {
             //If key is close to previous key speed up WPM
             if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { var newLetterDelay = Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) }
             else { var newLetterDelay = Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35) }
@@ -228,7 +226,7 @@ class Bot extends Player {
             word = newWord
         }
 
-        if (index > 1) {
+        if (index > -1) {
             //If key is close to previous key speed up WPM
             if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { var newLetterDelay = Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) }
             else { var newLetterDelay = Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35) }
