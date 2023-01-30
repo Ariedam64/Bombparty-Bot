@@ -27,8 +27,8 @@ class Bot extends Player {
         this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
-        this.wpmTimer = 12500
-        this.wpm = 80
+        this.wpmTimer = 16300
+        this.wpm = 120
         this.wordErrorPercentage = 0.08
     }
 
@@ -195,7 +195,7 @@ class Bot extends Player {
 
         this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
         index++;
-        if (index < word.length) {
+        if (index < word.length && this.isPlaying) {
             setTimeout(() => {
                 this.simulateCorrectWord(word, WPM, index, letterDelay); //recursive function to emit the new letter
             }, newLetterDelay);
@@ -233,7 +233,7 @@ class Bot extends Player {
 
         this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
         index++;
-        if (index < word.length) {
+        if (index < word.length && this.isPlaying) {
             setTimeout(() => {
                 this.simulateIncorrectWord(word, WPM, index, letterDelay); //recursive function to emit the new letter
             }, newLetterDelay);

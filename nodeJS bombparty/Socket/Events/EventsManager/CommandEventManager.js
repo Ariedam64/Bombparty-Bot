@@ -11,11 +11,12 @@ const help = require("../CommandsEvents/help");
 const occurrenceSyllable = require("../CommandsEvents/Database/occurrenceSyllable");
 const occurrenceWord = require("../CommandsEvents/Database/occurrenceWord");
 const wordsPerMinute = require("../CommandsEvents/Bot/wordsPerMinute");
-const track = require("../CommandsEvents/Player/tracker");
 const reactionTime = require("../CommandsEvents/Player/reactionTime");
 const playStyle = require("../CommandsEvents/Bot/playStyle");
 const messages = require("../CommandsEvents/Player/messages");
 const speed = require("../CommandsEvents/Player/speed");
+const track = require("../CommandsEvents/Player/track");
+const assistant = require("../CommandsEvents/Player/assistant");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -105,7 +106,7 @@ function processEvent(data, bot, DEBUG) {
             reactionTime(arguments, bot)
             break;
 
-        //-- Track
+        //-- Tracker
         case 'track':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             track(arguments, bot)
@@ -114,6 +115,17 @@ function processEvent(data, bot, DEBUG) {
         case 'pt':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             track(arguments, bot)
+            break;
+
+        //-- Assistant
+        case 'assistant':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            assistant(arguments, bot)
+            break;
+
+        case 'pa':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            assistant(arguments, bot)
             break;
 
         /* DATABASE */

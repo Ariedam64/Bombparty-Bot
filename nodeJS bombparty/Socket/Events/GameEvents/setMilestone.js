@@ -1,8 +1,9 @@
+const performance = require('performance-now');
+
 const funct = require('../../../Misc/Functions.js')
 
 async function setMilestone(jsonData, bot) {
 
-    try {
         //If game is not started or end
         if (jsonData[1].name == "seating") {
 
@@ -32,12 +33,14 @@ async function setMilestone(jsonData, bot) {
 
             var player = bot.get_room().getPlayerByPeerId(currentPlayerPlaying)
 
+            bot.get_room().getPlayerByPeerId(currentPlayerPlaying).isReactionTime = true
+            player.startReactionTime = performance();
+
             bot.get_room().game.updateMilestoneRound(milestone)//room game update
 
             for (const [key, data] of Object.entries(playersPlaying)) {
-                if (bot.get_room().existPlayer(key)) {
-                    bot.get_room().getPlayerByPeerId(key).updateGameInfo(data) //update game player state
-                }
+                try { bot.get_room().getPlayerByPeerId(key).updateGameInfo(data) } //update game player state
+                catch {console.log("player " + key + " doesnt exist")}
             }
 
             if (currentPlayerPlaying == bot.get_peerId()) { //Bot turn
@@ -51,17 +54,12 @@ async function setMilestone(jsonData, bot) {
             }
             else { //Other players turn
 
-                bot.set_isPlaying(false)
-
-                try {
-                    var tracker = player.get_isTrack()
-                }
-                catch {
-                    var tracker = false
-                }
+                bot.set_isPlaying(false) 
+                try {var assistant = player.get_isAssisted()}
+                catch {var assistant = false}
 
                 //If player track is on
-                if (tracker) {
+                if (assistant) {
 
                     var playerAlphabet = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet())
                     var wordsAlreadyPut = bot.get_room().game.get_usedWords()
@@ -70,13 +68,13 @@ async function setMilestone(jsonData, bot) {
                     words = await bot.get_database().getBestWordWithBonusLetters(table, syllable, playerAlphabet, wordsAlreadyPut)
 
                     if (words == -1) {
-                        bot.sendGameMessage("Tracker: Impossible d'éffectuer la requête vers la base de données")
+                        bot.sendGameMessage("Assistant: Impossible d'éffectuer la requête vers la base de données")
                     }
                     else if (words == 0) {
-                        bot.sendGameMessage("Tracker: Aucun mot trouvé")
+                        bot.sendGameMessage("Assistant: Aucun mot trouvé")
                     }
                     else {
-                        message = "Tracker: "
+                        message = player.nickname + " assistant: "
                         for (const word of words) {
                             message += word.word
                             if (word.matched_letters != null) {
@@ -84,17 +82,13 @@ async function setMilestone(jsonData, bot) {
                             }
                             message += ", "
                         }
-                        bot.sendGameMessage("trackers: " + message)
+                        bot.sendGameMessage(message)
                     }
                 }
             }
 
         }
-    }
-    catch {
-        console.log("SETMILESTONE ERROR")
-    }
-    
+
 }
 
 module.exports = setMilestone

@@ -1,35 +1,27 @@
 ﻿function reactionTime(arguments, bot) {
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage('Cette commande permet de donner le temps de réaction moyen d\'un joueur. La commande prend en paramètre le pseudo ou le peerId du joueur')
-        bot.sendGameMessage('Utilisation: $reactionTime Ayaya OU $reactionTime 8')
+        bot.sendGameMessage('Cette commande permet de récupérer le temps de réaction moyen d\'un joueur. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $reactionTime Ayaya OU $prt Ayaya')
     }
     else {
 
         var playerList = bot.get_room().getPlayerByNickname(arguments)
-        var player = bot.get_room().getPlayerByPeerId(arguments)
+        var playerId = bot.get_room().getPlayerByPeerId(arguments)
+        var playerAuth = bot.get_room().getPlayerByAuth(arguments)
+        var player = null
 
-        if (playerList.length == 0 && player == false) {
-            bot.sendGameMessage("Joueur introuvable")
-        }       
-        else if (player != false) {
-            if (player.get_reactionsTimes().length == 0) {
-                bot.sendGameMessage("Aucun temps de réaction disponible pour le joueur " + player.nickname)
-            }
-            else {
-                bot.sendGameMessage("Temps de réaction moyen du joueur " + player.nickname + ": " + player.getReactionTimeAverage() + "ms")
-            }           
-        }
-        else if (playerList.length == 1) {
-            if (playerList[0].get_reactionsTimes().length == 0) {
-                bot.sendGameMessage("Aucun temps de réaction disponible pour le joueur " + playerList[0].nickname)
-            }
-            else {
-                bot.sendGameMessage("Temps de réaction moyen du joueur " + playerList[0].nickname + ": " + playerList[0].getReactionTimeAverage() + "ms")
-            }       
-        }
-        else {
-            bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")
+        /* Check player */
+        if (playerList.length == 0 && playerId == false && playerAuth == false) {bot.sendGameMessage("Joueur introuvable")}       
+        else if (playerId != false) {player = playerId}
+        else if (playerList.length == 1) {player = playerList[0]}
+        else if (playerAuth != false) {player = playerAuth}
+        else {bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")}
+
+        /* Find player reaction time */
+        if (player != null) {
+            if (player.get_reactionsTimes().length == 0) {bot.sendGameMessage("Aucun temps de réaction moyen disponible pour le joueur " + player.nickname)}
+            else {bot.sendGameMessage("Temps de réaction moyen du joueur " + player.nickname + ": " + player.getReactionTimeAverage() + "ms" + " (" + player.get_reactionsTimes().length + " rec)")}  
         }
     }
 }

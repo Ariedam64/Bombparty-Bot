@@ -58,7 +58,8 @@
     </Content>
     <Content Include="Socket\Events\CommandsEvents\Player\speed.js" />
     <Content Include="Socket\Events\CommandsEvents\Player\reactionTime.js" />
-    <Content Include="Socket\Events\CommandsEvents\Player\tracker.js">
+    <Content Include="Socket\Events\CommandsEvents\Player\assistant.js" />
+    <Content Include="Socket\Events\CommandsEvents\Player\track.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\CommandsEvents\Player\nationality.js">

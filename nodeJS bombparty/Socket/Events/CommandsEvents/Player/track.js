@@ -1,12 +1,11 @@
-﻿function bonusLetters(arguments, bot) {
-
+﻿function track(arguments, bot) {
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage('Cette commande permet de récupérer les lettres bonus manquantes d\'un joueur. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
-        bot.sendGameMessage('Utilisation: $bonusLetters Ayaya OU $pbl Ayaya')
+        bot.sendGameMessage('Cette commande permet de tracker un joueur et de lui donner ses statistiques à chaque fin de tour (temps de réaction et vitesse d\'écriture). La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $track Ayaya OU $pt Ayaya')
     }
     else {
-  
+
         var playerList = bot.get_room().getPlayerByNickname(arguments)
         var playerId = bot.get_room().getPlayerByPeerId(arguments)
         var playerAuth = bot.get_room().getPlayerByAuth(arguments)
@@ -19,13 +18,13 @@
         else if (playerAuth != false) {player = playerAuth}
         else {bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")}
 
-        /* Find player bonus letters */
-        if (player != null) {
-            bonusLetters = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet()).toUpperCase()
-            bot.sendGameMessage("Lettre(s) bonus manquante()s du joueur " + player.nickname + " : " + bonusLetters)
+        /* Start or stop track player */
+        if (player != null) {        
+            player.set_isTracked(!player.get_isTracked())
+            if (player.get_isTracked()) { bot.sendGameMessage("Le bot track désormais le joueur " + player.nickname) }
+            else { bot.sendGameMessage("Le bot ne track plus le joueur " + player.nickname) }
         }
     }
 }
 
-
-module.exports = bonusLetters
+module.exports = track

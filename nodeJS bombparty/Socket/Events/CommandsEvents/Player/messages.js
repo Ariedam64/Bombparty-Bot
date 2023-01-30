@@ -3,18 +3,25 @@
 async function messages(arguments, bot) {
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage('Cette commande permet de récupérer la liste des messages d\'un joueur présent dans la room. La commande prend en paramètre le pseudo ou le peerId du joueur')
-        bot.sendGameMessage('Utilisation: $messages Ayaya OU $messages 8')
+        bot.sendGameMessage('Cette commande permet de récupérer la liste des messages d\'un joueur présent dans la room. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $messages Ayaya OU $pm Ayaya')
     }
     else {
 
         var playerList = bot.get_room().getPlayerByNickname(arguments)
-        var player = bot.get_room().getPlayerByPeerId(arguments)
+        var playerId = bot.get_room().getPlayerByPeerId(arguments)
+        var playerAuth = bot.get_room().getPlayerByAuth(arguments)
+        var player = null
 
-        if (playerList.length == 0 && player == false) {
-            bot.sendGameMessage("Joueur introuvable")
-        }
-        else if (player != false) {
+        /* Check player */
+        if (playerList.length == 0 && playerId == false && playerAuth == false) {bot.sendGameMessage("Joueur introuvable")}
+        else if (playerId != false) {player = playerId     }
+        else if (playerList.length == 1) {player = playerList[0] }
+        else if (playerAuth != false) {player = playerAuth}
+        else {bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")}
+
+        /* Find player message */
+        if (player != null) {
             if (player.get_messages().length == 0) {
                 bot.sendGameMessage("Aucun message n'a été trouvé pour le joueur " + player.nickname)
             }
@@ -26,23 +33,6 @@ async function messages(arguments, bot) {
                 var pastLink = await pasteBin.pasteMessage(messageToPaste)
                 bot.sendGameMessage("Messages du joueur " + player.nickname + ": " + pastLink)
             }
-          
-        }
-        else if (playerList.length == 1) {
-            if (playerList[0].get_messages().length == 0) {
-                bot.sendGameMessage("Aucun message n'a été trouvé pour le joueur " + playerList[0].nickname)
-            }
-            else {
-                var messageToPaste = "Player: " + playerList[0].nickname + "\n\n"
-                for (const message of playerList[0].get_messages()) {
-                    messageToPaste += message._toString() + "\n"
-                }
-                var pastLink = await pasteBin.pasteMessage(messageToPaste)
-                bot.sendGameMessage("Messages du joueur " + playerList[0].nickname + ": " + pastLink)
-            }         
-        }
-        else {
-            bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")
         }
     }
 }

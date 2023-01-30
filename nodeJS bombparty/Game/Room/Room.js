@@ -198,6 +198,15 @@ class Room {
         return false
     }
 
+    getPlayerByAuth(authUsername) {
+        for (const player of this.players) {
+            if (player.auth != null) {
+                if (player.auth.username == authUsername) { return player }
+            }
+        }
+        return false
+    }
+
     getPlayerByNickname(nickname) {
         var playerFound = []
         for (const player of this.players) {

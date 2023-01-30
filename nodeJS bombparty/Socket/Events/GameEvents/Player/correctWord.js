@@ -5,6 +5,7 @@ function correctWord(jsonData, bot) {
     try {
         var playerPeerId = jsonData[1].playerPeerId
         var bonusLetters = jsonData[1].bonusLetters
+        var player = bot.get_room().getPlayerByPeerId(playerPeerId)
         var correctWord = bot.get_room().getPlayerByPeerId(playerPeerId).get_word().replace(/[^a-zA-Z-']/gi, '')
 
         bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime = false
@@ -21,8 +22,8 @@ function correctWord(jsonData, bot) {
             }
         }
 
-        bot.get_room().getPlayerByPeerId(playerPeerId).appendWpmWordLength(compteur)
-        bot.get_room().getPlayerByPeerId(playerPeerId).appendWpmTime(duration)
+        bot.get_room().getPlayerByPeerId(playerPeerId).get_wpmWords().push(compteur)
+        bot.get_room().getPlayerByPeerId(playerPeerId).get_wpmTimes().push(duration)
 
         bot.get_room().getPlayerByPeerId(playerPeerId).addBonusLetters(bonusLetters, bot.get_room().get_bonusAlphabet()) //Update bonusLetter of the player
         bot.get_room().getPlayerByPeerId(playerPeerId).set_wasWordValidated(true)
@@ -33,10 +34,46 @@ function correctWord(jsonData, bot) {
         if (playerPeerId != bot.get_peerId()) { //Add word to database if its from player
             bot.get_database().addNewWord(bot.get_room().getDatabaseLanguage(), correctWord)
         }
+
+        //TRACKED
+
+        //TRACKED
+
+        try {
+            var tracked = player.get_isTracked()
+        }
+        catch {
+            var tracked = false
+        }
+
+        if (tracked) {
+
+            if (player.get_wpmWords().length > 1) {
+                var diffWpm = player.getDiffWpm()
+                var diffReaction = player.getDiffReactionTime()
+
+                if (diffWpm > 0) {
+                    diffWpm = "+" + diffWpm.toString()
+                }
+                if (diffReaction > 0) {
+                    diffReaction = "+" + diffReaction.toString()
+                }
+
+                bot.sendGameMessage(player.nickname + " traker: " + player.getLastReactionTime() + "ms (" + diffReaction + "), " + player.getLastWpm() + " mots/min (" + diffWpm + ")")
+            }
+            else {
+                bot.sendGameMessage(player.nickname + " traker: " + player.getLastReactionTime() + "ms, " + player.getLastWpm() + " mots/min")
+            }
+        }
+
+        player.set_lastWpmAverage(player.getWpmAverage())
+        player.set_lastReactionTimeAverage(player.getReactionTimeAverage())
     }
     catch {
-        console.log("ERROR CORRECT WORD")
+        console.log("ERREUR CORRECTWORD")
     }
+
+       
     
 
 }

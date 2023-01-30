@@ -19,8 +19,8 @@ class Player {
         this.wasWordValidated = null;
         this.word = null;
 
-        this.isTrack = false;
-        this.limitTrack = null;
+        this.isTracked = false;
+        this.isAssisted = false
 
         this.isReactionTime = false
         this.reactionsTimes = []
@@ -33,6 +33,9 @@ class Player {
         this.maxWpmTimes = 50;
         this.startWpmTime = 0.0
         this.endWpmTime = 0.0
+
+        this.lastWpmAverage = null
+        this.lastReactionTimeAverage = null
 
         this.maxMessage = 250;
 
@@ -52,8 +55,8 @@ class Player {
     get_wasWordValidated() { return this.wasWordValidated };
     get_word() { return this.word };
 
-    get_limitTrack() { return this.limitTrack }
-    get_isTrack() { return this.isTrack }
+    get_isTracked() { return this.isTracked }
+    get_isAssisted() { return this.isAssisted }
     get_reactionsTimes() { return this.reactionsTimes }
     get_maxReactionsTimes() { return this.maxReactionsTimes }
     get_isReactionTime() { return this.isReactionTime }
@@ -63,6 +66,9 @@ class Player {
     get_maxWpmTimes() { return this.maxWpmTimes }
     get_startWpmTime() { return this.startWpmTime }
     get_endWpmTime() { return this.endWpmTime }
+
+    get_lastWpmAverage() { return this.lastWpmAverage }
+    get_lastReactionTimeAverage() { return this.lastReactionTimeAverage }
 
     get_maxMessage() { return this.maxMessage };
 
@@ -80,8 +86,8 @@ class Player {
     set_wasWordValidated(newWasWordValidated) { this.wasWordValidated = newWasWordValidated };
     set_word(newWord) { this.word = newWord };
 
-    set_limitTrack(newLimitTrack) { this.limitTrack = newLimitTrack }
-    set_isTrack(newIsTrack) { this.isTrack = newIsTrack }
+    set_isTracked(newIsTrack) { this.isTracked = newIsTrack }
+    set_isAssisted(newisAssisted) { this.isAssisted = newisAssisted }
     set_reactionsTimes(newReactionstTimes) { this.reactionsTimes = newReactionstTimes }
     set_maxReactionsTimes(newMaxReactionsTimes) { this.maxReactionsTimes = newMaxReactionsTimes }
     set_isReactionTime(newIsReactionTime) { this.isReactionTime = newIsReactionTime }
@@ -91,6 +97,9 @@ class Player {
     set_maxWpmTimes(newMaxWpmTimes) { this.maxWpmTimes = newMaxWpmTimes }
     set_startWpmTime(newStartWpmTime) { this.startWpmTime = newStartWpmTime }
     set_endWpmTime(newEndWpmTime) { this.endWpmTime = newEndWpmTime }
+
+    set_lastWpmAverage(newLastWpmAverage) { this.lastWpmAverage = newLastWpmAverage }
+    set_lastReactionTimeAverage(newLastReactionTimeAverage) { this.lastReactionTimeAverage = newLastReactionTimeAverage }
 
     set_maxMessage(newMaxMessage) { this.maxMessage = newMaxMessage };
 
@@ -117,13 +126,16 @@ class Player {
         this.set_word(jsonData.word)
         this.set_wasWordValidated(jsonData.wasWordValidated)
         this.set_bonusLetters(jsonData.bonusLetters)
+        this.reactionsTimes = []
+        this.wpmTimes = []
+        this.wpmWords = []
     }
 
     resetGameInfo() {
         this.set_lives(null)
         this.set_word(null)
         this.set_wasWordValidated(null)
-        this.resetBonusLetters()
+        this.bonusLetters = []
     }
 
     addBonusLetters(bonusLetters, bonusAlphabet) {
@@ -155,25 +167,48 @@ class Player {
         this.get_messages().push(message)
     }
 
-    appendReactionTime(reactionTime) {
-        if (this.get_reactionsTimes().length == this.get_maxReactionsTimes()) {
-            this.get_reactionsTimes().shift()
+    getDiffReactionTime() {
+        if (this.get_reactionsTimes().length > 1) {
+
+            var diffReactionTime = this.getLastReactionTime() - this.reactionsTimes[this.get_reactionsTimes().length - 2]
+            diffReactionTime = parseFloat(diffReactionTime)
+            return diffReactionTime.toFixed(2)
         }
-        this.get_reactionsTimes().push(reactionTime)
+        else {
+            return 0
+        }
     }
 
-    appendWpmTime(WpmTime) {
-        if (this.get_wpmTimes().length == this.get_maxWpmTimes()) {
-            this.get_wpmTimes().shift()
+    getDiffWpm() {
+        if (this.get_wpmTimes().length > 1) {
+
+            let totalTimeWpm = parseFloat(this.wpmTimes[this.get_wpmTimes().length - 2])
+            let totalWords = parseInt(this.wpmWords[this.wpmWords.length - 2])
+            var wpm1 = parseInt((totalWords * 60000) / totalTimeWpm)
+            var wpm2 = parseInt(this.getLastWpm())
+
+            var diffWpm = wpm2 - wpm1
+
+            return diffWpm
         }
-        this.get_wpmTimes().push(WpmTime)
+        else {
+            return 0
+        }
     }
 
-    appendWpmWordLength(wordLength) {
-        if (this.get_wpmWords().length == this.get_maxWpmTimes()) {
-            this.get_wpmWords().shift()
-        }
-        this.get_wpmWords().push(wordLength)
+    getLastReactionTime() { 
+
+        let lastRt = parseFloat(this.reactionsTimes[this.reactionsTimes.length - 1])
+        return lastRt.toFixed(2)
+    }
+
+    getLastWpm() {
+        console.log("oui")
+        let totalTimeWpm = parseFloat(this.wpmTimes[this.get_wpmTimes().length - 1])
+        let totalWords = parseInt(this.wpmWords[this.wpmWords.length - 1])
+
+        var average = parseInt((totalWords * 60000) / totalTimeWpm)
+        return average
     }
 
     getReactionTimeAverage() {

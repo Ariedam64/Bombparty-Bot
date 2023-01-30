@@ -17,7 +17,9 @@ async function nextTurn(jsonData, bot) {
             bot.get_database().addNewSyllable(bot.get_room().getDatabaseLanguage(), syllable)
         }
 
+        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).isReactionTime = true
         bot.get_room().getPlayerByPeerId(playerPeerIdTurn).startReactionTime = performance();
+
 
         if (playerPeerIdTurn == bot.get_peerId()) { //Bot turn
 
@@ -34,18 +36,12 @@ async function nextTurn(jsonData, bot) {
 
             bot.set_isPlaying(false)
 
-            bot.get_room().getPlayerByPeerId(playerPeerIdTurn).isReactionTime = true
+            //ASSISTED
 
-            try {
-                var tracker = player.get_isTrack()
-            }
-            catch {
-                var tracker = false
-            }
+            try {var assisted = player.get_isAssisted()}
+            catch {var assisted = false}
 
-            //If player track is on
-
-            if (tracker) {
+            if (assisted) {
 
                 var table = bot.get_language().split("-")[0].toLowerCase()
                 var playerAlphabet = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet())
@@ -53,14 +49,10 @@ async function nextTurn(jsonData, bot) {
 
                 words = await bot.get_database().getBestWordWithBonusLetters(table, syllable, playerAlphabet, wordsAlreadyPut)
 
-                if (words == -1) {
-                    bot.sendGameMessage("Tracker: Impossible d'éffectuer la requête vers la base de données")
-                }
-                else if (words == 0) {
-                    bot.sendGameMessage("Tracker: Aucun mot trouvé")
-                }
+                if (words == -1) {bot.sendGameMessage("Assistant: Impossible d'éffectuer la requête vers la base de données")}
+                else if (words == 0) {bot.sendGameMessage("Assistant: Aucun mot trouvé")}
                 else {
-                    message = "Tracker: "
+                    message = player.nickname + " assistant: "
                     for (const word of words) {
                         message += word.word
                         if (word.matched_letters != null) {
