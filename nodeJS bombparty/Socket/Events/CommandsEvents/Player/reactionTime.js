@@ -1,4 +1,4 @@
-﻿function reactionTime(arguments, bot) {
+﻿function reactionTime(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet de récupérer le temps de réaction moyen d\'un joueur. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')

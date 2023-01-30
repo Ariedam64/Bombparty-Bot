@@ -1,6 +1,6 @@
 ﻿const pasteBin = require('../../../../Misc/PasteBin/api')
 
-async function messages(arguments, bot) {
+async function messages(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet de récupérer la liste des messages d\'un joueur présent dans la room. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')

@@ -17,10 +17,14 @@ class Bot extends Player {
         this.userToken = this.generateUserToken()
 
         this.database = Database
-        this.room = null;
-        this.wsGame = null;
 
+        this.room = null;
+
+        this.wsGame = null;
         this.wsRoom = null;
+
+        this.creatorId = "128202956574162945"
+        this.playerStaff = [this.creatorId]
 
         //Game state
         this.playStyle = "Human"
@@ -44,6 +48,8 @@ class Bot extends Player {
     get_isPlaying() { return this.isPlaying }
     get_isAutoJoin() { return this.isAutoJoin }
     get_playStyle() { return this.playStyle }
+    get_playerStaff() { return this.playerStaff }
+    get_creatorId() { return this.creatorId }
 
     /* Setter */
     set_room(newRoom) { this.room = newRoom }
@@ -56,6 +62,8 @@ class Bot extends Player {
     set_isPlaying(newIsPlaying) { this.isPlaying = newIsPlaying; }
     set_isAutoJoin(newIsAutoJoin) { this.isAutoJoin = newIsAutoJoin; }
     set_playStyle(newPlayeStyle) { this.playStyle = newPlayeStyle }
+    set_playerStaff(newPlayerStaff) { this.playerStaff = newPlayerStaff }
+    set_creatorId(newCreatorId) { this.creatorId = newCreatorId }
 
     /* FUNCTIONS */
 
@@ -148,6 +156,8 @@ class Bot extends Player {
         }
     }
 
+
+    //Simulate word
     async simulateWord(word, WPM, errorPercentage, index = 0) { // Simulate human word
 
         if (word.length > 15) { //If word is long, short a little bit the WPM
@@ -181,6 +191,7 @@ class Bot extends Player {
         else { this.simulateCorrectWord(word, WPM, index, letterDelay) }
     }
 
+    //Simulate correcte word
     async simulateCorrectWord(word, WPM, index = 0, letterDelay) {
 
         var previousLetter = word.slice(index - 1, index)
@@ -202,6 +213,7 @@ class Bot extends Player {
         }
     }
 
+    //Simulate incorrecte word
     async simulateIncorrectWord(word, WPM, index = 0, letterDelay) { //Enter incorrect word
 
         var previousLetter = word.slice(index - 1, index)
@@ -244,6 +256,7 @@ class Bot extends Player {
         console.log("simulateIncorrectWord2")
     }
 
+    //Copy image player
     async copyImagePlayer(player) {
         this.auth = null
         if (player.picture != null || player.picture != "") { this.picture = player.picture } else { this.picture = null }

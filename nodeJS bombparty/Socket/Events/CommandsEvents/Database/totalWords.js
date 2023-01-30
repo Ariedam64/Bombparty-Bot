@@ -1,12 +1,12 @@
-﻿async function totalWords(arguments, bot) {
+﻿async function totalWords(chatterPlayer, arguments, bot) {
 
     if (arguments == "" || arguments == null) {
         bot.sendGameMessage('Cette commande permet d\'obtenir le nombre total de mots d\'une langue présent dans la base de données. La commande prend en paramètres une langue')
         bot.sendGameMessage('Langues diponsibles: fr, en, es, de, it, pt')
-        bot.sendGameMessage('Utilisation: $totalWord fr')
+        bot.sendGameMessage('Utilisation: $totalWord fr OU $dtw fr')
     }
     else if (arguments.split(" ").length > 1) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$totalWord" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$totalWord" ou $dtw pour mieux comprendre son utilisation')
     }
     else if (arguments != "fr" && arguments != "en" && arguments != "es" && arguments != "pt" && arguments != "de" && arguments != "it") {
         bot.sendGameMessage('La langue fourni est introuvable. Voici les langues disponibles: fr, en, es, de, it et pt')

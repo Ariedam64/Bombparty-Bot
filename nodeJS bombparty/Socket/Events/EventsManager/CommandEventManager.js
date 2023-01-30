@@ -17,8 +17,9 @@ const messages = require("../CommandsEvents/Player/messages");
 const speed = require("../CommandsEvents/Player/speed");
 const track = require("../CommandsEvents/Player/track");
 const assistant = require("../CommandsEvents/Player/assistant");
+const permission = require("../CommandsEvents/Player/permission");
 
-function processEvent(data, bot, DEBUG) {
+function processEvent(chatterPlayer, data, bot, DEBUG) {
 
     event = data.substring(1).split(' ')[0]
     arguments = data.split(' ')
@@ -41,12 +42,12 @@ function processEvent(data, bot, DEBUG) {
         //-- SEARCH MESSAGE
         case 'searchMessage':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            searchMessage(arguments, bot)
+            searchMessage(chatterPlayer, arguments, bot)
             break;
 
         case 'rsm':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            searchMessage(arguments, bot)
+            searchMessage(chatterPlayer, arguments, bot)
             break;
 
         /* PLAYER */
@@ -54,78 +55,89 @@ function processEvent(data, bot, DEBUG) {
         //-- Bonus letters
         case 'bonusLetters':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            bonusLetters(arguments, bot)
+            bonusLetters(chatterPlayer, arguments, bot)
             break;
 
         case 'pbl':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            bonusLetters(arguments, bot)
+            bonusLetters(chatterPlayer, arguments, bot)
             break;
 
         //-- Messages
         case 'messages':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            messages(arguments, bot)
+            messages(chatterPlayer, arguments, bot)
             break;
 
         case 'pm':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            messages(arguments, bot)
+            messages(chatterPlayer, arguments, bot)
             break;
 
         //-- Speed
         case 'speed':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            speed(arguments, bot)
+            speed(chatterPlayer, arguments, bot)
             break;
 
         case 'ps':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            speed(arguments, bot)
+            speed(chatterPlayer, arguments, bot)
             break;
 
         //-- Nationnality
         case 'natinnality':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            nationality(arguments, bot)
+            nationality(chatterPlayer, arguments, bot)
             break;
 
         case 'pn':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            nationality(arguments, bot)
+            nationality(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Permission
+        case 'permission':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            permission(chatterPlayer, arguments, bot)
+            break;
+
+        case 'pp':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            permission(chatterPlayer, arguments, bot)
             break;
 
         //-- Reaction time
         case 'reactionTime':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            reactionTime(arguments, bot)
+            reactionTime(chatterPlayer, arguments, bot)
             break;
 
         case 'prt':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            reactionTime(arguments, bot)
+            reactionTime(chatterPlayer, arguments, bot)
             break;
 
         //-- Tracker
         case 'track':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            track(arguments, bot)
+            track(chatterPlayer, arguments, bot)
             break;
 
         case 'pt':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            track(arguments, bot)
+            track(chatterPlayer, arguments, bot)
             break;
 
         //-- Assistant
         case 'assistant':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            assistant(arguments, bot)
+            assistant(chatterPlayer, arguments, bot)
             break;
 
         case 'pa':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            assistant(arguments, bot)
+            assistant(chatterPlayer, arguments, bot)
             break;
 
         /* DATABASE */
@@ -133,45 +145,45 @@ function processEvent(data, bot, DEBUG) {
         //-- Total syllables
         case 'totalSyllables':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            totalSyllables(arguments, bot)
+            totalSyllables(chatterPlayer, arguments, bot)
             break;
 
         case 'dts':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            totalSyllables(arguments, bot)
+            totalSyllables(chatterPlayer, arguments, bot)
             break;
 
         //-- Total words
         case 'totalWords':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            totalWords(arguments, bot)
+            totalWords(chatterPlayer, arguments, bot)
             break;
 
         case 'dtw':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            totalWords(arguments, bot)
+            totalWords(chatterPlayer, arguments, bot)
             break;
 
         //-- Occurrence syllable
         case 'occurrenceSyllable':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            occurrenceSyllable(arguments, bot)
+            occurrenceSyllable(chatterPlayer, arguments, bot)
             break;
 
         case 'dos':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            occurrenceSyllable(arguments, bot)
+            occurrenceSyllable(chatterPlayer, arguments, bot)
             break;
 
         //-- Occurrence word
         case 'occurrenceWord':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            occurrenceWord(arguments, bot)
+            occurrenceWord(chatterPlayer, arguments, bot)
             break;
 
         case 'dow':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            occurrenceWord(arguments, bot)
+            occurrenceWord(chatterPlayer, arguments, bot)
             break;
 
         /* BOT */
@@ -179,73 +191,73 @@ function processEvent(data, bot, DEBUG) {
         //-- Word error
         case 'wordError':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            wordError(arguments, bot)
+            wordError(chatterPlayer, arguments, bot)
             break;
 
         case 'bwe':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            wordError(arguments, bot)
+            wordError(chatterPlayer, arguments, bot)
             break;
 
         //-- AutoJoin
         case 'autoJoin':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            autoJoin(arguments, bot)
+            autoJoin(chatterPlayer, arguments, bot)
             break;
 
         case 'baj':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            autoJoin(arguments, bot)
+            autoJoin(chatterPlayer, arguments, bot)
             break;
 
         //-- PlayStyle
         case 'playStyle':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            playStyle(arguments, bot)
+            playStyle(chatterPlayer, arguments, bot)
             break;
 
         case 'bps':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            playStyle(arguments, bot)
+            playStyle(chatterPlayer, arguments, bot)
             break;
 
         //-- Copy profile
         case 'copyProfile':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            copyPlayer(arguments, bot)
+            copyPlayer(chatterPlayer, arguments, bot)
             break;
 
         case 'bcp':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            copyPlayer(arguments, bot)
+            copyPlayer(chatterPlayer, arguments, bot)
             break;
 
         //-- Suicide
         case 'suicide':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            suicide(arguments, bot)
+            suicide(chatterPlayer, arguments, bot)
             break;
 
         case 'bs':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            suicide(arguments, bot)
+            suicide(chatterPlayer, arguments, bot)
             break;
 
         //-- Words per minute
         case 'wordsPerMinute':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            wordsPerMinute(arguments, bot)
+            wordsPerMinute(chatterPlayer, arguments, bot)
             break;
 
         case 'bwpm':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            wordsPerMinute(arguments, bot)
+            wordsPerMinute(chatterPlayer, arguments, bot)
             break;
 
         /* HELP */
         case 'help':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            help(arguments, bot)
+            help(chatterPlayer, arguments, bot)
             break;
 
         default:

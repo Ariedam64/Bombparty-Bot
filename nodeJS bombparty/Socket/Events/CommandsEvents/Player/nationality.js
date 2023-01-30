@@ -1,4 +1,4 @@
-﻿function nationality(arguments, bot) {
+﻿function nationality(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet de récupérer la langue du navigateur d\'un joueur présent dans la partie. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')

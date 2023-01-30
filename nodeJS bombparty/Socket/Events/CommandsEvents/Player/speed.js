@@ -1,4 +1,4 @@
-﻿function speed(arguments, bot) {
+﻿function speed(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet de donner la vitesse d\'écriture d\'un joueur. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
@@ -19,7 +19,7 @@
         else {bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")}
 
         /* Find player speed */
-        if (player != false) {
+        if (player != null) {
             if (player.get_wpmTimes().length == 0) {bot.sendGameMessage("Aucune vitesse d\'écriture moyen disponible pour le joueur " + player.nickname)}
             else {bot.sendGameMessage("Vitesse d\'écriture moyen du joueur " + player.nickname + ": " + player.getWpmAverage() + " mots/min (" + player.get_wpmTimes().length + " rec)")} 
         }

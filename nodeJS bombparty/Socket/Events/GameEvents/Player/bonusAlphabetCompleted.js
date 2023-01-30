@@ -11,8 +11,6 @@ function bonusAlphabetCompleted(jsonData, bot) {
     catch {
         console.log("BONUSALPHABET ERROR")
     }
-    
-
 }
 
 module.exports = bonusAlphabetCompleted

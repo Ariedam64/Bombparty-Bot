@@ -1,4 +1,4 @@
-﻿function bonusLetters(arguments, bot) {
+﻿function bonusLetters(chatterPlayer, arguments, bot) {
 
 
     if (arguments == null || arguments == "") {
@@ -22,7 +22,7 @@
         /* Find player bonus letters */
         if (player != null) {
             bonusLetters = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet()).toUpperCase()
-            bot.sendGameMessage("Lettre(s) bonus manquante()s du joueur " + player.nickname + " : " + bonusLetters)
+            bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + player.nickname + " : " + bonusLetters)
         }
     }
 }

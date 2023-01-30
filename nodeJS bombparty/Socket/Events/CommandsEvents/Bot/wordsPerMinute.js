@@ -1,19 +1,22 @@
 ﻿const funct = require('../../../../Misc/Functions.js')
 
-function wordsPerMinute(arguments, bot) {
+function wordsPerMinute(chatterPlayer, arguments, bot) {
 
-    if (arguments == null || arguments == "") {
-        bot.sendGameMessage('Cette commande permet d\'augmenter ou de diminuer la vitesse d\'écriture du bot. La commande prend en paramètre un entier de 0 à 250')
-        bot.sendGameMessage('Utilisation: $wordsPerMinute 80')
+    if (chatterPlayer.auth == null || !bot.get_playerStaff().includes(chatterPlayer.auth.id)) {
+        bot.sendGameMessage('Vous ne disposez pas des droits requis pour exécuter cette commande')
+    }
+    else if (arguments == null || arguments == "") {
+        bot.sendGameMessage('Cette commande permet d\'augmenter ou de diminuer la vitesse d\'écriture du bot. La commande prend en paramètre un entier de 30 à 200')
+        bot.sendGameMessage('Utilisation: $wordsPerMinute 80 OU $bwpm 80')
     }
     else if (arguments.split(" ").length > 1) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$wordsPerMinute" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$wordsPerMinute" ou "$bwpm" pour mieux comprendre son utilisation')
     }
     else if (!(funct.isInt(arguments))) {
-        bot.sendGameMessage('La vitesse renseigné n\'est pas un entier. Utilisez la commande "$wordsPerMinute" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('La vitesse renseigné n\'est pas un entier. Utilisez la commande "$wordsPerMinute" ou "$bwpm" pour mieux comprendre son utilisation')
     }
-    else if (parseInt(arguments) < 0 || parseInt(arguments) > 250) {
-        bot.sendGameMessage('La vitesse renseigné n\'est pas compris entre 0 et 250. Utilisez la commande "$wordError" pour mieux comprendre son utilisation')
+    else if (parseInt(arguments) < 30 || parseInt(arguments) > 200) {
+        bot.sendGameMessage('La vitesse renseigné n\'est pas comprise entre 30 et 200. Utilisez la commande "$wordsPerMinute" ou "$bwpm" pour mieux comprendre son utilisation')
     }
     else {
         var wpm = arguments

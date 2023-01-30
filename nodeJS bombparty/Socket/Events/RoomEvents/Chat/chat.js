@@ -16,13 +16,11 @@ function chat(jsonData, bot) {
         timePostedHours = ("0" + timePostedHours).slice(-2).toString(); //Show hours with 2 digits (ex: "05" and not "5")
         timePostedMinutes = ("0" + timePostedMinutes).slice(-2).toString(); //Show minutes with 2 digits (ex: "02" and not "2")
 
-        var player = bot.get_room().getPlayerByPeerId(chatterPeerId)
+        var chatterPlayer = bot.get_room().getPlayerByPeerId(chatterPeerId)
         
-
         /* Appends message to player and chat */
-        if (player != false) {
-
-            player.appendMessage(new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
+        if (chatterPlayer != false) {
+            chatterPlayer.appendMessage(new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
             bot.get_room().appendMessageToChat(chatterPeerId, chatterNickname, new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
         }   
 
@@ -30,7 +28,7 @@ function chat(jsonData, bot) {
         var commandSymbol = "$"
 
         if (chatMessage.charAt(0) == commandSymbol) {
-            CommandEventManager.processEvent(chatMessage, bot, true)
+            CommandEventManager.processEvent(chatterPlayer, chatMessage, bot, true)
         }
 
     }

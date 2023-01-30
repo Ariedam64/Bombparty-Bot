@@ -1,14 +1,14 @@
 ﻿
 const pasteBin = require('../../../../Misc/PasteBin/api')
 
-async function searchMessage(arguments, bot) {
+async function searchMessage(chatterPlayer, arguments, bot) {
 
     if (arguments == "" || arguments == null) {
         bot.sendGameMessage('Cette commande permet de trouver un message posté dans les 1000 derniers message room. La commande prend en paramètres un message entre guillemets')
-        bot.sendGameMessage('Utilisation: $searchMessage "pokémon"')
+        bot.sendGameMessage('Utilisation: $searchMessage "pokémon" OU $rsm "pokémon"')
     }
     else if (!(arguments.includes('"')) || arguments.split('"').length - 1 < 2) {
-        bot.sendGameMessage('Vous avez fourni un message sans guillemet. Utilisez la commande "$searchMessage" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('Vous avez fourni un message sans guillemet. Utilisez la commande "$searchMessage" ou "$rsm" pour mieux comprendre son utilisation')
     }
     else {
         var messageToFind = arguments.substring(1).slice(0, -1)
