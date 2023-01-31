@@ -17,9 +17,9 @@ const messages = require("../CommandsEvents/Player/messages");
 const speed = require("../CommandsEvents/Player/speed");
 const track = require("../CommandsEvents/Player/track");
 const assistant = require("../CommandsEvents/Player/assistant");
-const permission = require("../CommandsEvents/Player/permission");
-const joinGame = require("../GameEvents/joinGame");
+const givePermission = require("../CommandsEvents/Player/givePermission");
 const joinRoom = require("../CommandsEvents/Bot/joinRoom");
+const precision = require("../CommandsEvents/Player/precision");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -99,14 +99,14 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
             break;
 
         //-- Permission
-        case 'permission':
+        case 'givePermission':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            permission(chatterPlayer, arguments, bot)
+            givePermission(chatterPlayer, arguments, bot)
             break;
 
-        case 'pp':
+        case 'pgp':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            permission(chatterPlayer, arguments, bot)
+            givePermission(chatterPlayer, arguments, bot)
             break;
 
         //-- Reaction time
@@ -118,6 +118,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'prt':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             reactionTime(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Precision
+        case 'precision':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            precision(chatterPlayer, arguments, bot)
+            break;
+
+        case 'pp':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            precision(chatterPlayer, arguments, bot)
             break;
 
         //-- Tracker

@@ -6,8 +6,15 @@ async function failWord(jsonData, bot) {
 
         bot.get_room().getPlayerByPeerId(playerPeerId).set_wasWordValidated(false)
 
-        if (reason == "alreadyUsed") {
-            //Code
+        switch (reason) {
+            case "mustContainSyllable":
+                break
+            case "alreadyUsed":
+                bot.get_room().getPlayerByPeerId(playerPeerId).errorsPercentage.push(0)
+                break
+            case "notInDictionary":
+                bot.get_room().getPlayerByPeerId(playerPeerId).errorsPercentage.push(0)
+                break
         }
 
         if (playerPeerId == bot.get_peerId()) { //Bot turn
@@ -17,6 +24,7 @@ async function failWord(jsonData, bot) {
         else { //Other players turn
 
         }
+
     }
     catch {
         console.log("FAILWORD ERROR")

@@ -12,21 +12,14 @@ async function searchMessage(chatterPlayer, arguments, bot) {
     }
     else {
         var messageToFind = arguments.substring(1).slice(0, -1)
-
         var messagesFound = bot.get_room().searchMessage(messageToFind, bot.get_nickname())
-
-        if (messagesFound.length == 0) {
-            bot.sendGameMessage("Aucun message trouvé")
-        }
-        else if (messagesFound.length == 1) {
-            bot.sendGameMessage(messagesFound[0])
-        }
+        if (messagesFound.length == 0) {bot.sendGameMessage("Aucun message trouvé")}
+        else if (messagesFound.length == 1) {bot.sendGameMessage(messagesFound[0])}
         else {
             var messageToPaste = ""
             for (const message of messagesFound) {
                 messageToPaste += message + "\n"
             }
-
             var pastLink = await pasteBin.pasteMessage(messageToPaste)
             bot.sendGameMessage("Plusieurs messages trouvés: " + pastLink)
         }

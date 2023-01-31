@@ -21,21 +21,17 @@ async function setup(jsonData, bot) {
             if (bot.get_isAutoJoin()) {
                 bot.get_wsGame().emit("joinRound")
             }
-
-
         }
         else {//If game is started
 
             var milestone = jsonData[1].milestone
             var playersPlaying = jsonData[1].milestone.playerStatesByPeerId
+            var currentPlayerPlaying = jsonData[1].milestone.currentPlayerPeerId
             var syllable = jsonData[1].milestone.syllable
 
             var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), syllable)
 
             bot.get_room().game.updateMilestoneRound(milestone)//room game update
-
-            bot.get_room().getPlayerByPeerId(playersPlaying).startReactionTime = performance();
-            bot.get_room().getPlayerByPeerId(playersPlaying).isReactionTime = true
 
             for (const [key, data] of Object.entries(playersPlaying)) {
                 if (bot.get_room().existPlayer(key)) {
@@ -43,7 +39,7 @@ async function setup(jsonData, bot) {
                 }
             }
 
-            if (playersPlaying == bot.get_peerId()) { //Bot turn
+            if (currentPlayerPlaying == bot.get_peerId()) { //Bot turn
 
                 bot.set_isPlaying(true)
 

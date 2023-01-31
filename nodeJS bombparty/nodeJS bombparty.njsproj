@@ -54,7 +54,8 @@
     <Content Include="Socket\Events\CommandsEvents\Bot\copyPlayer.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Player\permission.js" />
+    <Content Include="Socket\Events\CommandsEvents\Player\precision.js" />
+    <Content Include="Socket\Events\CommandsEvents\Player\givePermission.js" />
     <Content Include="Socket\Events\CommandsEvents\Player\messages.js">
       <SubType>Code</SubType>
     </Content>

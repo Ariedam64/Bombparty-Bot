@@ -1,4 +1,4 @@
-﻿function permission(chatterPlayer, arguments, bot) {
+﻿function givePermission(chatterPlayer, arguments, bot) {
 
 
     if (chatterPlayer.auth == null || chatterPlayer.auth.id != bot.get_creatorId()) {
@@ -6,7 +6,7 @@
     }
     else if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet d\'ajouter ou de retirer les droits d\'accès à l\'ensemble des commandes disponibles pour un joueur. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
-        bot.sendGameMessage('Utilisation: $permission Ayaya OU $pp Ayaya')
+        bot.sendGameMessage('Utilisation: $givePermission Ayaya OU $pgp Ayaya')
     }
     else {
   
@@ -40,4 +40,4 @@
 }
 
 
-module.exports = permission
+module.exports = givePermission

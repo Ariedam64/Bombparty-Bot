@@ -2,7 +2,7 @@ const performance = require('performance-now');
 
 function correctWord(jsonData, bot) {
 
-    try {
+
         var playerPeerId = jsonData[1].playerPeerId
         var bonusLetters = jsonData[1].bonusLetters
         var player = bot.get_room().getPlayerByPeerId(playerPeerId)
@@ -22,8 +22,24 @@ function correctWord(jsonData, bot) {
             }
         }
 
-        bot.get_room().getPlayerByPeerId(playerPeerId).get_wpmWords().push(compteur)
-        bot.get_room().getPlayerByPeerId(playerPeerId).get_wpmTimes().push(duration)
+        player.get_wpmWords().push(compteur)
+        player.get_wpmTimes().push(duration)
+
+        /* ERROR PERCENTAGE */
+
+
+        if (player.numberOfErrorTyped == 0) {
+            player.errorsPercentage.push(1)
+        }
+        else {
+            var lengthWordError = player.get_word().length - player.numberOfErrorTyped
+            var lengthWord = player.get_word().length
+            var errorPercentage = lengthWordError / lengthWord
+            player.errorsPercentage.push(errorPercentage)
+        }
+
+        
+
 
         bot.get_room().getPlayerByPeerId(playerPeerId).addBonusLetters(bonusLetters, bot.get_room().get_bonusAlphabet()) //Update bonusLetter of the player
         bot.get_room().getPlayerByPeerId(playerPeerId).set_wasWordValidated(true)
@@ -35,10 +51,7 @@ function correctWord(jsonData, bot) {
             bot.get_database().addNewWord(bot.get_room().getDatabaseLanguage(), correctWord)
         }
 
-        //TRACKED
-
-        //TRACKED
-
+        /* TRACKED */
         try {
             var tracked = player.get_isTracked()
         }
@@ -51,6 +64,7 @@ function correctWord(jsonData, bot) {
             if (player.get_wpmWords().length > 1) {
                 var diffWpm = player.getDiffWpm()
                 var diffReaction = player.getDiffReactionTime()
+                var diffPrecision = player.getDiffPrecision()
 
                 if (diffWpm > 0) {
                     diffWpm = "+" + diffWpm.toString()
@@ -58,22 +72,22 @@ function correctWord(jsonData, bot) {
                 if (diffReaction > 0) {
                     diffReaction = "+" + diffReaction.toString()
                 }
+                console.log(diffReaction)
+                if (diffPrecision > 0) {
+                    diffPrecision = "+" + diffPrecision.toString()
+                }
 
-                bot.sendGameMessage(player.nickname + " traker: " + player.getLastReactionTime() + "ms (" + diffReaction + "), " + player.getLastWpm() + " mots/min (" + diffWpm + ")")
+                bot.sendGameMessage(player.nickname + " traker: " + player.getLastReactionTime() + "ms (" + diffReaction + "), " + player.getLastWpm() + " mots/min (" + diffWpm + "), " + player.getLastPrecision() + "% (" + diffPrecision +"%)")
             }
             else {
-                bot.sendGameMessage(player.nickname + " traker: " + player.getLastReactionTime() + "ms, " + player.getLastWpm() + " mots/min")
+                bot.sendGameMessage(player.nickname + " traker: " + player.getLastReactionTime() + "ms, " + player.getLastWpm() + " mots/min, " + player.getLastPrecision() + "%")
             }
         }
 
         player.set_lastWpmAverage(player.getWpmAverage())
         player.set_lastReactionTimeAverage(player.getReactionTimeAverage())
-    }
-    catch {
-        console.log("ERREUR CORRECTWORD")
-    }
 
-       
+
     
 
 }

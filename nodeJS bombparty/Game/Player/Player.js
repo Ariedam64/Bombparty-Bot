@@ -1,3 +1,4 @@
+const performance = require('performance-now');
 
 class Player {
 
@@ -17,7 +18,7 @@ class Player {
         this.bonusLetters = [];
         this.lives = null;
         this.wasWordValidated = null;
-        this.word = null;
+        this.word = "";
 
         this.isTracked = false;
         this.isAssisted = false
@@ -34,8 +35,13 @@ class Player {
         this.startWpmTime = 0.0
         this.endWpmTime = 0.0
 
+        this.isErased = false
+        this.numberOfErrorTyped = 0
+        this.errorsPercentage = []
+
         this.lastWpmAverage = null
         this.lastReactionTimeAverage = null
+        this.lastErrorPercentage = null
 
         this.maxMessage = 250;
 
@@ -67,8 +73,13 @@ class Player {
     get_startWpmTime() { return this.startWpmTime }
     get_endWpmTime() { return this.endWpmTime }
 
+    get_isErased() { return this.isErased }
+    get_numberOfErrorTyped() { this.numberOfErrorTyped }
+    get_errorsPercentage() { this.errorsPercentage }
+
     get_lastWpmAverage() { return this.lastWpmAverage }
     get_lastReactionTimeAverage() { return this.lastReactionTimeAverage }
+    get_lastErrorPercentage() { return this.lastErrorPercentage }
 
     get_maxMessage() { return this.maxMessage };
 
@@ -98,8 +109,13 @@ class Player {
     set_startWpmTime(newStartWpmTime) { this.startWpmTime = newStartWpmTime }
     set_endWpmTime(newEndWpmTime) { this.endWpmTime = newEndWpmTime }
 
+    set_isErased(newIsErased) { this.isErased = newIsErased }
+    set_numberOfErrorTyped(newNumberOfErrorTyped) { this.numberOfErrorTyped = newNumberOfErrorTyped }
+    set_errorsPercentage(newErrorsPercentage) { this.errorsPercentage = newErrorsPercentage }
+
     set_lastWpmAverage(newLastWpmAverage) { this.lastWpmAverage = newLastWpmAverage }
     set_lastReactionTimeAverage(newLastReactionTimeAverage) { this.lastReactionTimeAverage = newLastReactionTimeAverage }
+    set_lastErrorPercentage(newLastErrorPercentage) { this.lastErrorPercentage = newLastErrorPercentage }
 
     set_maxMessage(newMaxMessage) { this.maxMessage = newMaxMessage };
 
@@ -129,6 +145,12 @@ class Player {
         this.reactionsTimes = []
         this.wpmTimes = []
         this.wpmWords = []
+        this.isReactionTime = true
+        this.startReactionTime = performance();
+        this.set_isErased(false)
+        this.numberOfErrorTyped = 0
+        this.set_word("")
+        this.errorsPercentage = []
     }
 
     resetGameInfo() {
@@ -179,6 +201,18 @@ class Player {
         }
     }
 
+    getDiffPrecision() {
+        if (this.errorsPercentage.length > 1) {
+
+            var diffPrecision = this.getLastPrecision()/100 - this.errorsPercentage[this.errorsPercentage.length - 2]
+            diffPrecision = parseFloat(diffPrecision)*100
+            return diffPrecision.toFixed(2)
+        }
+        else {
+            return 0
+        }
+    }
+
     getDiffWpm() {
         if (this.get_wpmTimes().length > 1) {
 
@@ -197,13 +231,16 @@ class Player {
     }
 
     getLastReactionTime() { 
-
         let lastRt = parseFloat(this.reactionsTimes[this.reactionsTimes.length - 1])
         return lastRt.toFixed(2)
     }
 
+    getLastPrecision() {
+        let lastPrecision = parseFloat(this.errorsPercentage[this.errorsPercentage.length - 1])*100
+        return lastPrecision.toFixed(2)
+    }
+
     getLastWpm() {
-        console.log("oui")
         let totalTimeWpm = parseFloat(this.wpmTimes[this.get_wpmTimes().length - 1])
         let totalWords = parseInt(this.wpmWords[this.wpmWords.length - 1])
 
@@ -237,6 +274,20 @@ class Player {
 
         return average.toFixed(0)
     }
+
+    getPrecisionAverage() {
+        let totalPrecision = parseFloat(0.0)
+
+        for (const errorPercentage of this.errorsPercentage) {
+            totalPrecision = parseFloat(totalPrecision) + parseFloat(errorPercentage)
+        }
+
+        var average = (totalPrecision / this.errorsPercentage.length) * 100
+
+        return average.toFixed(2)
+
+    }
+
 }
 
 //Export the class

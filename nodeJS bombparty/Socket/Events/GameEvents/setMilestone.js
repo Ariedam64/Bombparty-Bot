@@ -4,6 +4,7 @@ const funct = require('../../../Misc/Functions.js')
 
 async function setMilestone(jsonData, bot) {
 
+    try {
         //If game is not started or end
         if (jsonData[1].name == "seating") {
 
@@ -33,14 +34,11 @@ async function setMilestone(jsonData, bot) {
 
             var player = bot.get_room().getPlayerByPeerId(currentPlayerPlaying)
 
-            bot.get_room().getPlayerByPeerId(currentPlayerPlaying).isReactionTime = true
-            player.startReactionTime = performance();
-
             bot.get_room().game.updateMilestoneRound(milestone)//room game update
 
             for (const [key, data] of Object.entries(playersPlaying)) {
                 try { bot.get_room().getPlayerByPeerId(key).updateGameInfo(data) } //update game player state
-                catch {console.log("player " + key + " doesnt exist")}
+                catch { console.log("player " + key + " doesnt exist") }
             }
 
             if (currentPlayerPlaying == bot.get_peerId()) { //Bot turn
@@ -52,11 +50,14 @@ async function setMilestone(jsonData, bot) {
                     bot.simulateWord(word, bot.get_wpm(), bot.get_wordErrorPercentage())
                 }
             }
+
+
+
             else { //Other players turn
 
-                bot.set_isPlaying(false) 
-                try {var assistant = player.get_isAssisted()}
-                catch {var assistant = false}
+                bot.set_isPlaying(false)
+                try { var assistant = player.get_isAssisted() }
+                catch { var assistant = false }
 
                 //If player track is on
                 if (assistant) {
@@ -88,6 +89,10 @@ async function setMilestone(jsonData, bot) {
             }
 
         }
+    }
+    catch {
+        console.log("ERREUR SETMILESTONE")
+    }
 
 }
 

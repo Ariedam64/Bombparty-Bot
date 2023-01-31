@@ -1,9 +1,9 @@
-﻿function bonusLetters(chatterPlayer, arguments, bot) {
+﻿function precision(chatterPlayer, arguments, bot) {
 
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage('Cette commande permet de récupérer les lettres bonus manquantes d\'un joueur. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
-        bot.sendGameMessage('Utilisation: $bonusLetters Ayaya OU $pbl Ayaya')
+        bot.sendGameMessage('Cette commande permet de récupérer la précision d\'un joueur. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
+        bot.sendGameMessage('Utilisation: $precision Ayaya OU $pp Ayaya')
     }
     else {
   
@@ -19,13 +19,12 @@
         else if (playerAuth != false) {player = playerAuth}
         else {bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur")}
 
-        /* Find player bonus letters */
+        /* Find player precision */
         if (player != null) {
-            var bonusLetters = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet()).toUpperCase()
-            bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + player.nickname + " : " + bonusLetters)
+            bot.sendGameMessage("Précision moyenne du joueur " + player.nickname + ": " + player.getPrecisionAverage() + "%" + " (" + player.errorsPercentage.length + " rec)")
         }
     }
 }
 
 
-module.exports = bonusLetters
+module.exports = precision

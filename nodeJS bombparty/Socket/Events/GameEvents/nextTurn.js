@@ -17,8 +17,14 @@ async function nextTurn(jsonData, bot) {
             bot.get_database().addNewSyllable(bot.get_room().getDatabaseLanguage(), syllable)
         }
 
+        /* REACTION TIME */
         bot.get_room().getPlayerByPeerId(playerPeerIdTurn).isReactionTime = true
         bot.get_room().getPlayerByPeerId(playerPeerIdTurn).startReactionTime = performance();
+
+        /* ERROR PERCENTAGE */
+        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).set_isErased(false)
+        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).numberOfErrorTyped = 0
+        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).set_word("")
 
 
         if (playerPeerIdTurn == bot.get_peerId()) { //Bot turn

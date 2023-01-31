@@ -6,8 +6,6 @@ function chatterAdded(jsonData, bot) {
     bot.get_room().set_lastPlayerJoined(nicknamePlayerJoined)
 
     bot.get_wsRoom().emit1("getChatterProfiles")
-
-
 }
 
 module.exports = chatterAdded
