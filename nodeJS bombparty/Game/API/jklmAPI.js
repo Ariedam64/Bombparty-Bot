@@ -13,7 +13,7 @@ async function getRooms() {
             return arrayRooms
         })
         .catch(error => {
-            return error;
+            return -1;
         });
 }
 
@@ -22,12 +22,16 @@ async function joinRoom(room) {
     const data = { roomCode: room };
 
     return axios.post('https://jklm.fun/api/joinRoom', data)
-        .then(response => {   
-
-            return response.data["url"].replace("https","wss")
+        .then(response => {  
+            if (response.data.errorCode == 'noSuchRoom') {
+                return 0
+            }
+            else {
+                return response.data["url"].replace("https", "wss")
+            } 
         })
         .catch(error => {
-            return error;
+            return -1;
         });
 }
 

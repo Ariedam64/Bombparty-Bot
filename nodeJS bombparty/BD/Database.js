@@ -24,7 +24,6 @@ class Database {
         this.client.query(`INSERT INTO words.${table}(word) VALUES('${word}') 
                            ON CONFLICT (word) DO UPDATE SET occurrence = words.${table}.occurrence + 1`, (err, res) => {
             if (err) {
-                console.log(err)
                 if (this.DEBUG) {console.log(`Erreur lors de l'insertion du mot "${word}" dans la table "${table}"`)}
                 return -1
             }

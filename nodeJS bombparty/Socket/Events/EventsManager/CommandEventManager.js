@@ -18,6 +18,8 @@ const speed = require("../CommandsEvents/Player/speed");
 const track = require("../CommandsEvents/Player/track");
 const assistant = require("../CommandsEvents/Player/assistant");
 const permission = require("../CommandsEvents/Player/permission");
+const joinGame = require("../GameEvents/joinGame");
+const joinRoom = require("../CommandsEvents/Bot/joinRoom");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -197,6 +199,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'bwe':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             wordError(chatterPlayer, arguments, bot)
+            break;
+
+        //-- joinRoom
+        case 'joinRoom':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            joinRoom(chatterPlayer, arguments, bot)
+            break;
+
+        case 'bjr':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            joinRoom(chatterPlayer, arguments, bot)
             break;
 
         //-- AutoJoin

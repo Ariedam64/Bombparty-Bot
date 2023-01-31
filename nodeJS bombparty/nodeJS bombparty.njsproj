@@ -43,6 +43,7 @@
     <Content Include="Misc\PasteBin\api.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Socket\Events\CommandsEvents\Bot\joinRoom.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\playStyle.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\wordError.js">
       <SubType>Code</SubType>
