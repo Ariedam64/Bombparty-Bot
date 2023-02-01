@@ -5,63 +5,84 @@ const performance = require('performance-now');
 async function setup(jsonData, bot) {
 
 
-    try {
+
         //Setup room
         bot.get_room().setup(jsonData)
 
-
-        //If game is not started
+        /* GAME IS SEATING */
         if (jsonData[1].milestone.name == "seating") {
 
             var milestone = jsonData[1].milestone
-            bot.get_room().game.updateMilestoneSeating(milestone)//room game update
+            var players = jsonData[1].players
 
-            await funct.sleep(Math.floor(Math.floor(Math.random() * (Math.floor(1200) - Math.ceil(250)) + Math.ceil(250))));
+            /* UPDATE ROOM INFO */
+            bot.get_room().game.updateMilestoneSeating(milestone)
 
+            /* RESET PLAYERS INGAME INFO + DELETE PLAYERS WHO QUIT THE ROOM DURING THE GAME */
+            for (const player of bot.get_room().get_players()) {
+                if (player.get_isOnline() == false) { bot.get_room().deletePlayer(player.get_peerId()) }
+                player.resetGameInfo()                
+            }
+            for (const player of players) {
+                var playerExist = bot.get_room().getPlayerByPeerId(player.profile.peerId)
+                if (playerExist != false) {
+                    playerExist.set_isOnline(player.isOnline)
+                }  
+            }
+
+            /* AUTO JOIN */
             if (bot.get_isAutoJoin()) {
+                await funct.sleep(Math.floor(Math.floor(Math.random() * (Math.floor(1200) - Math.ceil(250)) + Math.ceil(250))));
                 bot.get_wsGame().emit("joinRound")
             }
         }
-        else {//If game is started
+
+        /* GAME IS ROUND */
+        else {
 
             var milestone = jsonData[1].milestone
             var playersPlaying = jsonData[1].milestone.playerStatesByPeerId
+            var players = jsonData[1].players
             var currentPlayerPlaying = jsonData[1].milestone.currentPlayerPeerId
             var syllable = jsonData[1].milestone.syllable
 
-            var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), syllable)
+            /* UPDATE ROOM INFO */
+            bot.get_room().game.updateMilestoneRound(milestone)
 
-            bot.get_room().game.updateMilestoneRound(milestone)//room game update
-
+            /* UPDATE PLAYERS INGAME INFO */
             for (const [key, data] of Object.entries(playersPlaying)) {
-                if (bot.get_room().existPlayer(key)) {
-                    bot.get_room().getPlayerByPeerId(key).updateGameInfo(data) //player game update state
+                var playerExist = bot.get_room().getPlayerByPeerId(key)
+                if (playerExist != false) {
+                    playerExist.updateGameInfo(data)//player game update state   
                 }
             }
 
-            if (currentPlayerPlaying == bot.get_peerId()) { //Bot turn
+            for (const player of players) {
+                var playerExist = bot.get_room().getPlayerByPeerId(player.profile.peerId)
+                if (playerExist != false) {
+                    playerExist.set_isOnline(player.isOnline)
+                }         
+            }
 
-                bot.set_isPlaying(true)
+            /* BOT TURN */
+            if (currentPlayerPlaying == bot.get_peerId()) {
 
-                var word = bot.get_room().getWordWithLowOccurrence(foundWordArray)
+                bot.set_isPlaying(true)  
+
+                /* SIMULATE WORD TYPING */
+                var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), syllable)
+                var word = bot.get_room().getWordWithLowOccurrence(foundWordArray)                 
                 if (word != null) {
                     bot.simulateWord(word, bot.get_wpm(), bot.get_wordErrorPercentage())
                 }
             }
-            else { //Other players turn
 
+            /* OTHER PLAYERS TURNS */
+            else { 
                 bot.set_isPlaying(false)
-                
-
             }
+        } 
 
-        }
-    }
-    catch {
-        console.log("ERREUR SETUP")
-    }
-
-    
 }
 
 module.exports = setup

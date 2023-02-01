@@ -17,14 +17,17 @@ function chat(jsonData, bot) {
         timePostedMinutes = ("0" + timePostedMinutes).slice(-2).toString(); //Show minutes with 2 digits (ex: "02" and not "2")
 
         var chatterPlayer = bot.get_room().getPlayerByPeerId(chatterPeerId)
-        
-        /* Appends message to player and chat */
-        if (chatterPlayer != false) {
-            chatterPlayer.appendMessage(new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
-            bot.get_room().appendMessageToChat(chatterPeerId, chatterNickname, new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
-        }   
 
-        /* Check if message is a command*/
+        /* APPENDS MESSAGE TO PLAYER */
+        if (chatterPlayer != false) {            
+            if (chatterPlayer != false) {
+                chatterPlayer.appendMessage(new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
+                bot.get_room().appendMessageToChat(chatterPeerId, chatterNickname, new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
+            }
+        }
+        
+        
+        /* COMMAND MANAGER */
         var commandSymbol = "$"
 
         if (chatMessage.charAt(0) == commandSymbol) {

@@ -239,6 +239,7 @@ class Room {
         var playerToAdd = new Player(player.peerId, player.nickname, null, player.language, null, player.roles, null) //create Player object
         if (player.picture != null) { playerToAdd.set_picture(player.picture) } //check if player has picture
         if (player.auth != null) { playerToAdd.set_auth(player.auth) } //check if player has auth (Discord/Twitch)
+        playerToAdd.set_isOnline(null)
         this.players.push(playerToAdd) //Add player to list
     }
 

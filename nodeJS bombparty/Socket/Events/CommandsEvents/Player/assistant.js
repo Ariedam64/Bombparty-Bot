@@ -1,13 +1,12 @@
 ﻿function assistant(chatterPlayer, arguments, bot) {
 
-    if (chatterPlayer.auth == null || !bot.get_playerStaff().includes(chatterPlayer.auth.id) || chatterPlayer.auth.id != bot.get_creatorId()) {
+    if (chatterPlayer.auth == null || !bot.get_playerStaff().includes(chatterPlayer.auth.id) && chatterPlayer.auth.id != bot.get_creatorId()) {
         bot.sendGameMessage('Vous ne disposez pas des droits requis pour exécuter cette commande')
     }
     else if (arguments == null || arguments == "") {
         bot.sendGameMessage('Cette commande permet de tracker un joueur et de lui donner les mots les plus optimales pour ces lettres bonus manquantes. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
         bot.sendGameMessage('Utilisation: $assistant Ayaya OU $pa Ayaya')
     }
-
     else {
        
         var playerList = bot.get_room().getPlayerByNickname(arguments)

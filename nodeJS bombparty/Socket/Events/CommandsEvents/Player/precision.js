@@ -21,7 +21,8 @@
 
         /* Find player precision */
         if (player != null) {
-            bot.sendGameMessage("Précision moyenne du joueur " + player.nickname + ": " + player.getPrecisionAverage() + "%" + " (" + player.errorsPercentage.length + " rec)")
+            if (player.errorsPercentage.length == 0) { bot.sendGameMessage("Aucune précision moyenne disponible pour le joueur " + player.nickname) } 
+            else {bot.sendGameMessage("Précision moyenne du joueur " + player.nickname + ": " + player.getPrecisionAverage() + "%" + " (" + player.errorsPercentage.length + " rec)")}          
         }
     }
 }

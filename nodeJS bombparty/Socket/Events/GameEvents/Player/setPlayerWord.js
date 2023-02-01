@@ -3,18 +3,18 @@ const performance = require('performance-now');
 function setPlayerWord(jsonData, bot) {
 
 
+    var playerPeerId = jsonData[1]
+    var word = jsonData[2]
+    var send = jsonData[3]
+    var player = bot.get_room().getPlayerByPeerId(playerPeerId)
 
-        var playerPeerId = jsonData[1]
-        var word = jsonData[2]
-        var send = jsonData[3]
-        var player = bot.get_room().getPlayerByPeerId(playerPeerId)
-
+    if (player != false) {
+        /* UPDATE PRECISION OF PLAYER*/
         if (!send) {
             if (word.length > player.get_word().length) {
-                if (player.get_isErased()) {
-                    player.set_isErased(false)
-                }
+                if (player.get_isErased()) { player.set_isErased(false) }
             }
+            
             else if (word.length < player.get_word().length) {
                 if (!player.get_isErased()) {
                     player.set_isErased(true)
@@ -23,20 +23,19 @@ function setPlayerWord(jsonData, bot) {
             }
         }
 
-        if (word.length == 1) {
-            bot.get_room().getPlayerByPeerId(playerPeerId).set_startWpmTime(performance()) //WPM
-
-            if (bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime == true) {
-                bot.get_room().getPlayerByPeerId(playerPeerId).endReactionTime = performance(); //Reaction time
-                let duration = (bot.get_room().getPlayerByPeerId(playerPeerId).endReactionTime - bot.get_room().getPlayerByPeerId(playerPeerId).startReactionTime).toFixed(3);
-                bot.get_room().getPlayerByPeerId(playerPeerId).get_reactionsTimes().push(duration)
-                bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime = false
+        /* UPDATE REACTION TIME PLAYER */
+        if (word.length == 1) { //If player started to type
+            player.set_startWpmTime(performance()) //start record wpm
+            if (player.isReactionTime == true) {
+                player.endReactionTime = performance(); //stop record reaction time
+                let duration = (player.endReactionTime - player.startReactionTime).toFixed(3);
+                player.get_reactionsTimes().push(duration)
+                player.isReactionTime = false
             }
         }
-        bot.get_room().getPlayerByPeerId(playerPeerId).set_word(word)
-
-
-    
+        player.set_word(word)
+    }
 }
+
 
 module.exports = setPlayerWord

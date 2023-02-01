@@ -1,16 +1,14 @@
 function bonusAlphabetCompleted(jsonData, bot) {
 
+    var playerPeerId = jsonData[1]
+    var newPlayerLives = jsonData[2]
+    var player = bot.get_room().getPlayerByPeerId(playerPeerId)
 
-    try {
-        var playerPeerId = jsonData[1]
-        var newPlayerLives = jsonData[2]
+    if (player != false) {
+        player.resetBonusLetters() //Reset bonusLetters of the player
+        player.set_lives(newPlayerLives) //Set new lives to the players
+    }       
 
-        bot.get_room().getPlayerByPeerId(playerPeerId).resetBonusLetters() //Reset bonusLetters of the player
-        bot.get_room().getPlayerByPeerId(playerPeerId).set_lives(newPlayerLives) //Set new lives to the players
-    }
-    catch {
-        console.log("BONUSALPHABET ERROR")
-    }
 }
 
 module.exports = bonusAlphabetCompleted

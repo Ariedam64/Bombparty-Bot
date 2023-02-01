@@ -89,7 +89,6 @@ class Database {
         this.client.query(`INSERT INTO syllables.${table}(syllable) VALUES('${syllable}') 
                            ON CONFLICT (syllable) DO UPDATE SET occurrence = syllables.${table}.occurrence + 1`, (err, res) => {
             if (err) {
-                console.log(err)
                 if (this.DEBUG) { console.log(`Erreur lors de l'insertion de la syllabe "${syllable}" dans la table "${table}"`) }
                 return -1
             }

@@ -1,19 +1,20 @@
 async function failWord(jsonData, bot) {
 
-    try {
-        var playerPeerId = jsonData[1]
-        var reason = jsonData[2]
+    var playerPeerId = jsonData[1]
+    var reason = jsonData[2]
+    var player = bot.get_room().getPlayerByPeerId(playerPeerId)
 
-        bot.get_room().getPlayerByPeerId(playerPeerId).set_wasWordValidated(false)
+    if (player != false) {
+        player.set_wasWordValidated(false)
 
         switch (reason) {
             case "mustContainSyllable":
                 break
             case "alreadyUsed":
-                bot.get_room().getPlayerByPeerId(playerPeerId).errorsPercentage.push(0)
+                player.errorsPercentage.push(0) //Update player precision
                 break
             case "notInDictionary":
-                bot.get_room().getPlayerByPeerId(playerPeerId).errorsPercentage.push(0)
+                player.errorsPercentage.push(0) //Update player precision
                 break
         }
 
@@ -24,14 +25,7 @@ async function failWord(jsonData, bot) {
         else { //Other players turn
 
         }
-
-    }
-    catch {
-        console.log("FAILWORD ERROR")
-    }
-
-    
-
+    } 
 }
 
 module.exports = failWord

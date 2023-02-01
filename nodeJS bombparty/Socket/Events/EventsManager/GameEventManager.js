@@ -1,4 +1,4 @@
-const addPlayer = require('../GameEvents/addPlayer');
+const addPlayer = require('../GameEvents/Player/addPlayer');
 const clearUsedWords = require('../GameEvents/clearUsedWords');
 const correctWord = require('../GameEvents/Player/correctWord');
 const failWord = require('../GameEvents/Player/failWord');
@@ -6,7 +6,7 @@ const happyBirthday = require('../GameEvents/happyBirthday');
 const joinGame = require('../GameEvents/joinGame');
 const livesLost = require('../GameEvents/Player/livesLost');
 const nextTurn = require('../GameEvents/nextTurn');
-const removePlayer = require('../GameEvents/removePlayer');
+const removePlayer = require('../GameEvents/Player/removePlayer');
 const setMilestone = require('../GameEvents/setMilestone');
 const setPlayerWord = require('../GameEvents/Player/setPlayerWord');
 const setRules = require('../GameEvents/setRules');

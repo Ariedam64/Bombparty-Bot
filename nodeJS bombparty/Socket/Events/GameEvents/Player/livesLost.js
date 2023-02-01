@@ -1,22 +1,17 @@
 function livesLost(jsonData, bot) {
 
-    try {
+    if (player != false) {
         var playerPeerId = jsonData[1]
         var newPlayerLives = jsonData[2]
+        var player = bot.get_room().getPlayerByPeerId(playerPeerId)
 
-        if (bot.get_room().getPlayerByPeerId(playerPeerId) != false) { //Check if player exist
-            bot.get_room().getPlayerByPeerId(playerPeerId).isReactionTime = false
-            bot.get_room().getPlayerByPeerId(playerPeerId).set_lives(newPlayerLives) //Set new lives to the player
-            bot.get_room().getPlayerByPeerId(playerPeerId).errorsPercentage.push(0)
-        }
-
-
+        /* UPDATE PLAYER STATE */
+        if (player != false) {
+            player.set_lives(newPlayerLives) //Set new lives to the player
+            player.isReactionTime = false //Stop reaction time
+            player.errorsPercentage.push(0) //Add new error percentage
+        }      
     }
-    catch {
-        console.log("ERREUR LIVELOST")
-    }
-    
-
 }
 
 module.exports = livesLost

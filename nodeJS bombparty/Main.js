@@ -4,8 +4,8 @@ const api = require('./Game/API/jklmAPI.js')
 const Bot = require('./Game/Bot/Bot.js');
 const Room = require('./Game/Room/Room.js');
 
-var roomConnected = []
 /*
+var roomConnected = []
 
 async function test() {
     var rooms = await api.getRooms()
@@ -16,17 +16,20 @@ async function test() {
     }
 
    for (const room of roomConnected) {
-       new Bot("Guest8465", null).connectToRoom(new Room(room))
+       new Bot("Guest5431", null
+       ).connectToRoom(new Room(room))
     }
 }
 
 test()
 
-//Variables
 */
 
+//Variables
+
+
 const frBot = new Bot();
-const frRoom = new Room('FRCD')
+const frRoom = new Room('SHVS')
 
 frBot.connectToRoom(frRoom)
 

@@ -12,10 +12,10 @@ class Player {
         this.auth = auth;
         this.roles = roles;
 
-
         //Game information
         this.messages = [] //List Messages Objects
         this.bonusLetters = [];
+        this.isOnline = null
         this.lives = null;
         this.wasWordValidated = null;
         this.word = "";
@@ -56,6 +56,7 @@ class Player {
     get_roles() { return this.roles };
     get_messages() { return this.messages };
 
+    get_isOnline() { return this.isOnline }
     get_bonusLetters() { return this.bonusLetters };
     get_lives() { return this.lives };
     get_wasWordValidated() { return this.wasWordValidated };
@@ -92,6 +93,7 @@ class Player {
     set_roles(newRoles) { this.roles = newRoles };
     set_messages(newMessages) { this.room = newMessages };
 
+    set_isOnline(newIsOnline) { this.isOnline = newIsOnline }
     set_bonusLetters(newBonusLetters) { this.bonusLetters = newBonusLetters };
     set_lives(newLives) { this.lives = newLives };
     set_wasWordValidated(newWasWordValidated) { this.wasWordValidated = newWasWordValidated };
@@ -121,21 +123,15 @@ class Player {
 
 
     /* FUNCTIONS */
-    _toString() {
-        console.log(
-            "peerId: " + this.get_peerId() + "\n" +
-            "nickname: " + this.get_nickname() + "\n" +
-            "auth: " + this.get_auth() + "\n" +
-            "language: " + this.get_language() + "\n" +
-            "picture: " + this.get_picture() + "\n" +
-            "roles: " + this.get_roles() + "\n" +
-            "messages: " + this.get_messages() + "\n" +
-            "bonusLetters: " + this.get_bonusLetter() + "\n" +
-            "lives: " + this.get_lives() + "\n" +
-            "wasWordValidated: " + this.get_wasWordValidated() + "\n" +
-            "word: " + this.get_word()
-        )
+    updateGeneralInfo(jsonData) {
+        this.set_auth(jsonData[2].auth)
+        this.set_language(jsonData[2].language)
+        this.set_nickname(jsonData[2].nickname)
+        this.set_peerId(jsonData[2].peerId)
+        this.set_roles(jsonData[2].roles)
+        this.set_isOnline(jsonData[3])
     }
+
 
     updateGameInfo(jsonData) {
         this.set_lives(jsonData.lives)
@@ -155,8 +151,9 @@ class Player {
 
     resetGameInfo() {
         this.set_lives(null)
-        this.set_word(null)
+        this.set_word("")
         this.set_wasWordValidated(null)
+        this.set_isOnline(null)
         this.bonusLetters = []
     }
 

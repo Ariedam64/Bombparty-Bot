@@ -27,7 +27,7 @@ class Bot extends Player {
         this.wsRoom = null;
 
         this.creatorId = "128202956574162945"
-        this.playerStaff = [this.creatorId]
+        this.playerStaff = []
 
         //Game state
         this.playStyle = "Human"

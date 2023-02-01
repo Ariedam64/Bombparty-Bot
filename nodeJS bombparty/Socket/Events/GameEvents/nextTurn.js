@@ -2,29 +2,30 @@
 
 async function nextTurn(jsonData, bot) {
 
-    try {
-        var playerPeerIdTurn = jsonData[1]
-        var syllable = jsonData[2]
-        var turnWithSameSyllable = jsonData[3]
-        var player = bot.get_room().getPlayerByPeerId(playerPeerIdTurn)
 
-        var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), syllable)
+    var playerPeerIdTurn = jsonData[1]
+    var syllable = jsonData[2]
+    var turnWithSameSyllable = jsonData[3]
+    var player = bot.get_room().getPlayerByPeerId(playerPeerIdTurn)
 
-        bot.get_room().game.set_currentPlayerPeerIdTurn(playerPeerIdTurn) //Set the new current player turn
-        bot.get_room().game.set_syllable(syllable) //set the new syllable
+    var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), syllable)
 
-        if (turnWithSameSyllable == 0) {
-            bot.get_database().addNewSyllable(bot.get_room().getDatabaseLanguage(), syllable)
-        }
+    bot.get_room().game.set_currentPlayerPeerIdTurn(playerPeerIdTurn) //Set the new current player turn
+    bot.get_room().game.set_syllable(syllable) //set the new syllable
 
+    if (turnWithSameSyllable == 0) {
+        bot.get_database().addNewSyllable(bot.get_room().getDatabaseLanguage(), syllable)
+    }
+
+    if (player != false) {
         /* REACTION TIME */
-        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).isReactionTime = true
-        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).startReactionTime = performance();
+        player.isReactionTime = true
+        player.startReactionTime = performance();
 
         /* ERROR PERCENTAGE */
-        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).set_isErased(false)
-        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).numberOfErrorTyped = 0
-        bot.get_room().getPlayerByPeerId(playerPeerIdTurn).set_word("")
+        player.set_isErased(false)
+        player.numberOfErrorTyped = 0
+        player.set_word("")
 
 
         if (playerPeerIdTurn == bot.get_peerId()) { //Bot turn
@@ -35,7 +36,7 @@ async function nextTurn(jsonData, bot) {
                 bot.get_wsGame().emit("setWord", "💥", true)
             }
             else {
-                bot.playWithPlayStyle(foundWordArray)      
+                bot.playWithPlayStyle(foundWordArray)
             }
         }
         else { //Other players turn
@@ -44,8 +45,8 @@ async function nextTurn(jsonData, bot) {
 
             //ASSISTED
 
-            try {var assisted = player.get_isAssisted()}
-            catch {var assisted = false}
+            try { var assisted = player.get_isAssisted() }
+            catch { var assisted = false }
 
             if (assisted) {
 
@@ -55,8 +56,8 @@ async function nextTurn(jsonData, bot) {
 
                 words = await bot.get_database().getBestWordWithBonusLetters(table, syllable, playerAlphabet, wordsAlreadyPut)
 
-                if (words == -1) {bot.sendGameMessage("Assistant: Impossible d'éffectuer la requête vers la base de données")}
-                else if (words == 0) {bot.sendGameMessage("Assistant: Aucun mot trouvé")}
+                if (words == -1) { bot.sendGameMessage("Assistant: Impossible d'éffectuer la requête vers la base de données") }
+                else if (words == 0) { bot.sendGameMessage("Assistant: Aucun mot trouvé") }
                 else {
                     message = player.nickname + " assistant: "
                     for (const word of words) {
@@ -71,9 +72,7 @@ async function nextTurn(jsonData, bot) {
             }
         }
     }
-    catch {
-        console.log("NEXT TURN FAILED")
-    }
+    
 }
 
 module.exports = nextTurn

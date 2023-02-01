@@ -1,7 +1,5 @@
 function getChatterProfiles(jsonData,bot) {
 
-   
-
     //Check if the message is "getChatterProfiles"
     if (jsonData[0].roomEntry == null) {
 
@@ -9,19 +7,15 @@ function getChatterProfiles(jsonData,bot) {
 
         //If the players list is empty add everyone
         if (bot.get_room().players.length == 0) {
-
             bot.get_room().setupPlayerList(playerArray)
-
         }
-        else {
-            //If there are less than 20 players in the room
+        else { //If there are less than 20 players in the room
 
             var newPlayersArray = bot.get_room().makePlayerListFromData(playerArray)
 
             if (bot.get_room().get_playerCount() < 20) {
 
                 //get new players Array
-
                 for (const player of newPlayersArray) {
                     if (player.nickname == bot.get_room().get_lastPlayerJoined()) {
                         bot.get_room().addPlayer(player)
@@ -51,10 +45,8 @@ function getChatterProfiles(jsonData,bot) {
                 for (const id of peerId_newPlayersArray) {
                     if (!(peerId_actuelPlayersArray.includes(id))) {
                         bot.get_room().addPlayer(bot.get_room().getPlayerByPeerIdWithArray(newPlayersArray, id))
-                    }
-                        
+                    }                      
                 }
-
 
                 for (const id of peerId_actuelPlayersArray) {
                     if (!(peerId_newPlayersArray.includes(id))) {
@@ -65,6 +57,9 @@ function getChatterProfiles(jsonData,bot) {
             }        
         }
     }
+
+    console.log(bot.get_room().get_players().length)
+
 }
 
 module.exports = getChatterProfiles
