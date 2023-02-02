@@ -45,8 +45,9 @@ async function setMilestone(jsonData, bot) {
 
         /* UPDATE PLAYERS INGAME INFO */
         for (const [key, data] of Object.entries(playersPlaying)) {
-            if (bot.get_room().existPlayer(key)) {
-                bot.get_room().getPlayerByPeerId(key).updateGameInfo(data)
+            var player = bot.get_room().getPlayerByPeerId(key)
+            if (player != false) {
+                player.updateGameInfo(data)
             }
         }
 

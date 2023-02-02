@@ -5,12 +5,12 @@ const Bot = require('./Game/Bot/Bot.js');
 const Room = require('./Game/Room/Room.js');
 
 
-/*
+
 const frBot = new Bot();
-const frRoom = new Room('QGZQ')
+const frRoom = new Room('WYJW')
 
 frBot.connectToRoom(frRoom)
-*/
+
 /*
 var roomConnected = []
 
@@ -31,11 +31,6 @@ async function test() {
 test()
 */
 
-
 //Variables
-/*
 
-
-
-*/
 
