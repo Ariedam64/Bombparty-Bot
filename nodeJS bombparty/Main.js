@@ -4,6 +4,13 @@ const api = require('./Game/API/jklmAPI.js')
 const Bot = require('./Game/Bot/Bot.js');
 const Room = require('./Game/Room/Room.js');
 
+
+/*
+const frBot = new Bot();
+const frRoom = new Room('QGZQ')
+
+frBot.connectToRoom(frRoom)
+*/
 /*
 var roomConnected = []
 
@@ -22,16 +29,13 @@ async function test() {
 }
 
 test()
-
 */
 
+
 //Variables
+/*
 
 
-const frBot = new Bot();
-const frRoom = new Room('SHVS')
 
-frBot.connectToRoom(frRoom)
-
-
+*/
 

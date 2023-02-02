@@ -9,6 +9,7 @@ const setPlayerCount = require("../RoomEvents/setPlayerCount");
 const setSelfRoles = require("../RoomEvents/setSelfRoles");
 const connectionEtablished = require("../RoomEvents/Socket/connectionEtablished");
 const userBanned = require("../RoomEvents/userBanned");
+const disconnect = require("../RoomEvents/disconnect");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -89,6 +90,33 @@ function processEvent(data, bot, DEBUG) {
             if (DEBUG) { console.log("Room event: " + event + " OK") }
             userBanned(jsonData, bot)
             break;
+
+        case 'willTransferRoom':
+            if (DEBUG) { console.log("Room event: " + event + " OK") }
+            userBanned(jsonData, bot)
+            break;
+
+        case 'disconnect':
+            if (DEBUG) { console.log("Room event: " + event + " OK") }
+            disconnect(jsonData, bot)
+            break;
+
+        /*
+        case 'nodeWillRestart':
+            if (DEBUG) { console.log("Room event: " + event + " OK") }
+            userBanned(jsonData, bot)
+            break;
+
+        case 'changeRoom':
+            if (DEBUG) { console.log("Room event: " + event + " OK") }
+            userBanned(jsonData, bot)
+            break;
+
+        case 'connect_error':
+            if (DEBUG) { console.log("Room event: " + event + " OK") }
+            userBanned(jsonData, bot)
+            break;
+        */
 
         default:
             if (DEBUG) { console.log("Room event: " + event + " ERROR") }

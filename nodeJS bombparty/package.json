@@ -1,9 +1,0 @@
-{
-  "name": "node-js-bombparty",
-  "version": "0.0.0",
-  "description": "nodeJS bombparty",
-  "main": "app.js",
-  "author": {
-    "name": ""
-  }
-}

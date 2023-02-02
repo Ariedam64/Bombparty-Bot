@@ -58,8 +58,6 @@ function getChatterProfiles(jsonData,bot) {
         }
     }
 
-    console.log(bot.get_room().get_players().length)
-
 }
 
 module.exports = getChatterProfiles
