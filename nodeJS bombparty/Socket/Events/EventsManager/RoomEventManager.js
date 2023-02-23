@@ -1,5 +1,4 @@
-﻿const Room = require("../../../Game/Room/Room");
-const chat = require("../RoomEvents/Chat/chat");
+﻿const chat = require("../RoomEvents/Chat/chat");
 const chatterAdded = require("../RoomEvents/Chat/chatterAdded");
 const chatterRemoved = require("../RoomEvents/Chat/chatterRemoved");
 const getChatterProfiles = require("../RoomEvents/Chat/getChatterProfiles");

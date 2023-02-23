@@ -1,7 +1,7 @@
 ﻿
 function help(chatterPlayer, arguments, bot) {
 
-    if (chatterPlayer.auth == null || !bot.get_playerStaff().includes(chatterPlayer.auth.id) || chatterPlayer.auth.id != bot.get_creatorId()) {
+    if (chatterPlayer.auth == null || !bot.get_playerStaff().includes(chatterPlayer.auth.id) && chatterPlayer.auth.id != bot.get_creatorId()) {
 
         bot.sendGameMessage('𝗥𝗼𝗼𝗺 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀: 𝗌𝖾𝖺𝗋𝖼𝗁𝖬𝖾𝗌𝗌𝖺𝗀𝖾(𝗋𝗌𝗆)')
         bot.sendGameMessage('𝗣𝗹𝗮𝘆𝗲𝗿 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀: 𝖻𝗈𝗇𝗎𝗌𝖫𝖾𝗍𝗍𝖾𝗋(𝗉𝖻𝗅) — 𝗆𝖾𝗌𝗌𝖺𝗀𝖾𝗌(𝗉𝗆) — 𝗇𝖺𝗍𝗂𝗈𝗇𝖺𝗅𝗂𝗍𝗒(𝗉𝗇) — 𝗉𝗋𝖾𝖼𝗂𝗌𝗂𝗈𝗇(𝗉𝗉) — 𝗌𝗉𝖾𝖾𝖽(𝗉𝗌) — 𝗋𝖾𝖺𝖼𝗍𝗂𝗈𝗇𝖳𝗂𝗆𝖾(𝗉𝗋𝗍)')

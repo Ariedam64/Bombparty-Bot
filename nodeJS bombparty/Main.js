@@ -1,16 +1,38 @@
 ﻿/* REQUIRES */
 
-const api = require('./Game/API/jklmAPI.js')
+//const api = require('./Game/API/jklmAPI.js')
 const Bot = require('./Game/Bot/Bot.js');
 const Room = require('./Game/Room/Room.js');
+const mist = require('./Misc/Functions.js')
+
+botList = []
+
+function main() {
+    const frBot = new Bot();
+
+    botList.push(frBot)
+    const frRoom = new Room('NFSE')
+    frBot.connectToRoom(frRoom)
+}
+
+main()
 
 
 
-const frBot = new Bot();
-const frRoom = new Room('WYJW')
+/*
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
 
-frBot.connectToRoom(frRoom)
+async function test() {
+    for (var i = 0; i < 1000; i++) {
+        new Bot("Guest" + getRandomInt(9999)).connectToRoom(new Room("RGWD"))
+        await mist.sleep(3000)
+    }
+}
 
+test()
+*/
 /*
 var roomConnected = []
 
@@ -32,5 +54,7 @@ test()
 */
 
 //Variables
+
+module.exports = {botList}
 
 

@@ -1,5 +1,4 @@
 const axios = require('axios');
-const request = require('request');
 
 async function getRooms() {
     return axios.get('https://jklm.fun/api/rooms')

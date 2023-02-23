@@ -194,11 +194,12 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Websocket.js" />
-    <Content Include="website\pages\index.js" />
-    <Content Include="website\public\favicon.ico" />
-    <Content Include="website\public\vercel.svg" />
-    <Content Include="website\styles\globals.css" />
-    <Content Include="website\styles\Home.module.css" />
+    <Content Include="Website\components\test.js" />
+    <Content Include="Website\pages\index.js" />
+    <Content Include="Website\public\favicon.ico" />
+    <Content Include="Website\public\vercel.svg" />
+    <Content Include="Website\styles\globals.css" />
+    <Content Include="Website\styles\Home.module.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BD\Connection\" />
@@ -228,9 +229,10 @@
     <Folder Include="Socket\Events\RoomEvents\Socket\" />
     <Folder Include="Socket\Sockets\" />
     <Folder Include="Website\" />
-    <Folder Include="website\pages\" />
-    <Folder Include="website\public\" />
-    <Folder Include="website\styles\" />
+    <Folder Include="Website\components\" />
+    <Folder Include="Website\pages\" />
+    <Folder Include="Website\public\" />
+    <Folder Include="Website\styles\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>

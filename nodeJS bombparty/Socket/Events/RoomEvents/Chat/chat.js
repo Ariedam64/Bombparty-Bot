@@ -31,7 +31,7 @@ function chat(jsonData, bot) {
         var commandSymbol = "$"
 
         if (chatMessage.charAt(0) == commandSymbol) {
-            CommandEventManager.processEvent(chatterPlayer, chatMessage, bot, false)
+           CommandEventManager.processEvent(chatterPlayer, chatMessage, bot, false)
         }
 
     }

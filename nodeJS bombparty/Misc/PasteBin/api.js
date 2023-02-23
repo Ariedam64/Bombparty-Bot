@@ -1,13 +1,8 @@
-const request = require('request');
-const config = require('../PasteBin/configuration')
+const axios = require('axios');
+const config = require('../PasteBin/configuration');
 
-
-
-function pasteMessage(message) {
-
-    return new Promise(function (resolve, reject) {
-
-
+async function pasteMessage(message) {
+    try {
         const options = {
             url: 'https://api.paste.ee/v1/pastes',
             method: 'POST',
@@ -15,7 +10,7 @@ function pasteMessage(message) {
                 'Content-Type': 'application/json',
                 'X-Auth-Token': config.dev_key
             },
-            json: {
+            data: {
                 description: "BombParty messages",
                 sections: [
                     {
@@ -26,14 +21,11 @@ function pasteMessage(message) {
             }
         };
 
-        request(options, (err, res, body) => {
-            if (err) {
-                reject(err.error);
-            } else {
-                resolve(body.link);
-            }
-        });
-    })
+        const response = await axios(options);
+        return response.data.link;
+    } catch (error) {
+        throw error;
+    }
 }
 
-module.exports = { pasteMessage }
+module.exports = { pasteMessage };

@@ -1,5 +1,3 @@
-const Player = require("../../../../Game/Player/Player")
-
 function chatterAdded(jsonData, bot) {
 
     var nicknamePlayerJoined = jsonData[1].nickname
