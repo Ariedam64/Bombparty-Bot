@@ -19,6 +19,7 @@ const track = require("../CommandsEvents/Player/track");
 const assistant = require("../CommandsEvents/Player/assistant");
 const givePermission = require("../CommandsEvents/Player/givePermission");
 const joinRoom = require("../CommandsEvents/Bot/joinRoom");
+const generateToken = require("../CommandsEvents/Bot/generateToken.js");
 const precision = require("../CommandsEvents/Player/precision");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
@@ -232,6 +233,16 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'baj':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             autoJoin(chatterPlayer, arguments, bot)
+            break;
+
+        case 'generateToken':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            generateToken(chatterPlayer, arguments, bot)
+            break;
+
+        case 'bgt':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            generateToken(chatterPlayer, arguments, bot)
             break;
 
         //-- PlayStyle

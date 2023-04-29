@@ -1,4 +1,4 @@
-const Message = require("../../../../Game/Chat/Message")
+﻿const Message = require("../../../../Game/Chat/Message")
 const CommandEventManager = require("../../EventsManager/CommandEventManager.js")
 
 function chat(jsonData, bot) {
@@ -25,8 +25,7 @@ function chat(jsonData, bot) {
                 bot.get_room().appendMessageToChat(chatterPeerId, chatterNickname, new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
             }
         }
-        
-        
+
         /* COMMAND MANAGER */
         var commandSymbol = "$"
 

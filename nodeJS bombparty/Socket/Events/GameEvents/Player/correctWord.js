@@ -39,7 +39,7 @@ function correctWord(jsonData, bot) {
         }
 
         /* UPDATE PLAYER STATE */
-        player.addBonusLetters(bonusLetters, bot.get_room().get_bonusAlphabet()) //Update bonusLetter of the player
+        //player.addBonusLetters(bonusLetters, bot.get_room().get_bonusAlphabet()) //Update bonusLetter of the player
         player.set_wasWordValidated(true)
         bot.get_room().game.set_lastCorrectWord(correctWord) //Update the last correct word
         bot.get_room().game.addUsedWord(correctWord)

@@ -9,6 +9,7 @@ class Room {
     constructor(roomCode, gameId, roomName, language, playerCount, isPublic, chatMode) {
 
         //Global information   
+        this.beta = null
         this.language = language;
         this.chatMode = chatMode;
         this.isPublic = isPublic;
@@ -38,6 +39,7 @@ class Room {
     }
 
     /* GETTERS */
+    get_roomBeta() {return this.beta }
     get_roomCode() { return this.roomCode };
     get_gameId() { return this.gameId };
     get_roomName() { return this.roomName };
@@ -58,6 +60,7 @@ class Room {
 
 
     /* SETTERS */
+    set_beta(newBeta) { this.beta = newBeta }
     set_roomCode(newRoomCode) { this.roomCode = newRoomCode };
     set_gameId(newGameId) { this.gameId = newGameId };
     set_roomName(newRoomName) { this.roomName = newRoomName };
@@ -104,6 +107,7 @@ class Room {
     }
 
     updateGlobalInformation(jsonData) {
+        this.set_beta(jsonData[0].roomEntry.beta)
         this.set_chatMode(jsonData[0].roomEntry.chatMode)
         this.set_language(jsonData[0].roomEntry.details)
         this.set_gameId(jsonData[0].roomEntry.gameId)

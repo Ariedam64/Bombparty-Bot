@@ -17,6 +17,7 @@ class Bot extends Player {
         this.picture = picture;
         this.auth = auth;
         this.userToken = this.generateUserToken()
+        this.recaptchaToken = null
 
         this.database = Database
 
@@ -30,11 +31,11 @@ class Bot extends Player {
 
         //Game state
         this.playStyle = "Human"
-        this.isAutoJoin = true
+        this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
         this.wpmTimer = 16300
-        this.wpm = 115
+        this.wpm = 130
         this.wordErrorPercentage = 0.08
     }
 
@@ -95,6 +96,7 @@ class Bot extends Player {
     async connectToRoom(room) {
 
         var webSocketLink = await api.joinRoom(room.get_roomCode())
+        this.recaptchaToken = await api.bypassAntiBotToken()
 
         if (webSocketLink != -1 && webSocketLink != 0) {
 
@@ -106,10 +108,11 @@ class Bot extends Player {
                 .then(_ => {
                     //Make the data
                     var data = {
-                        "roomCode": this.get_room().get_roomCode(),
-                        "userToken": this.get_userToken(),
-                        "nickname": this.get_nickname(),
                         "language": this.get_language(),
+                        "nickname": this.get_nickname(),
+                        "roomCode": this.get_room().get_roomCode(),
+                        "token": this.recaptchaToken,
+                        "userToken": this.get_userToken(),      
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
                     if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)
@@ -120,10 +123,7 @@ class Bot extends Player {
         }
         else {
             console.log("Impossible de se connecter à la room " + room.get_roomCode())
-        }
-
-
-        
+        }  
     }
 
     //Connect to game

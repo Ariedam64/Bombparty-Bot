@@ -37,9 +37,7 @@ class Rules {
     setup(jsonData) {
 
         this.set_minTurnDuration(jsonData[1].rules.minTurnDuration.value)
-        this.set_promptDifficulty(jsonData[1].rules.promptDifficulty.value)
         this.set_customPromptDifficulty(jsonData[1].rules.customPromptDifficulty.value)
-        this.set_maxWordsPerPrompt(jsonData[1].rules.maxWordsPerPrompt.value)
         this.set_maxPromptAge(jsonData[1].rules.maxPromptAge.value)
         this.set_startingLives(jsonData[1].rules.startingLives.value)
         this.set_maxLives(jsonData[1].rules.maxLives.value)

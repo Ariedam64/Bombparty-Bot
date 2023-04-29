@@ -7,7 +7,7 @@ class RoomSocket extends Websocket {
 
     constructor(name = "GameSocket", bot, wsDEBUG = false, eventDEBUG = false, url = 'wss://falcon.jklm.fun/socket.io/?EIO=4&transport=websocket', transport = 'websocket') {
 
-        super(name, bot, wsDEBUG, eventDEBUG, url, transport);
+        super(name, bot, wsDEBUG, eventDEBUG, url, transport); //Call constructor of child class (Websocket)
 
         this.readyToConnectToRoom = false
 
@@ -34,8 +34,6 @@ class RoomSocket extends Websocket {
             }
         }
     }
-
-
 }
 
 //Export the class

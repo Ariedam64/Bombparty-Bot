@@ -1,6 +1,6 @@
 ﻿/* REQUIRES */
 
-//const api = require('./Game/API/jklmAPI.js')
+const api = require('./Game/API/jklmAPI.js')
 const Bot = require('./Game/Bot/Bot.js');
 const Room = require('./Game/Room/Room.js');
 const mist = require('./Misc/Functions.js')
@@ -8,16 +8,14 @@ const mist = require('./Misc/Functions.js')
 botList = []
 
 function main() {
-    const frBot = new Bot();
+    const frBot = new Bot("Eyeye");
 
     botList.push(frBot)
-    const frRoom = new Room('NFSE')
+    const frRoom = new Room('BKTE')
     frBot.connectToRoom(frRoom)
 }
 
 main()
-
-
 
 /*
 function getRandomInt(max) {
@@ -32,8 +30,8 @@ async function test() {
 }
 
 test()
-*/
 /*
+
 var roomConnected = []
 
 async function test() {
@@ -51,8 +49,8 @@ async function test() {
 }
 
 test()
-*/
 
+*/
 //Variables
 
 module.exports = {botList}
