@@ -13,7 +13,7 @@ function main() {
     const frBot = new Bot("Eyeye",null);
 
     botList.push(frBot)
-    const frRoom = new Room('RCCX')
+    const frRoom = new Room('JFPZ')
     frBot.connectToRoom(frRoom)
 }
 

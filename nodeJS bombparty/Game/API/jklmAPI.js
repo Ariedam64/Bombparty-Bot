@@ -39,19 +39,19 @@ async function joinRoom(room) {
 
 async function bypassAntiBotToken() {
 
-    ar = "1"
-    k = "6LdzYGslAAAAACxOZaQA5J0CxlfdJQUdWvJYoAFM"
-    co = "aHR0cHM6Ly9qa2xtLmZ1bjo0NDM."
-    v = "4q6CtudrwcI-LSEYlfoEbDXg"
-    chr = encodeURIComponent("[46,56,5]");
-    vh = "-1215003485"
-    hl = "fr"
-    size = "invisible"
-    cb = "cam9z03irula"
-    bg = "!vbugu74KAAQeHKSgbQEHDwHU-jiEy005uwD4yuExftSt995P2-zvcwfo1Fot8L3AyAven5uCgKEVmGp8yZhU62QqF2qS-ELY7MWrHN-3H9_mQ7tdX-ZU6n6Wo72PzRXpPf2tAQEe1aBYMN2trLWtStjfmVSBv5KyxnGhGYilxKxYs4tB7jcAahv0iIgxNGZPlLMEnyCbGtYg0-ScDCBM6l7cf5mQ_irk4qKVZWczemajKdxtOHrgkAEOr4wevt9vpWRx0TI16ZDvc1l9QQVqAtEwBb5HE00pmAvR2CNmYIY86I3Dbjli4e5vdz2uWS8AEg-iL6NhKoefXP2jY-ee8Ix68DToywWK2PmrDHWezN_8TS_tf_eEpMznBNRO05nGPwJL57sgMC2p6jC2Ghg5KLyJqHYiDn4Ju88lRV4Ivju_gSrvmWyvMS5GX4iQ3kvu0sIcOwFSqhDC0H2iS9gpHQyZVF3z1p3OZeFgJm7bOt7eTkIysFv9AVKvHYbnhfofUcdBnydLZnbk5dBfx_JzsNcFcgZuce-AFimEU-hzoRv1Il0C_vKYoy3AOVjeNOBNEzGwch1dgl99lpFrq2AKSWJCmgQFKweq3dZvYAMBltnszc0GgCsEJBIMJpvO0Nf5zX-DjO8qnAC4RGoqAMT2Z__tg3R6mJXHG5bWZIhnh6YQrsgOUYUDk941O--Jp7RbvzvAywDtOf-zFUofCzTwk64WmRk24-KR2wrJXQxMs4Ujo0ZVA5yhnK7tweSrB4eUZLmdjRKhb4_HZkl_GQSL1GlxPTFWtU8_McRRlGondt_31JdDfq127Gd97Et0Ax2MuJh8fSYDaDcmW0jALJfRHppEMz9CtjznLlaOI2KrXebXmHkXDwH9GaMAKESI7kyGhg*"
+    const ar = "1"
+    const k = "6LdzYGslAAAAACxOZaQA5J0CxlfdJQUdWvJYoAFM"
+    const co = "aHR0cHM6Ly9qa2xtLmZ1bjo0NDM."
+    const v = "4q6CtudrwcI-LSEYlfoEbDXg"
+    const chr = encodeURIComponent("[46,56,5]");
+    const vh = "-1215003485"
+    const hl = "fr"
+    const size = "invisible"
+    const cb = "cam9z03irula"
+    const bg = "!vbugu74KAAQeHKSgbQEHDwHU-jiEy005uwD4yuExftSt995P2-zvcwfo1Fot8L3AyAven5uCgKEVmGp8yZhU62QqF2qS-ELY7MWrHN-3H9_mQ7tdX-ZU6n6Wo72PzRXpPf2tAQEe1aBYMN2trLWtStjfmVSBv5KyxnGhGYilxKxYs4tB7jcAahv0iIgxNGZPlLMEnyCbGtYg0-ScDCBM6l7cf5mQ_irk4qKVZWczemajKdxtOHrgkAEOr4wevt9vpWRx0TI16ZDvc1l9QQVqAtEwBb5HE00pmAvR2CNmYIY86I3Dbjli4e5vdz2uWS8AEg-iL6NhKoefXP2jY-ee8Ix68DToywWK2PmrDHWezN_8TS_tf_eEpMznBNRO05nGPwJL57sgMC2p6jC2Ghg5KLyJqHYiDn4Ju88lRV4Ivju_gSrvmWyvMS5GX4iQ3kvu0sIcOwFSqhDC0H2iS9gpHQyZVF3z1p3OZeFgJm7bOt7eTkIysFv9AVKvHYbnhfofUcdBnydLZnbk5dBfx_JzsNcFcgZuce-AFimEU-hzoRv1Il0C_vKYoy3AOVjeNOBNEzGwch1dgl99lpFrq2AKSWJCmgQFKweq3dZvYAMBltnszc0GgCsEJBIMJpvO0Nf5zX-DjO8qnAC4RGoqAMT2Z__tg3R6mJXHG5bWZIhnh6YQrsgOUYUDk941O--Jp7RbvzvAywDtOf-zFUofCzTwk64WmRk24-KR2wrJXQxMs4Ujo0ZVA5yhnK7tweSrB4eUZLmdjRKhb4_HZkl_GQSL1GlxPTFWtU8_McRRlGondt_31JdDfq127Gd97Et0Ax2MuJh8fSYDaDcmW0jALJfRHppEMz9CtjznLlaOI2KrXebXmHkXDwH9GaMAKESI7kyGhg*"
 
-    urlGET = "https://www.google.com/recaptcha/api2/anchor?ar=" + ar + "&k=" + k + "&co=" + co + "&hl=" + hl + "&v=" + v + "&size=" + size + "&cb=" + cb
-    urlPOST = "https://www.google.com/recaptcha/api2/reload?k=" + k
+    const urlGET = "https://www.google.com/recaptcha/api2/anchor?ar=" + ar + "&k=" + k + "&co=" + co + "&hl=" + hl + "&v=" + v + "&size=" + size + "&cb=" + cb
+    const urlPOST = "https://www.google.com/recaptcha/api2/reload?k=" + k
 
     // Récupération du token
     return axios.get(urlGET, {
