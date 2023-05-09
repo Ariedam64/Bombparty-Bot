@@ -85,6 +85,11 @@ class Websocket {
         this.sendMessage(packet.message_EVENT + JSON.stringify(data))
     }
 
+    //Emit custom event
+    emitCustom(i, ...data) {
+        this.sendMessage(packet.message_EVENT + i + JSON.stringify(data))
+    }
+
 }
 
 //Export the class

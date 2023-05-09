@@ -16,6 +16,7 @@ const setup = require('../GameEvents/setup');
 const updatePlayer = require('../GameEvents/Player/updatePlayer');
 const bonusAlphabetCompleted = require('../GameEvents/Player/bonusAlphabetCompleted');
 const connectionEtablished = require('../GameEvents/Socket/connectionEtablished');
+const setDictionaryManifest = require('../GameEvents/setDictionaryManifest');
 
 function processEvent(data, bot, DEBUG) {
 
@@ -50,6 +51,11 @@ function processEvent(data, bot, DEBUG) {
         case 'bonusAlphabetCompleted':
             if (DEBUG) { console.log("Game event: " + event + " OK") }
             bonusAlphabetCompleted(jsonData, bot)
+            break;
+
+        case 'setDictionaryManifest':
+            if (DEBUG) { console.log("Game event: " + event + " OK") }
+            setDictionaryManifest(jsonData, bot)
             break;
 
         case 'clearUsedWords':

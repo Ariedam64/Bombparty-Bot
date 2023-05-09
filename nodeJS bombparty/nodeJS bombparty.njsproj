@@ -69,6 +69,7 @@
     <Content Include="Socket\Events\CommandsEvents\Player\nationality.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Socket\Events\CommandsEvents\Room\allPlayers.js" />
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
       <SubType>Code</SubType>
     </Content>
@@ -127,6 +128,7 @@
     <Content Include="Socket\Events\GameEvents\clearUsedWords.js" />
     <Content Include="Socket\Events\GameEvents\Player\bonusAlphabetCompleted.js" />
     <Content Include="Socket\Events\GameEvents\Player\updatePlayer.js" />
+    <Content Include="Socket\Events\GameEvents\setDictionaryManifest.js" />
     <Content Include="Socket\Events\GameEvents\setRules.js" />
     <Content Include="Socket\Events\GameEvents\Player\livesLost.js" />
     <Content Include="Socket\Events\GameEvents\setMilestone.js" />
@@ -166,6 +168,7 @@
     <Content Include="Socket\Events\RoomEvents\Chat\chat.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Socket\Events\RoomEvents\Chat\getChatterProfile.js" />
     <Content Include="Socket\Events\RoomEvents\Chat\getChatterProfiles.js" />
     <Content Include="Socket\Events\RoomEvents\disconnect.js" />
     <Content Include="Socket\Events\RoomEvents\Socket\connectionEtablished.js">
@@ -195,12 +198,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Websocket.js" />
-    <Content Include="Website\components\test.js" />
-    <Content Include="Website\pages\index.js" />
-    <Content Include="Website\public\favicon.ico" />
-    <Content Include="Website\public\vercel.svg" />
-    <Content Include="Website\styles\globals.css" />
-    <Content Include="Website\styles\Home.module.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BD\Connection\" />
@@ -229,11 +226,6 @@
     <Folder Include="Socket\Events\RoomEvents\Chat\" />
     <Folder Include="Socket\Events\RoomEvents\Socket\" />
     <Folder Include="Socket\Sockets\" />
-    <Folder Include="Website\" />
-    <Folder Include="Website\components\" />
-    <Folder Include="Website\pages\" />
-    <Folder Include="Website\public\" />
-    <Folder Include="Website\styles\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>

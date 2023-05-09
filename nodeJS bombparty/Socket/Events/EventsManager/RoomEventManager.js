@@ -9,6 +9,7 @@ const setSelfRoles = require("../RoomEvents/setSelfRoles");
 const connectionEtablished = require("../RoomEvents/Socket/connectionEtablished");
 const userBanned = require("../RoomEvents/userBanned");
 const disconnect = require("../RoomEvents/disconnect");
+const getChatterProfile = require("../RoomEvents/Chat/getChatterProfile");
 
 function processEvent(data, bot, DEBUG) {
 
@@ -23,7 +24,12 @@ function processEvent(data, bot, DEBUG) {
             event = "roomEntry"
         }
         else if (id.slice(0, 2) == "43") { //GetChattersProfiles
-            event = "getChatterProfiles"
+            if (Array.isArray(jsonData[0])) { //Check if its getChatterProfile or getChatterProfiles, one has 2 arrays and the other only 1
+                event = "getChatterProfiles"
+            }
+            else {
+                event = "getChatterProfile"
+            }
         }
         else { //message event
             event = jsonData[0]
@@ -36,7 +42,6 @@ function processEvent(data, bot, DEBUG) {
             var jsonData = JSON.parse(data.toString().substring(data.toString().indexOf("{")))
         }
     }
-    
 
     switch (event) {
 
@@ -63,6 +68,11 @@ function processEvent(data, bot, DEBUG) {
         case 'getChatterProfiles':
             if (DEBUG) { console.log("Room event: " + event + " OK") }
             getChatterProfiles(jsonData, bot)
+            break;
+
+        case 'getChatterProfile':
+            if (DEBUG) { console.log("Room event: " + event + " OK") }
+            getChatterProfile(jsonData, bot)
             break;
 
         case 'kicked':

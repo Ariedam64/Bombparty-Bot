@@ -5,13 +5,15 @@ const Bot = require('./Game/Bot/Bot.js');
 const Room = require('./Game/Room/Room.js');
 const mist = require('./Misc/Functions.js')
 
+
+
 botList = []
 
 function main() {
-    const frBot = new Bot("Eyeye");
+    const frBot = new Bot("Eyeye",null);
 
     botList.push(frBot)
-    const frRoom = new Room('BKTE')
+    const frRoom = new Room('RCCX')
     frBot.connectToRoom(frRoom)
 }
 

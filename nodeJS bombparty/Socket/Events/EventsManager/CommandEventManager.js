@@ -21,6 +21,7 @@ const givePermission = require("../CommandsEvents/Player/givePermission");
 const joinRoom = require("../CommandsEvents/Bot/joinRoom");
 const generateToken = require("../CommandsEvents/Bot/generateToken.js");
 const precision = require("../CommandsEvents/Player/precision");
+const allPlayers = require("../CommandsEvents/Room/allPlayers");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -51,6 +52,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'rsm':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             searchMessage(chatterPlayer, arguments, bot)
+            break;
+
+        //-- ALL PLAYERS
+        case 'allPlayers':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            allPlayers(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rap':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            allPlayers(chatterPlayer, arguments, bot)
             break;
 
         /* PLAYER */
@@ -235,6 +247,7 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
             autoJoin(chatterPlayer, arguments, bot)
             break;
 
+        //-- GENERATE TOKEN
         case 'generateToken':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             generateToken(chatterPlayer, arguments, bot)

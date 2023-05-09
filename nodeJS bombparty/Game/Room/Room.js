@@ -30,6 +30,8 @@ class Room {
         this.bot = null //Bot Object
         this.players = []; //List players objects
         this.chatMessages = [] //List ChatMessages objects
+        this.allPlayers = []
+        this.staffPlayers = []
 
         this.maxChatMessage = 1000
 
