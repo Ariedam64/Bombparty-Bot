@@ -19,8 +19,8 @@ async function failWord(jsonData, bot) {
         }
 
         if (playerPeerId == bot.get_peerId()) { //Bot turn
-            var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), bot.get_room().game.get_syllable())
-            bot.playWithPlayStyle(foundWordArray)
+            //var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), bot.get_room().game.get_syllable())
+            //bot.playWithPlayStyle(foundWordArray)
         }
         else { //Other players turn
 

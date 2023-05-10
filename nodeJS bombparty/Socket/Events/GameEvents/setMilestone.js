@@ -1,4 +1,4 @@
-const performance = require('performance-now');
+ï»¿const performance = require('performance-now');
 
 const funct = require('../../../Misc/Functions.js')
 
@@ -56,10 +56,11 @@ async function setMilestone(jsonData, bot) {
 
             bot.set_isPlaying(true)
 
-            /* SIMULATE WORD TYPING */
-            var word = bot.get_room().getWordWithHighOccurrence(foundWordArray)
-            if (word != null) {
-                bot.simulateWord(word, bot.get_wpm(), bot.get_wordErrorPercentage())
+            if (bot.get_isSuicide()) {
+                bot.get_wsGame().emit("setWord", "ðŸ’¥", true)
+            }
+            else {
+                bot.playWithPlayStyle(foundWordArray)
             }
         }
 
@@ -80,8 +81,8 @@ async function setMilestone(jsonData, bot) {
 
                 words = await bot.get_database().getBestWordWithBonusLetters(table, syllable, playerAlphabet, wordsAlreadyPut)
 
-                if (words == -1) {bot.sendGameMessage("Assistant: Impossible d'éffectuer la requête vers la base de données")}
-                else if (words == 0) {bot.sendGameMessage("Assistant: Aucun mot trouvé")}
+                if (words == -1) {bot.sendGameMessage("Assistant: Impossible d'Ã©ffectuer la requÃªte vers la base de donnÃ©es")}
+                else if (words == 0) {bot.sendGameMessage("Assistant: Aucun mot trouvÃ©")}
                 else {
                     message = player.nickname + " assistant: "
                     for (const word of words) {

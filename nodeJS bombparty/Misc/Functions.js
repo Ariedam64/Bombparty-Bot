@@ -101,4 +101,7 @@ function sortString(table, string) {
         .join('');
 }
 
-module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString }
+const chars = ["Ꭺ","Ᏼ","Ꮯ", "Ꭰ", "Ꭼ", "Ꮐ", "Ꮋ","Ꮶ","Ꮮ", "Ꮇ", "Ჿ", "Ꮲ", "Ꮪ", "Ꭲ", "Ꮩ", "Ꮃ","Ꮓ" ];
+
+
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars }

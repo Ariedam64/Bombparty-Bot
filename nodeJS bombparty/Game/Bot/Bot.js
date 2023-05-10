@@ -32,8 +32,8 @@ class Bot extends Player {
         this.playerStaff = []
 
         //Game state
-        this.playStyle = "Human"
-        this.isAutoJoin = false
+        this.playStyle = "drunk"
+        this.isAutoJoin = true
         this.isPlaying = false
         this.isSuicide = false
         this.wpmTimer = 16300
@@ -100,9 +100,7 @@ class Bot extends Player {
         var webSocketLink = await api.joinRoom(room.get_roomCode())
         this.recaptchaToken = await api.bypassAntiBotToken()
 
-        //if (webSocketLink != -1 && webSocketLink != 0) {
-
-        this.wsRoom = new RoomSocket("RoomSocket", this, true, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
+        this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
             this.room = room;
             this.room.set_roomLink(webSocketLink)
@@ -122,10 +120,6 @@ class Bot extends Player {
                     //Send data to connect   
                     this.get_wsRoom().emit0("joinRoom", data)
                 });
-       // }
-        //else {
-         //   console.log("Impossible de se connecter à la room " + room.get_roomCode())
-        //}  
     }
 
     //Connect to game
@@ -145,7 +139,7 @@ class Bot extends Player {
     /* Game */
 
     playWithPlayStyle(foundWordArray) {
-        switch (this.playStyle.toLowerCase()) {
+        switch (this.playStyle) {
             case 'human':
                 var word = this.get_room().getWordWithHighOccurrence(foundWordArray)
                 if (word != null) {
@@ -154,8 +148,19 @@ class Bot extends Player {
                 break
             case 'bot':
                 var word = foundWordArray[Math.floor(Math.random() * foundWordArray.length)]
-                console.log(word.word)
                 this.get_wsGame().emit("setWord", word.word, true);
+                break
+            case 'drunk':
+                var word = this.get_room().getWordWithHighOccurrence(foundWordArray)
+                if (word != null) {
+                    for (let i = 0; i < Math.random() * (6 - 1) + 1; i++) {
+                        const randomIndex = Math.floor(Math.random() * funct.chars.length); // on génère un index aléatoire
+                        const randomChar = funct.chars[randomIndex]; // on récupère le caractère correspondant à cet index
+                        const randomPosition = Math.floor(Math.random() * (word.length - 1)) + 1; // on génère une position aléatoire dans le mot (sauf la première position)
+                        word = word.slice(0, randomPosition) + randomChar + word.slice(randomPosition); // on insère le caractère aléatoire à cette position
+                    }
+                    this.get_wsGame().emit("setWord", word, true);              
+                }
                 break
         }
     }
