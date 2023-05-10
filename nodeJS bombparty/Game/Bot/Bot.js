@@ -118,7 +118,7 @@ class Bot extends Player {
                     if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)
 
                     //Send data to connect   
-                    this.get_wsRoom().emit0("joinRoom", data)
+                    this.get_wsRoom().emitCustom(0, "joinRoom", data)
                 });
     }
 

@@ -31,27 +31,7 @@ async function allPlayers(chatterPlayer, arguments, bot) {
         else {
             bot.sendGameMessage("La liste des joueurs n'a pas été charger. Utilisez la commande '$allPlayers' ou '$rap' pour mieux comprendre son utilisation")
         }    
-    }
-
-    else if (arguments == "staff") {
-        if (bot.get_room().staffPlayers.length == 0) {
-            bot.sendGameMessage("Aucun membre du staff n'est présent dans la room")
-        }
-        else {
-            var message = "Des membres du staff sont présents dans la room: "
-            for (let i = 0; i < bot.get_room().staffPlayers.length; i++) {
-                if (i === bot.get_room().staffPlayers.length - 1) {
-                    message += bot.get_room().staffPlayers[i]
-                }
-                else {
-                    message += bot.get_room().staffPlayers[i] + ", "
-                }
-            }
-            bot.sendGameMessage(message)
-        }
-        
-        
-    }
+    }    
     else {
         bot.sendGameMessage("Les paramètres fournis sont incorrects. Utilisez la commande '$allPlayers' ou '$rap' pour mieux comprendre son utilisation")
     }

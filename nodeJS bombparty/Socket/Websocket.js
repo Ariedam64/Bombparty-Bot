@@ -71,15 +71,6 @@ class Websocket {
         this.connection.send(message);
     }
 
-    emit1(...data) {
-        this.sendMessage(packet.message_EVENT + "1" + JSON.stringify(data))
-    }
-
-    //Emit event connect
-    emit0(...data) {
-        this.sendMessage(packet.message_EVENT + "0" + JSON.stringify(data))
-    }
-
     //Emit event
     emit(...data) {
         this.sendMessage(packet.message_EVENT + JSON.stringify(data))
