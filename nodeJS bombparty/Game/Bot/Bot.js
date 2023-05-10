@@ -25,7 +25,7 @@ class Bot extends Player {
         this.wsRoom = null;
 
         this.creatorId = "128202956574162945"
-        this.playerStaff = []
+        this.playerStaff = ["709512296036040817"]
 
         //Game state
         this.playStyle = "drunk"
@@ -125,11 +125,6 @@ class Bot extends Player {
                 //Send data to connect
                 this.get_wsGame().emit("joinGame", this.room.get_gameId(), this.get_room().get_roomCode(), this.get_userToken());
             });
-    }
-
-    disconnectToRoom() {
-        this.get_wsGame().connection.close()
-        this.get_wsRoom().connection.close()
     }
 
     /* Game */
