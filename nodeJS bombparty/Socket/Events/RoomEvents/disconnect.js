@@ -1,6 +1,5 @@
 function disconnect(jsonData, bot) {
 
-    console.log(jsonData)
 
 }
 
