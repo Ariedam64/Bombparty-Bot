@@ -89,7 +89,6 @@ async function bypassAntiBotToken() {
         .then(response => {
             const result = regex.exec(response.data);
             const recaptcha = result[1];
-            console.log("Token recaptcha generation sucess")
             return recaptcha
         })
         .catch(error => {

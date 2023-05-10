@@ -22,6 +22,7 @@ const joinRoom = require("../CommandsEvents/Bot/joinRoom");
 const generateToken = require("../CommandsEvents/Bot/generateToken.js");
 const precision = require("../CommandsEvents/Player/precision");
 const allPlayers = require("../CommandsEvents/Room/allPlayers");
+const disconnect = require("../CommandsEvents/Room//disconnect");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -63,6 +64,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'rap':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             allPlayers(chatterPlayer, arguments, bot)
+            break;
+
+        //-- DISCONNECT
+        case 'disconnect':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            disc(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rd':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            disconnect(chatterPlayer, arguments, bot)
             break;
 
         /* PLAYER */

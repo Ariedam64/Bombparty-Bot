@@ -69,6 +69,7 @@
     <Content Include="Socket\Events\CommandsEvents\Player\nationality.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Socket\Events\CommandsEvents\Room\disconnect.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\allPlayers.js" />
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
       <SubType>Code</SubType>

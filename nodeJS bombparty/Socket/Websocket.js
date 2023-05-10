@@ -81,6 +81,13 @@ class Websocket {
         this.sendMessage(packet.message_EVENT + i + JSON.stringify(data))
     }
 
+    disconnect() {
+        if (this.connection) {
+            this.connection.close();
+            this.connected = false;
+        }
+    }
+
 }
 
 //Export the class
