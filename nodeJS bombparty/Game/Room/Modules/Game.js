@@ -1,6 +1,6 @@
 class InGame {
 
-    constructor(status = null, syllable = null, usedWordCount = null, peerId = null, lastRoundWinnerName = null, lastRoundWinnerPicture = null, rulesLocked = null) {
+    constructor(status = null, syllable = null, usedWordCount = null, peerId = null, lastRoundWinnerName = null, lastRoundWinnerPicture = null, rulesLocked = null, totalPlayerInGame = null) {
 
         //Ingame information
         this.status = status;
@@ -9,6 +9,7 @@ class InGame {
         this.lastRoundWinnerName = lastRoundWinnerName;
         this.lastRoundWinnerPicture = lastRoundWinnerPicture;
         this.rulesLocked = rulesLocked;
+        this.totalPlayerInGame = totalPlayerInGame
 
         this.currentPlayerPeerIdTurn = null
         this.lastCorrectWord = null
@@ -43,10 +44,6 @@ class InGame {
     setup(jsonData) {
         this.set_status(jsonData[1].milestone.name)
         this.set_rulesLocked(jsonData[1].milestone.rulesLocked)
-
-        if (this.get_status() != "seating") {
-            console.log("en game")
-        }
     }
 
     updateMilestoneSeating(jsonData) { 
@@ -61,9 +58,6 @@ class InGame {
         this.set_usedWordCount(0)
         this.set_currentPlayerPeerIdTurn(null)
         this.set_lastCorrectWord(null)
-
-        
-
     }
 
     updateMilestoneRound(jsonData) {

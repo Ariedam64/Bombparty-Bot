@@ -11,6 +11,12 @@ function livesLost(jsonData, bot) {
             player.isReactionTime = false //Stop reaction time
             player.errorsPercentage.push(0) //Add new error percentage
         }      
+
+        /* RANKED */
+        if (newPlayerLives == 0) {
+            bot.get_room().game.totalPlayerInGame = 0
+        }
+
     }
 }
 

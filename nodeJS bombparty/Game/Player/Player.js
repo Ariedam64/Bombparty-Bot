@@ -43,6 +43,10 @@ class Player {
         this.lastReactionTimeAverage = null
         this.lastErrorPercentage = null
 
+        this.totalCorrectWord = 0
+
+        this.rankedWords = []
+
         this.maxMessage = 250;
 
     }
@@ -155,6 +159,7 @@ class Player {
         this.set_wasWordValidated(null)
         this.set_isOnline(null)
         this.bonusLetters = []
+        this.totalCorrectWord = 0
     }
 
     addBonusLetters(bonusLetters) {

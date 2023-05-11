@@ -183,6 +183,43 @@ class Database {
         }
     }
 
+    /* PLAYERS */
+
+    async addRecord(player) {
+
+        const averageWordLength = funct.averageWordLength(player.rankedWords)
+
+        this.client.query(`
+        WITH ins_player AS(
+        INSERT INTO players.player (connectionId, nickname)
+            SELECT '${player.auth.id}', '${player.nickname}'
+            WHERE NOT EXISTS(
+                    SELECT 1 FROM players.player WHERE connectionId = '${player.auth.id}'
+                )
+            RETURNING connectionId
+        )
+        INSERT INTO players.records(player_connectionid, totalWords, wpm, reactionTime, precision, averageWordsLength, words, recordDate)
+        SELECT
+        COALESCE((SELECT connectionId FROM ins_player), '${player.auth.id}'),
+            ${player.totalCorrectWord},
+            ${player.getWpmAverage()},
+            ${player.getReactionTimeAverage()},
+            ${player.getPrecisionAverage()},
+            ${averageWordLength},
+            '${player.rankedWords}',
+            NOW()`, (err, res) => {
+            if (err) {
+                console.log(err)
+                console.log(`Erreur lors de l'insertion du nouveau record de "${player.nickname}"`) 
+                return -1
+            }
+            else {
+                console.log(`Insertion du nouveau record de "${player.nickname} réalisé avec succès`)
+                return 1
+            }
+        })
+    }
+    
 
     close() {
         this.client.end()

@@ -9,8 +9,15 @@ async function setMilestone(jsonData, bot) {
     if (jsonData[1].name == "seating") {
 
         var milestone = jsonData[1]
-
         bot.set_isSuicide(false)
+
+        /* RANKED MODE */
+        if (!bot.isTimerExpired && bot.timerRanked != null) {
+            clearTimeout(bot.timerRanked);
+            bot.timerRanked = null
+            bot.rankedPlayer = null
+            bot.sendGameMessage('Le joueur est mort, le score ne sera pas sauvegardé');        
+        }     
 
         /* UPDATE ROOM INFO */
         bot.get_room().game.updateMilestoneSeating(milestone)
@@ -26,7 +33,6 @@ async function setMilestone(jsonData, bot) {
             await funct.sleep(Math.floor(Math.floor(Math.random() * (Math.floor(1200) - Math.ceil(800)) + Math.ceil(800))));
             bot.get_wsGame().emit("joinRound")
         }
-
     }
 
     /* GAME IS ROUND */
@@ -39,6 +45,30 @@ async function setMilestone(jsonData, bot) {
         var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), syllable)
         var player = bot.get_room().getPlayerByPeerId(currentPlayerPlaying)
 
+        /* RANKED MODE */
+        if (bot.get_isRanked()) {
+            bot.isTimerExpired = false
+            bot.timerRanked = setTimeout(function () {
+                bot.set_isSuicide(true)
+                for (const key in playersPlaying) {
+                    if (key != bot.peerId) {
+                        bot.rankedPlayer = bot.get_room().getPlayerByPeerId(key)
+                        const totalWord = bot.rankedPlayer.totalCorrectWord 
+                        if (totalWord < 20) { bot.sendGameMessage('Vous avez fourni moins de 20 mots, vos scores ne seront pas sauvegardés');}
+                        else if (bot.rankedPlayer.auth == null) {bot.sendGameMessage("Vous n'êtes pas connecté, vos scores ne seront pas sauvegardés");}
+                        else {
+                            const WPM = bot.rankedPlayer.getWpmAverage()
+                            const reactionTime = bot.rankedPlayer.getReactionTimeAverage()
+                            const precision = bot.rankedPlayer.getPrecisionAverage()
+                            bot.sendGameMessage(bot.rankedPlayer.nickname + ': Mots: ' + totalWord + ", WPM: " + WPM + ", temps de réaction: " + reactionTime + "ms, précision: " + precision + "%");
+                            bot.get_database().addRecord(bot.rankedPlayer)
+                        }
+                    }
+                }       
+                bot.rankedPlayer = null
+                bot.isTimerExpired = true
+            }, 60000);
+        }
 
         /* UPDATE ROOM INFO */
         bot.get_room().game.updateMilestoneRound(milestone)

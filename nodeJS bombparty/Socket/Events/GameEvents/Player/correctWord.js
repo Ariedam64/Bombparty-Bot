@@ -8,8 +8,17 @@ function correctWord(jsonData, bot) {
     var player = bot.get_room().getPlayerByPeerId(playerPeerId)
 
     if (player != false) {
+
+        /* TOTAL CORRECT WORD */
+        player.totalCorrectWord += 1
+
+        /* CORRECT WORD */
         var correctWord = player.get_word().replace(/[^a-zA-Z-']/gi, '')
 
+        /* RANKED */
+        if (bot.isRanked) {
+            player.rankedWords.push(correctWord)
+        }
 
         /* REACTION TIME */
         player.isReactionTime = false

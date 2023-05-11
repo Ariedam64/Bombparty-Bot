@@ -70,6 +70,14 @@ function sleep(ms) {
     });
 }
 
+function averageWordLength(words) {
+    let totalLength = 0;
+    for (let i = 0; i < words.length; i++) {
+        totalLength += words[i].length;
+    }
+    return totalLength / words.length;
+}
+
 function isInt(value) {
     return !isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))
 }
@@ -104,4 +112,4 @@ function sortString(table, string) {
 const chars = ["Ꭺ","Ᏼ","Ꮯ", "Ꭰ", "Ꭼ", "Ꮐ", "Ꮋ","Ꮶ","Ꮮ", "Ꮇ", "Ჿ", "Ꮲ", "Ꮪ", "Ꭲ", "Ꮩ", "Ꮃ","Ꮓ" ];
 
 
-module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars }
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength }

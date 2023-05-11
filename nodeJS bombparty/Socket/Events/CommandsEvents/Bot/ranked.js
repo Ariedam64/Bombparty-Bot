@@ -1,7 +1,5 @@
 ﻿function ranked(chatterPlayer, arguments, bot) {
 
-    console.log(bot.roles)
-
     if (arguments == null || arguments == "") {
         bot.sendGameMessage("Cette commande permet d'enregistrer les scores d'un joueur (WPM, temps de réaction et précision) dans un délai de 1 minute. La commande prend en paramètre la valeur 'on' ou 'off'")
         bot.sendGameMessage('Utilisation: $ranked on OU $br off')
@@ -19,12 +17,24 @@
         bot.sendGameMessage('Le paramètre renseigné doit avoir pour valeur "on" ou "off". Utilisez la commande "$ranked" ou "$br" pour mieux comprendre son utilisation')
     }
     else {
-        if (arguments.toLowerCase() == "on") {
+        if (arguments.toLowerCase() == "on" && !bot.get_isRanked()) {
+            bot.set_isRanked(true)
+            bot.set_isAutoJoin(true)
+            bot.get_wsGame().emit("joinRound")
             bot.sendGameMessage('Début du mode ranked')
         }
-        else {
+        else if (arguments.toLowerCase() == "off" && bot.get_isRanked()) {
+            bot.set_isRanked(false)
+            bot.set_isAutoJoin(false)
+            bot.get_wsGame().emit("leaveRound")
             bot.sendGameMessage('Fin du mode ranked')
-        }     
+        }  
+        else if (arguments.toLowerCase() == "off" && !bot.get_isRanked()) {
+            bot.sendGameMessage("Le mode ranked n'est pas actif")
+        }  
+        else if (arguments.toLowerCase() == "on" && bot.get_isRanked()) {
+            bot.sendGameMessage("Le mode ranked est déjà actif")
+        }  
     }
 }
 

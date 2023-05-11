@@ -28,6 +28,7 @@ async function setup(jsonData, bot) {
                 if (playerExist != false) {
                     playerExist.set_isOnline(player.isOnline)
                 }  
+                bot.get_room().game.totalPlayerInGame += 1
             }
 
             /* AUTO JOIN */

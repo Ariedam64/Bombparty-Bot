@@ -32,6 +32,11 @@ class Bot extends Player {
         this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
+        this.isRanked = false
+        this.isTimerExpired = false
+        this.timerRanked = null
+        this.startRoundRanked = null
+        this.rankedPlayer = null
         this.wpmTimer = 16300
         this.wpm = 130
         this.wordErrorPercentage = 0.08
@@ -51,6 +56,7 @@ class Bot extends Player {
     get_playStyle() { return this.playStyle }
     get_playerStaff() { return this.playerStaff }
     get_creatorId() { return this.creatorId }
+    get_isRanked() { return this.isRanked }
 
     /* Setter */
     set_room(newRoom) { this.room = newRoom }
@@ -65,6 +71,7 @@ class Bot extends Player {
     set_playStyle(newPlayeStyle) { this.playStyle = newPlayeStyle }
     set_playerStaff(newPlayerStaff) { this.playerStaff = newPlayerStaff }
     set_creatorId(newCreatorId) { this.creatorId = newCreatorId }
+    set_isRanked(newIsRanked) { this.isRanked = newIsRanked }
 
     /* FUNCTIONS */
 
@@ -267,6 +274,26 @@ class Bot extends Player {
         this.wsRoom.set_bot(this)
         this.connectToRoom(this.get_room())
 
+    }
+
+    //Check ingamePlayer for ranked
+    checkPlayersRanked() {
+
+        if (this.get_room().game.totalPlayerInGame > 2) { // If there are more than 2 players, edit rules until he leaves
+            this.sendGameMessage("Le mode ranked ce joue uniquement à 2 joueurs")
+            this.get_wsGame().emit("setRulesLocked", false)
+            if (this.startRoundRanked != null) { clearTimeout(this.startRoundRanked) }
+        }
+        else if (this.get_room().game.totalPlayerInGame == 2) { // If there are 2 players, start the game
+            this.get_wsGame().emit("setRulesLocked", true)
+            this.sendGameMessage("La partie commencera dans 5 secondes")
+            this.startRoundRanked = setTimeout(function () {
+                this.get_wsGame().emit("startRoundNow")
+            }.bind(this), 5000);      
+        }
+        else {
+            if (this.startRoundRanked != null) { clearTimeout(this.startRoundRanked) }
+        }
     }
 
     /* Chat */
