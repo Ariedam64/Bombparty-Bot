@@ -157,26 +157,23 @@ class Player {
         this.bonusLetters = []
     }
 
-    addBonusLetters(bonusLetters, bonusAlphabet) {
-        for (const letter of bonusLetters) {
-            if (bonusAlphabet.includes(letter) && (!(this.bonusLetters.includes(letter)))) {
-                this.bonusLetters.push(letter)
-            }
-        }
+    addBonusLetters(bonusLetters) {
+        this.bonusLetters = Object.entries(bonusLetters)
+            .filter(([key, value]) => value > 0)
+            .map(([key, value]) => key);
     }
 
     resetBonusLetters() {
         this.bonusLetters = []
     }
 
-    getNeededBonusLetters(bonusAlphabet) {
-        var neededBonusLetters = ""
-        for (const letter of bonusAlphabet) {
-            if (!(this.bonusLetters.includes(letter))) {
-                neededBonusLetters += letter
-            }
+    getNeededBonusLetters() {
+        const bonusLetters = ""
+        console.log(this.bonusLetters)
+        for (const letter of this.bonusLetters) {
+            bonusLetters += letter + ", "
         }
-        return neededBonusLetters
+        return bonusLetters
     }
 
     appendMessage(message) {

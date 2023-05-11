@@ -29,7 +29,7 @@ class Bot extends Player {
 
         //Game state
         this.playStyle = "drunk"
-        this.isAutoJoin = true
+        this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
         this.wpmTimer = 16300
@@ -96,7 +96,7 @@ class Bot extends Player {
         var webSocketLink = await api.joinRoom(room.get_roomCode())
         this.recaptchaToken = await api.bypassAntiBotToken()
 
-        this.wsRoom = new RoomSocket("RoomSocket", this, true, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
+        this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
             this.room = room;
             this.room.set_roomLink(webSocketLink)

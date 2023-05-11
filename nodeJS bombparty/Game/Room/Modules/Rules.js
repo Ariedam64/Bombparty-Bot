@@ -1,7 +1,7 @@
 class Rules {
 
 
-    constructor(minTurnDuration = null, promptDifficulty = null, customPromptDifficulty = null, maxWordsPerPrompt = null, maxPromptAge = null, startingLives = null, maxLives = null) {
+    constructor(minTurnDuration = null, promptDifficulty = null, customPromptDifficulty = null, maxWordsPerPrompt = null, maxPromptAge = null, startingLives = null, maxLives = null, bonusAlphabet = null) {
 
         //Rules information
         this.minTurnDuration = minTurnDuration;
@@ -11,6 +11,7 @@ class Rules {
         this.maxPromptAge = maxPromptAge;
         this.startingLives = startingLives;
         this.maxLives = maxLives;
+        this.bonusAlphabet = bonusAlphabet
     }
 
 
@@ -22,6 +23,7 @@ class Rules {
     get_maxPromptAge() { return this.maxPromptAge };
     get_startingLives() { return this.startingLives };
     get_maxLives() { return this.maxLives };
+    get_bonusAlphabet() { return this.bonusAlphabet }
 
     /* SETTERS */
     set_minTurnDuration(newMinTurnDuration) { this.minTurnDuration = newMinTurnDuration };
@@ -31,6 +33,7 @@ class Rules {
     set_maxPromptAge(newMaxPromptAge) { this.maxPromptAge = newMaxPromptAge };
     set_startingLives(newStartingLives) { this.startingLives = newStartingLives };
     set_maxLives(newMaxLives) { this.maxLives = newMaxLives };
+    set_bonusAlphabet(newBonusAlphabet) { this.bonusAlphabet = newBonusAlphabet }
 
     /* FUNCTIONS */
 
@@ -40,10 +43,8 @@ class Rules {
         this.set_customPromptDifficulty(jsonData[1].rules.customPromptDifficulty.value)
         this.set_maxPromptAge(jsonData[1].rules.maxPromptAge.value)
         this.set_startingLives(jsonData[1].rules.startingLives.value)
-        this.set_maxLives(jsonData[1].rules.maxLives.value)
-
+        this.set_maxLives(jsonData[1].rules.customBonusAlphabet.value)
     }
-
 }
 
 //Export the class
