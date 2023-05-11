@@ -17,6 +17,7 @@ const updatePlayer = require('../GameEvents/Player/updatePlayer');
 const bonusAlphabetCompleted = require('../GameEvents/Player/bonusAlphabetCompleted');
 const connectionEtablished = require('../GameEvents/Socket/connectionEtablished');
 const setDictionaryManifest = require('../GameEvents/setDictionaryManifest');
+const setLeaderPeer = require('../GameEvents/setLeaderPeer');
 
 function processEvent(data, bot, DEBUG) {
 
@@ -136,6 +137,11 @@ function processEvent(data, bot, DEBUG) {
         case 'updatePlayer':
             if (DEBUG) { console.log("Game event: " + event + " OK") }
             updatePlayer(jsonData, bot)
+            break;
+
+        case 'setLeaderPeer':
+            if (DEBUG) { console.log("Game event: " + event + " OK") }
+            setLeaderPeer(jsonData, bot)
             break;
 
         default:

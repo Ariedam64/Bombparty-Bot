@@ -23,6 +23,7 @@ const generateToken = require("../CommandsEvents/Bot/generateToken.js");
 const precision = require("../CommandsEvents/Player/precision");
 const allPlayers = require("../CommandsEvents/Room/allPlayers");
 const disconnect = require("../CommandsEvents/Room//disconnect");
+const ranked = require("../CommandsEvents/Bot/ranked");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -290,6 +291,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'bcp':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             copyPlayer(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Ranked
+        case 'ranked':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            ranked(chatterPlayer, arguments, bot)
+            break;
+
+        case 'br':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            ranked(chatterPlayer, arguments, bot)
             break;
 
         //-- Suicide

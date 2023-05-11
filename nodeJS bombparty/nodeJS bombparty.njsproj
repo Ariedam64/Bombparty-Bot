@@ -44,6 +44,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\CommandsEvents\Bot\generateToken.js" />
+    <Content Include="Socket\Events\CommandsEvents\Bot\ranked.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\joinRoom.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\playStyle.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\wordError.js">
@@ -129,6 +130,7 @@
     <Content Include="Socket\Events\GameEvents\clearUsedWords.js" />
     <Content Include="Socket\Events\GameEvents\Player\bonusAlphabetCompleted.js" />
     <Content Include="Socket\Events\GameEvents\Player\updatePlayer.js" />
+    <Content Include="Socket\Events\GameEvents\setLeaderPeer.js" />
     <Content Include="Socket\Events\GameEvents\setDictionaryManifest.js" />
     <Content Include="Socket\Events\GameEvents\setRules.js" />
     <Content Include="Socket\Events\GameEvents\Player\livesLost.js" />

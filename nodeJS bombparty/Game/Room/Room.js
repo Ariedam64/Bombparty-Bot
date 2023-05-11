@@ -31,7 +31,6 @@ class Room {
         this.players = []; //List players objects
         this.chatMessages = [] //List ChatMessages objects
         this.allPlayers = []
-        this.staffPlayers = []
 
         this.maxChatMessage = 1000
 
@@ -80,23 +79,6 @@ class Room {
     set_chatMessages(newChatMessages) { this.chatMessages = newChatMessages };
     set_roomLink(newRoomLink) { this.roomLink = newRoomLink }
     
-
-
-    /* FUNCTIONS */
-    _toString() {
-        console.log(
-            "Global Information:" + "\n" +
-            "roomCode: " + this.get_roomCode() + "\n" +
-            "gameId: " + this.get_gameId() + "\n" +
-            "roomName: " + this.get_roomName() + "\n" +
-            "language: " + this.get_language() + "\n" +
-            "playerCount: " + this.get_playerCount() + "\n" +
-            "chatMode: " + this.get_chatMode() + "\n" +
-            "isPublic: " + this.get_isPublic() + "\n" +
-            "bonusAlphabet: " + this.get_bonusAlphabet() + "\n" +
-            "leaderPeerId: " + this.get_leaderPeerId()
-        )
-    }
 
     /* Room functions */
 
