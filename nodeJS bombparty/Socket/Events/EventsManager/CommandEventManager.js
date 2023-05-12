@@ -23,7 +23,8 @@ const generateToken = require("../CommandsEvents/Bot/generateToken.js");
 const precision = require("../CommandsEvents/Player/precision");
 const allPlayers = require("../CommandsEvents/Room/allPlayers");
 const disconnect = require("../CommandsEvents/Room//disconnect");
-const ranked = require("../CommandsEvents/Bot/ranked");
+const record = require("../CommandsEvents/Ranked/ranked");
+const personal = require("../CommandsEvents/Ranked/personal");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -293,17 +294,6 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
             copyPlayer(chatterPlayer, arguments, bot)
             break;
 
-        //-- Ranked
-        case 'ranked':
-            if (DEBUG) { console.log("Command event: " + event + " OK") }
-            ranked(chatterPlayer, arguments, bot)
-            break;
-
-        case 'br':
-            if (DEBUG) { console.log("Command event: " + event + " OK") }
-            ranked(chatterPlayer, arguments, bot)
-            break;
-
         //-- Suicide
         case 'suicide':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
@@ -324,6 +314,31 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'bwpm':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             wordsPerMinute(chatterPlayer, arguments, bot)
+            break;
+
+
+        /* RANKED */
+
+        //-- personal
+        case 'personal':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            personal(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rp':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            personal(chatterPlayer, arguments, bot)
+            break;
+
+        //-- record
+        case 'record':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            record(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rr':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            record(chatterPlayer, arguments, bot)
             break;
 
         /* HELP */

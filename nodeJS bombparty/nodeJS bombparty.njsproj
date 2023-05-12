@@ -44,7 +44,8 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\CommandsEvents\Bot\generateToken.js" />
-    <Content Include="Socket\Events\CommandsEvents\Bot\ranked.js" />
+    <Content Include="Socket\Events\CommandsEvents\Ranked\global.js" />
+    <Content Include="Socket\Events\CommandsEvents\Ranked\personal.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\joinRoom.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\playStyle.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\wordError.js">
@@ -70,6 +71,7 @@
     <Content Include="Socket\Events\CommandsEvents\Player\nationality.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Socket\Events\CommandsEvents\Ranked\record.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\disconnect.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\allPlayers.js" />
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
@@ -219,6 +221,7 @@
     <Folder Include="Socket\Events\" />
     <Folder Include="Socket\Events\CommandsEvents\Database\" />
     <Folder Include="Socket\Events\CommandsEvents\Bot\" />
+    <Folder Include="Socket\Events\CommandsEvents\Ranked\" />
     <Folder Include="Socket\Events\CommandsEvents\Room\" />
     <Folder Include="Socket\Events\CommandsEvents\Player\" />
     <Folder Include="Socket\Events\GameEvents\" />

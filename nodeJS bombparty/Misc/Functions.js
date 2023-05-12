@@ -109,7 +109,42 @@ function sortString(table, string) {
         .join('');
 }
 
+function tableauEnTexte(data) {
+    if (data.length < 1) {
+        return "";
+    }
+
+    const headers = Object.keys(data[0]);
+
+    const lengths = {};
+    headers.forEach((header) => {
+        lengths[header] = Math.max(
+            ...data.map((row) => {
+                return String(row[header]).length;
+            }),
+            header.length
+        );
+    });
+
+    const separator = headers
+        .map((header) => "-".repeat(lengths[header]))
+        .join("-+-");
+
+    const headerRow = headers
+        .map((header) => header.padEnd(lengths[header]))
+        .join(" | ");
+    const dataRows = data
+        .map((row) => {
+            return headers
+                .map((header) => String(row[header]).padEnd(lengths[header]))
+                .join(" | ");
+        })
+        .join("\n");
+
+    return `${headerRow}\n${separator}\n${dataRows}`;
+}
+
 const chars = ["Ꭺ","Ᏼ","Ꮯ", "Ꭰ", "Ꭼ", "Ꮐ", "Ꮋ","Ꮶ","Ꮮ", "Ꮇ", "Ჿ", "Ꮲ", "Ꮪ", "Ꭲ", "Ꮩ", "Ꮃ","Ꮓ" ];
 
 
-module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength }
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength, tableauEnTexte }

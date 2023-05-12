@@ -1,5 +1,6 @@
 ﻿const pgConfig = require('./Connection/configuration.js')
 const { Client } = require('pg')
+const moment = require('moment');
 const funct = require("../Misc/Functions.js")
 
 class Database {
@@ -187,7 +188,8 @@ class Database {
 
     async addRecord(player) {
 
-        const averageWordLength = funct.averageWordLength(player.rankedWords)
+        const averageWordLength = funct.averageWordLength(player.rankedWords).toFixed(2)
+        const currentDate = moment(new Date()).format('DD/MM/YYYY HH:mm:ss')
 
         this.client.query(`
         WITH ins_player AS(
@@ -207,7 +209,7 @@ class Database {
             ${player.getPrecisionAverage()},
             ${averageWordLength},
             '${player.rankedWords}',
-            NOW()`, (err, res) => {
+            '${currentDate}'`, (err, res) => {
             if (err) {
                 console.log(err)
                 console.log(`Erreur lors de l'insertion du nouveau record de "${player.nickname}"`) 
@@ -218,6 +220,61 @@ class Database {
                 return 1
             }
         })
+    }
+
+    async showRecord(player, categorie, order, limit) {
+        if (categorie == null) { categorie = "recordDate" }
+        if (order == null) { order = "DESC" }
+        if (limit == null) { limit = 10000 }
+        let query = `
+        SELECT r.recordDate AS "Date", r.totalwords AS "Nombre total de mots", r.wpm AS "Vitesse d'écriture moyenne", r.reactionTime AS "Temps de réaction moyen", r.precision AS "Précision moyenne", r.averagewordslength AS "Moyenne longueur des mots"
+        FROM players.records r
+        JOIN players.player p ON r."player_connectionid" = p.connectionId
+        WHERE p.connectionId = '${player.auth.id}'
+        ORDER BY r.${categorie} ${order}
+        LIMIT ${limit};`
+
+        try {
+            const res = await this.client.query(query)
+            if (res == null) {
+                return 0
+            }
+            else {
+                console.log(res.rows)
+                return res.rows
+            }    
+        }
+        catch (err) {
+            console.log(err)
+            return -1
+        }     
+    }
+
+    async showGlobalRecord(categorie, order, limit) {
+        if (categorie == null) { categorie = "recordDate" }
+        if (order == null) { order = "DESC" }
+        if (limit == null) { limit = 10000 }
+        let query = `
+        SELECT r.recordDate AS "Date", r.totalwords AS "Nombre total de mots", r.wpm AS "Vitesse d'écriture moyenne", r.reactionTime AS "Temps de réaction moyen", r.precision AS "Précision moyenne", r.averagewordslength AS "Moyenne longueur des mots"
+        FROM players.records r
+        JOIN players.player p ON r."player_connectionid" = p.connectionId
+        ORDER BY r.${categorie} ${order}
+        LIMIT ${limit};`
+
+        try {
+            const res = await this.client.query(query)
+            if (res == null) {
+                return 0
+            }
+            else {
+                console.log(res.rows)
+                return res.rows
+            }
+        }
+        catch (err) {
+            console.log(err)
+            return -1
+        }
     }
     
 

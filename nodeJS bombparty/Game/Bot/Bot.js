@@ -28,7 +28,7 @@ class Bot extends Player {
         this.playerStaff = ["709512296036040817"]
 
         //Game state
-        this.playStyle = "drunk"
+        this.playStyle = "bot"
         this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
@@ -280,7 +280,7 @@ class Bot extends Player {
     checkPlayersRanked() {
 
         if (this.get_room().game.totalPlayerInGame > 2) { // If there are more than 2 players, edit rules until he leaves
-            this.sendGameMessage("Le mode ranked ce joue uniquement à 2 joueurs")
+            this.sendGameMessage("Le mode ranked se joue uniquement à 2 joueurs")
             this.get_wsGame().emit("setRulesLocked", false)
             if (this.startRoundRanked != null) { clearTimeout(this.startRoundRanked) }
         }
