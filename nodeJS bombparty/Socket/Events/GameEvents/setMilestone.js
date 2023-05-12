@@ -47,6 +47,8 @@ async function setMilestone(jsonData, bot) {
 
         /* RANKED MODE */
         if (bot.get_isRanked()) {
+
+            if (currentPlayerPlaying != bot.get_peerId()) { player.rankedSyllables.push(syllable) }
             bot.isTimerExpired = false
             bot.timerRanked = setTimeout(function () {
                 bot.set_isSuicide(true)

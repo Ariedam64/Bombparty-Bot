@@ -15,11 +15,6 @@ function correctWord(jsonData, bot) {
         /* CORRECT WORD */
         var correctWord = player.get_word().replace(/[^a-zA-Z-']/gi, '')
 
-        /* RANKED */
-        if (bot.isRanked) {
-            player.rankedWords.push(correctWord)
-        }
-
         /* REACTION TIME */
         player.isReactionTime = false
         player.set_endWpmTime(performance())
@@ -59,6 +54,10 @@ function correctWord(jsonData, bot) {
             bot.get_database().addNewWord(bot.get_room().getDatabaseLanguage(), correctWord)
         }
 
+        /* LAST WPM */
+        player.set_lastWpmAverage(player.getWpmAverage())
+        player.set_lastReactionTimeAverage(player.getReactionTimeAverage()) 
+
         /* TRACKED */
         try { var tracked = player.get_isTracked() }
         catch { var tracked = false }
@@ -79,9 +78,12 @@ function correctWord(jsonData, bot) {
             else { bot.sendGameMessage(player.nickname + " traker: " + player.getLastReactionTime() + "ms, " + player.getLastWpm() + " mots/min, " + player.getLastPrecision() + "%") }
         }
 
-        /* LAST WPM */
-        player.set_lastWpmAverage(player.getWpmAverage())
-        player.set_lastReactionTimeAverage(player.getReactionTimeAverage()) 
+        /* RANKED */
+        if (bot.isRanked) {
+            player.rankedWords.push(correctWord)
+            player.wpms.push(player.getLastWpm())
+        }
+
     }
 
 }

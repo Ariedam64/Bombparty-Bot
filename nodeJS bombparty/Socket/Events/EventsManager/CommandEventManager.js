@@ -23,8 +23,10 @@ const generateToken = require("../CommandsEvents/Bot/generateToken.js");
 const precision = require("../CommandsEvents/Player/precision");
 const allPlayers = require("../CommandsEvents/Room/allPlayers");
 const disconnect = require("../CommandsEvents/Room//disconnect");
-const record = require("../CommandsEvents/Ranked/ranked");
-const personal = require("../CommandsEvents/Ranked/personal");
+const record = require("../CommandsEvents/Classement/record");
+const personal = require("../CommandsEvents/Classement/personal");
+const detail = require("../CommandsEvents/Classement/detail");
+const global = require("../CommandsEvents/Classement/global");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -37,7 +39,7 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
 
         /* 
          * r: Room
-         * g: Game
+         * c: Classement
          * p: Player
          * b: Bot
          * d: Database
@@ -317,7 +319,7 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
             break;
 
 
-        /* RANKED */
+        /* CLASSEMENT */
 
         //-- personal
         case 'personal':
@@ -325,9 +327,31 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
             personal(chatterPlayer, arguments, bot)
             break;
 
-        case 'rp':
+        case 'cp':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             personal(chatterPlayer, arguments, bot)
+            break;
+
+        //-- detail
+        case 'detail':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            detail(chatterPlayer, arguments, bot)
+            break;
+
+        case 'cd':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            detail(chatterPlayer, arguments, bot)
+            break;
+
+        //-- global
+        case 'global':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            global(chatterPlayer, arguments, bot)
+            break;
+
+        case 'cg':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            global(chatterPlayer, arguments, bot)
             break;
 
         //-- record
@@ -336,7 +360,7 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
             record(chatterPlayer, arguments, bot)
             break;
 
-        case 'rr':
+        case 'cr':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             record(chatterPlayer, arguments, bot)
             break;

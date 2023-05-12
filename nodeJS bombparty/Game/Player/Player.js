@@ -31,6 +31,7 @@ class Player {
 
         this.wpmWords = []
         this.wpmTimes = []
+        this.wpms = []
         this.maxWpmTimes = 50;
         this.startWpmTime = 0.0
         this.endWpmTime = 0.0
@@ -46,6 +47,7 @@ class Player {
         this.totalCorrectWord = 0
 
         this.rankedWords = []
+        this.rankedSyllables = []
 
         this.maxMessage = 250;
 
@@ -145,6 +147,9 @@ class Player {
         this.reactionsTimes = []
         this.wpmTimes = []
         this.wpmWords = []
+        this.wpms = []
+        this.rankedSyllables = []
+        this.rankedWords = []
         this.isReactionTime = true
         this.startReactionTime = performance();
         this.set_isErased(false)

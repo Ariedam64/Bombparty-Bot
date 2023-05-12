@@ -144,7 +144,31 @@ function tableauEnTexte(data) {
     return `${headerRow}\n${separator}\n${dataRows}`;
 }
 
+function transformArray(arr) {
+    arr = arr.map(parseFloat);
+    let i = 0;
+    while (i < arr.length) {
+        if (arr[i] === 0) {
+            let j = i + 1;
+            while (j < arr.length && arr[j] === 0) {
+                j++;
+            }
+            let numZeros = j - i;
+            let nonZeroIndex = j;
+            while (nonZeroIndex < arr.length && arr[nonZeroIndex] === 0) {
+                nonZeroIndex++;
+            }
+            let avg = arr[nonZeroIndex] / (numZeros + 1);
+            arr.splice(i, j - i + 1, avg);
+        }
+        i++;
+    }
+    arr = arr.map(String);
+
+    return arr;
+}
+
 const chars = ["Ꭺ","Ᏼ","Ꮯ", "Ꭰ", "Ꭼ", "Ꮐ", "Ꮋ","Ꮶ","Ꮮ", "Ꮇ", "Ჿ", "Ꮲ", "Ꮪ", "Ꭲ", "Ꮩ", "Ꮃ","Ꮓ" ];
 
 
-module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength, tableauEnTexte }
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength, tableauEnTexte, transformArray }

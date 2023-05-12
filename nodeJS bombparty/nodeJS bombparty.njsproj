@@ -4,6 +4,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>nodeJS bombparty</Name>
     <RootNamespace>nodeJS bombparty</RootNamespace>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -15,11 +16,11 @@
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
-    <WorkingDirectory>.</WorkingDirectory>
+    <WorkingDirectory>C:\Users\Romann\source\repos\nodeJS bombparty\nodeJS bombparty</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <StartWebBrowser>false</StartWebBrowser>
+    <StartWebBrowser>False</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,8 +45,10 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Socket\Events\CommandsEvents\Bot\generateToken.js" />
-    <Content Include="Socket\Events\CommandsEvents\Ranked\global.js" />
-    <Content Include="Socket\Events\CommandsEvents\Ranked\personal.js" />
+    <Content Include="Socket\Events\CommandsEvents\Classement\detail.js" />
+    <Content Include="Socket\Events\CommandsEvents\Classement\global.js" />
+    <Content Include="Socket\Events\CommandsEvents\Classement\personal.js" />
+    <Content Include="Socket\Events\CommandsEvents\Classement\record.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\joinRoom.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\playStyle.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\wordError.js">
@@ -71,7 +74,6 @@
     <Content Include="Socket\Events\CommandsEvents\Player\nationality.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Socket\Events\CommandsEvents\Ranked\record.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\disconnect.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\allPlayers.js" />
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
@@ -221,7 +223,7 @@
     <Folder Include="Socket\Events\" />
     <Folder Include="Socket\Events\CommandsEvents\Database\" />
     <Folder Include="Socket\Events\CommandsEvents\Bot\" />
-    <Folder Include="Socket\Events\CommandsEvents\Ranked\" />
+    <Folder Include="Socket\Events\CommandsEvents\Classement\" />
     <Folder Include="Socket\Events\CommandsEvents\Room\" />
     <Folder Include="Socket\Events\CommandsEvents\Player\" />
     <Folder Include="Socket\Events\GameEvents\" />

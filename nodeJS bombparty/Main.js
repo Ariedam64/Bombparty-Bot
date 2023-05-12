@@ -8,7 +8,7 @@ const Room = require('./Game/Room/Room.js');
 
 function main() {
     const frBot = new Bot("Eyeye",null);
-    const frRoom = new Room('TWGA')
+    const frRoom = new Room('KADC')
     frBot.connectToRoom(frRoom)
 }
 
