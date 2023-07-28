@@ -5,13 +5,13 @@ async function personal(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage("Cette commande permet de récupérer les scores d'un joueur. Elle prend paramètre une catégorie (wpm/reactionTime[rt]/precision[p]/avgWordsLength[avg]), un ordre (asc/desc) et un entier pour définir la limite. Si vous souhaitez simplement visualiser vos scores récents, mettez '$cp all' en paramètre")
-        bot.sendGameMessage('Utilisation: $personal wpm dsc 5 on OU $cp all')
+        bot.sendGameMessage('Utilisation: $personal wpm dsc 5 on OU $rp all')
     }
     else if (chatterPlayer.auth == null) {
         bot.sendGameMessage('Vous devez être connecté pour effectuer cette commande')
     }
     else if (arguments.split(" ").length > 3) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$personal" ou "$cp" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$personal" ou "$rp" pour mieux comprendre son utilisation')
     }
     else if (arguments.split(" ").length == 1 && arguments == "all") {
         let resultRequest = await bot.get_database().showRecord(chatterPlayer, null, null, null)

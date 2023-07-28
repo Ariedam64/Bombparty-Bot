@@ -5,13 +5,13 @@ async function detail(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage("Cette commande permet de récupérer toutes les informations d'un record. Elle prend paramètre une catégorie un entier qui est l'identifiant du record")
-        bot.sendGameMessage('Utilisation: $detail 56 ou $cd 56')
+        bot.sendGameMessage('Utilisation: $detail 56 ou $rd 56')
     }
     else if (arguments.split(" ").length > 1) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$detail" ou "$cd" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$detail" ou "$rd" pour mieux comprendre son utilisation')
     }
     else if (!(funct.isInt(arguments))) {
-        bot.sendGameMessage('Le paramètre renseigné n\'est pas un entier. Utilisez la commande "$detail" ou "$cd" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('Le paramètre renseigné n\'est pas un entier. Utilisez la commande "$detail" ou "$rd" pour mieux comprendre son utilisation')
     }
     else {
         let resultRequest = null

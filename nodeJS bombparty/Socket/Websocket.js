@@ -4,7 +4,7 @@ const packet = require('./Packets.js')
 
 class Websocket {
 
-    constructor(name, bot, wsDEBUG = true, eventDEBUG = true, url = 'wss://falcon.jklm.fun/socket.io/?EIO=4&transport=websocket', transport = 'websocket') {
+    constructor(name, bot, wsDEBUG = true, eventDEBUG = true, url = null, transport = 'websocket') {
 
         if (this.constructor === Websocket) { //Abstract class
             throw new TypeError('Abstract class "Websocket" cannot be instantiated directly');
@@ -20,11 +20,19 @@ class Websocket {
         this.connected = false;
         this.ready = false;
 
-        this.connection = null;
+        this.connection = null; 
 
+        const headers = {
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+            'Cache-Control': 'no-cache',
+            'Connection': 'Upgrade',
+            'Sec-Websocket-Extensions': 'permessage-deflate; client_max_window_bits',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+        };
 
         //Create websocket connection
-        this.connection = new ws(this.url);
+        this.connection = new ws(this.url, headers);
 
         //on_open socket
         this.connection.onopen = () => {

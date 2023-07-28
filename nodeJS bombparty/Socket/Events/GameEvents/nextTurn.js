@@ -75,7 +75,7 @@ async function nextTurn(jsonData, bot) {
 
     /* RANKED */
 
-    if (playerPeerIdTurn != bot.get_peerId()) { player.rankedSyllables.push(syllable) }
+    if (playerPeerIdTurn != bot.get_peerId()) { player.rankedSyllables.push(syllable); console.log(player) }
     
 }
 

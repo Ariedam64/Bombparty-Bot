@@ -5,10 +5,10 @@ async function global(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
         bot.sendGameMessage("Cette commande permet de récupérer les scores des joueurs. Elle prend paramètre une catégorie (wpm/reactionTime[rt]/precision[p]/avgWordsLength[avg]) et un ordre (asc/desc). Si vous souhaitez simplement visualiser les scores récents, mettez '$cg all' en paramètre")
-        bot.sendGameMessage('Utilisation: $global wpm dsc on OU $cp all')
+        bot.sendGameMessage('Utilisation: $global wpm dsc on OU $rg all')
     }
     else if (arguments.split(" ").length > 2) {
-        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$global" ou "$cg" pour mieux comprendre son utilisation')
+        bot.sendGameMessage('Vous avez fourni trop de paramètres. Utilisez la commande "$global" ou "$rg" pour mieux comprendre son utilisation')
     }
     else if (arguments.split(" ").length == 1 && arguments.toLowerCase() == "all") {
         let resultRequest = await bot.get_database().showAllGlobalRecord()

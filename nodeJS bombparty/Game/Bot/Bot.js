@@ -78,8 +78,10 @@ class Bot extends Player {
     /* Global */
     generateUserToken() {
         var token = "";
-        for (; token.length < 16; token += Math.random().toString(36).substr(2));
-        return (token.substr(0, 16));
+        var characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var charactersLength = characters.length;
+        for (; token.length < 16; token += characters.charAt(Math.floor(Math.random() * charactersLength)));
+        return token;
     }
 
     updateBotInfoAfterJoin(jsonData) {
@@ -103,7 +105,7 @@ class Bot extends Player {
         var webSocketLink = await api.joinRoom(room.get_roomCode())
         this.recaptchaToken = await api.bypassAntiBotToken()
 
-        this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
+        this.wsRoom = new RoomSocket("RoomSocket", this, true, true, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
             this.room = room;
             this.room.set_roomLink(webSocketLink)
@@ -114,7 +116,7 @@ class Bot extends Player {
                         "language": this.get_language(),
                         "nickname": this.get_nickname(),
                         "roomCode": this.get_room().get_roomCode(),
-                        "token": this.recaptchaToken,
+                        "token": "03AAYGu2T4dv0bMmOE9v3msDLVD12zhpvpxu6kyZlXOsQc0uhupuvRXSeUxyaP0arD66-Y-G-o1aMukt9l-z6V42jVXYZwhJi9U3JDUullfyYShdTtD6-TPt2qe-76hI9rCgrW_ocFul8YrKqhcG94JFENy4nSCb1gMpg-hcc7xfgIjpLPn91kIKfZAVdGQWDQpsS2MTGPi448I8Zu6LoobvZQ0AbjiKOpvRXZfGBkrJMWl8XYVWDmU3sxmc7AAxf8WxrqUpjLen7h-bmnxXBOJbCSq8yyum4-lLi5wOLMMtJcWdbojf-Os2lys8G4dfcnIAcn8HF_WJhCAyLhYbAEI2dzpQ1obuPSqem6Aml5BkZCcbCltBdi_FLO4ZCkAj8tA3FlnbKDNSPC7I5PEV2ZlZr_nPKRKdmYMZfgLnVXYYBVkAAR0oyj3XxLXE9cVD8n4pk0QkuUsBFajroVHWPoRRp_ngLeQdpqDeipRL3b16VjjrBMHAzVXkwcFhOEfXbHPryCPQmZpWQfwzDN4JNGaG9ftzkpiUMmaw",
                         "userToken": this.get_userToken(),      
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic

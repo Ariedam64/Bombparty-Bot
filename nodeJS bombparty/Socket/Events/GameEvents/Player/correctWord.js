@@ -80,8 +80,10 @@ function correctWord(jsonData, bot) {
 
         /* RANKED */
         if (bot.isRanked) {
-            player.rankedWords.push(correctWord)
-            player.wpms.push(player.getLastWpm())
+            if (playerPeerId != bot.get_peerId()) {
+                player.rankedWords.push(correctWord)
+                player.wpms.push(player.getLastWpm())
+            }  
         }
 
     }
