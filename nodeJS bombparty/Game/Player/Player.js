@@ -1,4 +1,5 @@
 const performance = require('performance-now');
+const funct = require('../../Misc/Functions')
 
 class Player {
 
@@ -167,23 +168,16 @@ class Player {
         this.totalCorrectWord = 0
     }
 
-    addBonusLetters(bonusLetters) {
-        this.bonusLetters = Object.entries(bonusLetters)
-            .filter(([key, value]) => value > 0)
-            .map(([key, value]) => key);
-    }
-
-    resetBonusLetters() {
-        this.bonusLetters = []
-    }
-
     getNeededBonusLetters() {
-        const bonusLetters = ""
+        let bonusLetters = ""
         console.log(this.bonusLetters)
-        for (const letter of this.bonusLetters) {
-            bonusLetters += letter + ", "
-        }
-        return bonusLetters
+        Object.entries(this.get_bonusLetters()).forEach(([key, value]) => {
+            if (value > 0) {
+                let newValue = funct.integerToExponent(value)
+                bonusLetters += `${key.toUpperCase()}${newValue}, ` 
+            }    
+        });
+        return bonusLetters.slice(0, -2)
     }
 
     appendMessage(message) {

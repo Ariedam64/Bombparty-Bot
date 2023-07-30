@@ -4,7 +4,7 @@ const funct = require('../../../../Misc/Functions')
 async function personal(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage("Cette commande permet de récupérer les scores d'un joueur. Elle prend paramètre une catégorie (wpm/reactionTime[rt]/precision[p]/avgWordsLength[avg]), un ordre (asc/desc) et un entier pour définir la limite. Si vous souhaitez simplement visualiser vos scores récents, mettez '$cp all' en paramètre")
+        bot.sendGameMessage("Cette commande permet de récupérer les scores d'un joueur. Elle prend paramètre une catégorie (wpm/reactionTime[rt]/precision[p]/avgWordsLength[avg]), un ordre (asc/desc) et un entier pour définir la limite. Si vous souhaitez simplement visualiser vos scores récents, mettez '$rp all' en paramètre")
         bot.sendGameMessage('Utilisation: $personal wpm dsc 5 on OU $rp all')
     }
     else if (chatterPlayer.auth == null) {

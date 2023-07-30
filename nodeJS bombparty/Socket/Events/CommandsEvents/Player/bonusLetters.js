@@ -21,8 +21,14 @@
 
         /* Find player bonus letters */
         if (player != null) {
-            var bonusLetters = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet()).toUpperCase()
-            bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + player.nickname + " : " + bonusLetters)
+            const bonusLetters = player.getNeededBonusLetters()
+            if (bonusLetters.length > 0) {
+                bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + player.nickname + " : " + player.getNeededBonusLetters())
+            }
+            else {
+                bot.sendGameMessage("Le joueur " + player.nickname + " n'est pas en train de jouer")
+            }
+            
         }
     }
 }

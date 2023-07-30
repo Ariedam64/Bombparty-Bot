@@ -5,7 +5,6 @@ function bonusAlphabetCompleted(jsonData, bot) {
     var player = bot.get_room().getPlayerByPeerId(playerPeerId)
 
     if (player != false) {
-        player.resetBonusLetters() //Reset bonusLetters of the player
         player.set_lives(newPlayerLives) //Set new lives to the players
     }       
 

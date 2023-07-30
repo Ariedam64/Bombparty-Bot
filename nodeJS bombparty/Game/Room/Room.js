@@ -84,8 +84,6 @@ class Room {
 
     setup(jsonData) {
         this.set_leaderPeerId(jsonData[1].leaderPeerId)
-        this.set_bonusAlphabet(jsonData[1].milestone.dictionaryManifest.bonusAlphabet)
-
         this.configuration.setup(jsonData)
         this.rules.setup(jsonData)
     }

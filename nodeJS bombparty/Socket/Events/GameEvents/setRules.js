@@ -1,7 +1,10 @@
 function setRules(jsonData, bot) {
 
-    language = jsonData[1].dictionaryId
+    data = jsonData[1]
 
+    if ("customBonusAlphabet" in data) {
+        bot.get_room().set_bonusAlphabet(data.customBonusAlphabet) //Update new customAlphabet
+    }
 }
 
 module.exports = setRules

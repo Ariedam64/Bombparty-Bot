@@ -43,7 +43,8 @@ class Rules {
         this.set_customPromptDifficulty(jsonData[1].rules.customPromptDifficulty.value)
         this.set_maxPromptAge(jsonData[1].rules.maxPromptAge.value)
         this.set_startingLives(jsonData[1].rules.startingLives.value)
-        this.set_maxLives(jsonData[1].rules.customBonusAlphabet.value)
+        this.set_maxLives(jsonData[1].rules.maxLives.value)
+        this.set_bonusAlphabet(jsonData[1].rules.customBonusAlphabet.value)
     }
 }
 

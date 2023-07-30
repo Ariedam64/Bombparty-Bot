@@ -15,6 +15,7 @@ async function setMilestone(jsonData, bot) {
         if (!bot.isTimerExpired && bot.timerRanked != null) {
             clearTimeout(bot.timerRanked);
             bot.timerRanked = null
+           // bot.rankedPlayer.set_isTracked(false)
             bot.rankedPlayer = null
             bot.sendGameMessage('Le joueur est mort, le score ne sera pas sauvegardé');        
         }     
@@ -42,7 +43,6 @@ async function setMilestone(jsonData, bot) {
         var playersPlaying = jsonData[1].playerStatesByPeerId
         var syllable = jsonData[1].syllable
         var currentPlayerPlaying = jsonData[1].currentPlayerPeerId
-        console.log("id: " + currentPlayerPlaying)
         var foundWordArray = await bot.get_database().getWordContainSyllables(bot.get_room().getDatabaseLanguage(), syllable)
         var player = bot.get_room().getPlayerByPeerId(currentPlayerPlaying)
 
@@ -107,7 +107,8 @@ async function setMilestone(jsonData, bot) {
         if (bot.get_isRanked()) {
 
             var player = bot.get_room().getPlayerByPeerId(currentPlayerPlaying)
-            if (currentPlayerPlaying != bot.get_peerId()) { player.rankedSyllables.push(syllable); console.log(player) }
+            if (currentPlayerPlaying != bot.get_peerId()) { player.rankedSyllables.push(syllable); /*player.set_isTracked(true)*/ }         
+            bot.set_playStyle("bot")
 
             bot.isTimerExpired = false
             bot.timerRanked = setTimeout(function () {
@@ -116,8 +117,8 @@ async function setMilestone(jsonData, bot) {
                     if (key != bot.peerId) {
                         bot.rankedPlayer = bot.get_room().getPlayerByPeerId(key)
                         const totalWord = bot.rankedPlayer.totalCorrectWord
-                        if (totalWord < 20) { bot.sendGameMessage('Vous avez fourni moins de 20 mots, vos scores ne seront pas sauvegardés'); }
-                        else if (bot.rankedPlayer.auth == null) { bot.sendGameMessage("Vous n'êtes pas connecté, vos scores ne seront pas sauvegardés"); }
+                        if (totalWord < 20) { bot.sendGameMessage('Vous avez fourni moins de 20 mots, vos scores ne seront pas sauvegardés'); player.set_isTracked(false) }
+                        else if (bot.rankedPlayer.auth == null) { bot.sendGameMessage("Vous n'êtes pas connecté, vos scores ne seront pas sauvegardés"); player.set_isTracked(false) }
                         else {
                             const WPM = bot.rankedPlayer.getWpmAverage()
                             const reactionTime = bot.rankedPlayer.getReactionTimeAverage()
@@ -127,6 +128,7 @@ async function setMilestone(jsonData, bot) {
                         }
                     }
                 }
+                //bot.rankedPlayer.set_isTracked(false)
                 bot.rankedPlayer = null
                 bot.isTimerExpired = true
             }, 60000);

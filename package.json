@@ -5,6 +5,7 @@
     "start": "cd nodeJs bombparty/Website && next start"
   },
   "dependencies": {
+    "@antiadmin/anticaptchaofficial": "^1.0.39",
     "@llama-node/core": "^0.0.33",
     "@llama-node/llama-cpp": "^0.0.33",
     "@llama-node/rwkv-cpp": "^0.0.33",

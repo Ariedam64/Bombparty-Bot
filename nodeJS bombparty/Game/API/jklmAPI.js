@@ -2,6 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const FormData = require('form-data');
 const regex = /\[\"rresp\",\"(.*?)\",null,120/;
+const ac = require("@antiadmin/anticaptchaofficial");
 
 async function getRooms() {
     return axios.get('https://jklm.fun/api/rooms')
@@ -45,6 +46,8 @@ async function joinRoom(room) {
 
 async function bypassAntiBotToken() {
 
+
+    /*
     const ar = "1"
     const k = "6LdzYGslAAAAACxOZaQA5J0CxlfdJQUdWvJYoAFM"
     const co = "aHR0cHM6Ly9qa2xtLmZ1bjo0NDM."
@@ -64,9 +67,8 @@ async function bypassAntiBotToken() {
     // Récupération du token
     return axios.get(urlGET, {
         headers: {
-            'Accept': 'text/h:tml,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+            'Accept-Language': 'fr-FR,fr;q=0.3,en-US;q=0.2,en;q=0.1',
             'Cookie': '__Secure-3PAPISID=0dISd_Nn1o39xA_A/A03TEn0lLngS_Xtk_; __Secure-3PSID=ZAjsf6DHeNrHJHzR1T7dgMSmJJID0LsLbSfm87WVu1TvwRYr2l1qSKyP-dVsOxpa7gPIuQ.; NID=511=VQTgFXHbGkXSNUTsKGwf7mrlUqFF0BGpR3yga6oxVP2ikbM0bQRZReOeh6mjepKErVPbzDbQ0ns2y9w1Jbw2lhJOzjOce9f2_MX_pSV3FBkzmd3PDOgqGd3R_74tXyZekYRCHkVTc9RO3pC3J0h3aBf64UcapvbQxMijDC0mlSNYysJbWs5yCJGxpfeBvblHuhvjHg8HAJjaVUG6gutQOVRPrfN8eGCqFRApdWX2br9DmzU5S6Q8DzzTRQPCRcHgViMMrYhC8RaM-pS-qgK0cJxX3By7ZSAc85h0prc6t-lTl60E4p1r0aip7cV88lt0FxjZCzWDQCETqH62lk-8cDE415b9HvevO4X_KvOefq0WCkJDJlAKtucGG9rWXcrQ46CLMpxVNMnkLLbA7j8opZAxyGSNoVzjiozUMA2QCeFOAUF1lb2FQqlfYR5x3Ow-iKVu_3KC9ri8u4LnLgRv_-UD64o-8GuNN_kQSxA4LI76KhfAvamy5kr3MbJLJcvw1pD7Sk5timyuOuK5TnR_HJxv4ZwF1lZuWA; __Secure-3PSIDTS=sidts-CjEBPu3jIXirUqgVJYqkc24avYzsZka_FCfl0DtvFDSCALMubWgPwULpYvju49ceaPS0EAA; __Secure-3PSIDCC=APoG2W9Y9PqTPIXSCLU0TXM-55W51HwBHa4heWyb-fvRNAPVxCGW7SbAqMR0FzomcNLGPFV0kTw',
             'Referer': 'https://jklm.fun/',
             'Sec-Ch-Ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"',
@@ -77,7 +79,6 @@ async function bypassAntiBotToken() {
             'Sec-Fetch-Site': 'cross-site',
             'Upgrade-Insecure-Requests': '1',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
-            'X-Client-Data': 'CJS2yQEIpbbJAQipncoBCIWHywEIlqHLAQiLq8wBCIWgzQEIsr3NARjWnc0B',  
         }
         })
         .then(response => {
@@ -100,7 +101,6 @@ async function bypassAntiBotToken() {
             return axios.post(urlPOST, formData, {
                 headers: {
 
-                    'Accept': '*/*',
                     'Accept-Encoding': 'gzip, deflate, br',
                     'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
                     'Content-Type': 'application/x-protobuffer',
@@ -113,8 +113,7 @@ async function bypassAntiBotToken() {
                     'Sec-Fetch-Dest': 'empty',
                     'Sec-Fetch-Mode': 'cors',
                     'Sec-Fetch-Site': 'same-origin',
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
-                    'X-Client-Data': 'CJS2yQEIpbbJAQipncoBCIWHywEIlqHLAQiLq8wBCIWgzQEIsr3NARjWnc0B',                  
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',                
                 }           
             });
         })
@@ -126,6 +125,26 @@ async function bypassAntiBotToken() {
         .catch(error => {
             return -1
         });
+
+        */
+
+    ac.setAPIKey('ae2d88cbfdcdcbad3baa6a3a13643f7e');
+    ac.setSoftId(0);
+
+    try {
+        const gresponse = await ac.solveRecaptchaV3(
+            'https://jklm.fun/',
+            '6LdzYGslAAAAACxOZaQA5J0CxlfdJQUdWvJYoAFM',
+            0.9, // minimum score required: 0.3, 0.7 or 0.9
+            'joinRoom'
+        );
+        console.log('g-response: ' + gresponse);
+        return gresponse;
+    } catch (error) {
+        console.error('Error:', error);
+        return -1;
+    }
+        
 }
 
 module.exports = { getRooms, joinRoom, bypassAntiBotToken };

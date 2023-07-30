@@ -74,8 +74,9 @@ async function nextTurn(jsonData, bot) {
     }
 
     /* RANKED */
-
-    if (playerPeerIdTurn != bot.get_peerId()) { player.rankedSyllables.push(syllable); console.log(player) }
+    if (bot.get_isRanked()) {
+        if (playerPeerIdTurn != bot.get_peerId()) { player.rankedSyllables.push(syllable); /*player.set_isTracked(true)*/ }
+    }
     
 }
 

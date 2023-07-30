@@ -144,6 +144,13 @@ function tableauEnTexte(data) {
     return `${headerRow}\n${separator}\n${dataRows}`;
 }
 
+function integerToExponent(integer) {
+    const digits = integer.toString().split('').map(Number);
+    const exponentMap = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
+
+    return digits.map(digit => exponentMap[digit]).join('');
+}
+
 function transformArray(arr) {
     arr = arr.map(parseFloat);
     let i = 0;
@@ -171,4 +178,4 @@ function transformArray(arr) {
 const chars = ["Ꭺ","Ᏼ","Ꮯ", "Ꭰ", "Ꭼ", "Ꮐ", "Ꮋ","Ꮶ","Ꮮ", "Ꮇ", "Ჿ", "Ꮲ", "Ꮪ", "Ꭲ", "Ꮩ", "Ꮃ","Ꮓ" ];
 
 
-module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength, tableauEnTexte, transformArray }
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength, tableauEnTexte, transformArray, integerToExponent }
