@@ -51,10 +51,9 @@ async function nextTurn(jsonData, bot) {
             if (assisted) {
 
                 var table = bot.get_language().split("-")[0].toLowerCase()
-                var playerAlphabet = player.getNeededBonusLetters(bot.get_room().get_bonusAlphabet())
                 var wordsAlreadyPut = bot.get_room().game.get_usedWords()
 
-                words = await bot.get_database().getBestWordWithBonusLetters(table, syllable, playerAlphabet, wordsAlreadyPut)
+                words = await bot.get_database().getBestWordWithBonusLetters(table, syllable, player.get_bonusLetters(), wordsAlreadyPut)
 
                 if (words == -1) { bot.sendGameMessage("Assistant: Impossible d'éffectuer la requête vers la base de données") }
                 else if (words == 0) { bot.sendGameMessage("Assistant: Aucun mot trouvé") }

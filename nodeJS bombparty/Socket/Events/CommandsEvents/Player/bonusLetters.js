@@ -26,7 +26,7 @@
                 bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + player.nickname + " : " + player.getNeededBonusLetters())
             }
             else {
-                bot.sendGameMessage("Le joueur " + player.nickname + " n'est pas en train de jouer")
+                bot.sendGameMessage("Le joueur " + player.nickname + " n'est pas dans la partie")
             }
             
         }

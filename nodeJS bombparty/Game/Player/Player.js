@@ -170,7 +170,6 @@ class Player {
 
     getNeededBonusLetters() {
         let bonusLetters = ""
-        console.log(this.bonusLetters)
         Object.entries(this.get_bonusLetters()).forEach(([key, value]) => {
             if (value > 0) {
                 let newValue = funct.integerToExponent(value)

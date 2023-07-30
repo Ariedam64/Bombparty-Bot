@@ -138,13 +138,26 @@ class Database {
         }
     }
 
-    async getBestWordWithBonusLetters(table, syllable, letters, wordsAlreadyPut) {
+    async getBestWordWithBonusLetters(table, syllable, oldLetters, wordsAlreadyPut) {
         try {
+
+            let letters = ""
+
+            for (const letter in oldLetters) {
+                if (oldLetters.hasOwnProperty(letter)) {
+                    if (oldLetters[letter] > 0) {
+                        const myLetter = letter;
+                        const count = oldLetters[letter];
+                        letters += myLetter.repeat(count);
+                    }   
+                }
+            }
 
             if (letters.length > 8) {
                 letters = funct.sortString(table, letters)
                 letters = letters.slice(0,8)
             } 
+
 
             let query = ''
             if (letters.length > 1) {

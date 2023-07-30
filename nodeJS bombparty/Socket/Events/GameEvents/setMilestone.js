@@ -79,6 +79,33 @@ async function setMilestone(jsonData, bot) {
             try { var assistant = player.get_isAssisted() }
             catch { var assistant = false }
 
+            /* ASSIST ON */
+
+            try { var assisted = player.get_isAssisted() }
+            catch { var assisted = false }
+
+            if (assisted) {
+
+                var table = bot.get_language().split("-")[0].toLowerCase()
+                var wordsAlreadyPut = bot.get_room().game.get_usedWords()
+
+                words = await bot.get_database().getBestWordWithBonusLetters(table, syllable, player.get_bonusLetters(), wordsAlreadyPut)
+
+                if (words == -1) { bot.sendGameMessage("Assistant: Impossible d'éffectuer la requête vers la base de données") }
+                else if (words == 0) { bot.sendGameMessage("Assistant: Aucun mot trouvé") }
+                else {
+                    message = player.nickname + " assistant: "
+                    for (const word of words) {
+                        message += word.word
+                        if (word.matched_letters != null) {
+                            message += "(" + word.matched_letters + ")"
+                        }
+                        message += ", "
+                    }
+                    bot.sendGameMessage(message)
+                }
+            }
+
             /* TRACKER ON */
             if (assistant) {
 
