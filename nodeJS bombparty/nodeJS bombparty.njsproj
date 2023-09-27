@@ -38,6 +38,7 @@
     <Content Include="Game\API\jklmAPI.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Game\Bot\AI.js" />
     <Content Include="Misc\PasteBin\configuration.js">
       <SubType>Code</SubType>
     </Content>
@@ -47,6 +48,7 @@
     <Content Include="Socket\Events\CommandsEvents\Bot\generateToken.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\joinRoom.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\playStyle.js" />
+    <Content Include="Socket\Events\CommandsEvents\Bot\reloadData.js" />
     <Content Include="Socket\Events\CommandsEvents\Bot\wordError.js">
       <SubType>Code</SubType>
     </Content>
@@ -76,6 +78,7 @@
     <Content Include="Socket\Events\CommandsEvents\Ranked\record.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\disconnect.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\allPlayers.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\realTimeInformation.js" />
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
       <SubType>Code</SubType>
     </Content>

@@ -1,10 +1,13 @@
 ﻿const Message = require("../../../../Game/Chat/Message")
 const CommandEventManager = require("../../EventsManager/CommandEventManager.js")
+const funct = require("../../../../Misc/Functions.js")
+const path = require('path');
+const AI = require("../../../../Game/Bot/AI.js")
 
-function chat(jsonData, bot) {
+
+async function chat(jsonData, bot) {
 
     var chatMessage = jsonData[2]
-
     if (chatMessage != null) {
 
         var chatterPeerId = jsonData[1].peerId
@@ -18,8 +21,25 @@ function chat(jsonData, bot) {
 
         var chatterPlayer = bot.get_room().getPlayerByPeerId(chatterPeerId)
 
+        /* AI */
+        var nicknameBot = chatMessage.toLowerCase().includes(bot.get_nickname().toLowerCase().toLowerCase())
+
+        if (nicknameBot && chatterPeerId != bot.get_peerId() && chatterNickname != "ℤbot") {
+            const projetPath = __dirname.split(path.sep);
+            const dataPath = path.join(...projetPath.slice(0, -4), "realTime");
+
+            if (bot.get_room().isRealTimeInformation) {
+                await funct.sauvegarderObjetDansFichier(bot.get_room(), dataPath + '\\variables.txt');
+                const msg = await AI.initRealTime(chatterNickname, chatMessage)
+                bot.sendGameMessage(msg)
+            }
+            else {
+                bot.asking(chatterNickname, chatMessage)
+            }        
+        }
+
         /* APPENDS MESSAGE TO PLAYER */
-        if (chatterPlayer != false) {            
+        if (chatterPlayer != false && chatterNickname != "ℤbot") {            
             if (chatterPlayer != false) {
                 chatterPlayer.appendMessage(new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))
                 bot.get_room().appendMessageToChat(chatterPeerId, chatterNickname, new Message(timePostedHours + ":" + timePostedMinutes, chatMessage))

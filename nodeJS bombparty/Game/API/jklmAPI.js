@@ -47,7 +47,7 @@ async function joinRoom(room) {
 async function bypassAntiBotToken() {
 
 
-    /*
+    
     const ar = "1"
     const k = "6LdzYGslAAAAACxOZaQA5J0CxlfdJQUdWvJYoAFM"
     const co = "aHR0cHM6Ly9qa2xtLmZ1bjo0NDM."
@@ -126,7 +126,7 @@ async function bypassAntiBotToken() {
             return -1
         });
 
-        */
+       /*
 
     ac.setAPIKey('ae2d88cbfdcdcbad3baa6a3a13643f7e');
     ac.setSoftId(0);
@@ -135,7 +135,7 @@ async function bypassAntiBotToken() {
         const gresponse = await ac.solveRecaptchaV3(
             'https://jklm.fun/',
             '6LdzYGslAAAAACxOZaQA5J0CxlfdJQUdWvJYoAFM',
-            0.9, // minimum score required: 0.3, 0.7 or 0.9
+            0.7, // minimum score required: 0.3, 0.7 or 0.9
             'joinRoom'
         );
         console.log('g-response: ' + gresponse);
@@ -143,7 +143,7 @@ async function bypassAntiBotToken() {
     } catch (error) {
         console.error('Error:', error);
         return -1;
-    }
+    }*/
         
 }
 

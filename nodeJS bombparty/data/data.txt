@@ -1,0 +1,59 @@
+Le but du jeu Bombparty est de trouver un mot pour une syllabe donnée le plus rapidement possible, si tu ne trouves pas la réponse dans le temps imparti tu perds une vie.
+Pour regagner une vie sur le jeu, il suffit de mettre des mots contenant les lettres bonus situées à droite de l’écran, une fois toutes les lettres bonus misent, vous regagnez une vie.
+Dans le jeu, il y a le "min", qui définit la rareté des syllabes qui apparraissent en jeu, par exemple min500 veut dire que toutes les syllabes qui apparaissent ont au moins 500 mots comme solution, et le "sub" c'est l'inverse, sub200 par exemple veut dire qu'il y a maximum 200 mots comme solutions pour les syllabes données.
+Il y a un easter-egg avec les anniversaires sur bombparty, pour le déclencher il faut mettre un émoji spécial.
+Voici la liste des records et leur explication:
+- alpha: Mots dont la première lettre suit l'ordre de l'alphabet, par exemple au premier tour Avion, puis au second Biche...
+- temps: La durée total d'une partie
+- mots: Le nombre maximal de mots mis dans une partie
+- mots composés (mc): nombre de mots composés placés, c'est à dire les mots qui contiennent "-"
+Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
+- Zem: créateur de Zbot, joueur moyen, il prend bombparty un peu pour la vrai
+- Kitsu: joueur pédophile, malsain, qui se connecte sur le jeu pour draguer des petites filles et petit garçon.
+- Ayaya: Développeur et créateur du bot Mayaya, ne cesse de trouver des idées innovantes, mais au niveau de jeu médiocre. Son vrai prénom c'est Romann, un prénom de meuf quoi
+- Horothi: Alias Il, joueur moyen très rapide, qui crées pleins de fausses identités de tout genre
+- Laimargue: joueur tryhardeur, un peu bizarre, qui aime les mots longs et la vitesse, fasciné par les trolls comme xR et la dactylographie, et qui a un penchant pour le stalk
+- Blue: joueur du mode sub, très vieux et qui est amoureux de Zem. Il mesure 1m83
+- Tess: gamine et fangirl n°1 de shaiz, toujours nulle au jeu même après 2 ans d'entrainement
+- Tatsuya: Il mesure 1m75
+- Dywtw: Enorme raciste, un homme extremement horrible. Homophobe, grossophobe il est vraiement de pire de l'humanité. Il aurait tué le chien de ses voisins pour le manger dans un couscous avec Osyth 
+- nes: Une meuf qui se prend pour une créature imaginaire
+- Romane: Joueuse de base popsauce mais récemment bombparty, modératrice, ne mange que des pâtes bolognaise. Dessine les abeilles bizarrement
+- Strychnine: Alias Stry, Administratrice sur jklm.fun, joueuse très active sur le jeu
+- Macadelic: Administrateur de jklm.fun, a une petite amie qui est Strychnine
+- 44: Il mesure 1m83
+- Danny: Administrateur de jklm.fun, créateur d’un très beau overlay bombparty, Niveau moyen
+- Elisee: Créateur officiel de jklm.fun mais ne jouait pas trop, mais a cédé les droits a Macadelic depuis un peu près 1 ans
+- aqrt: C’est un homme qui se prend parfois pour une femme, n’est plus actif sur son compte principal mais a beaucoup d’alt
+- Antho: Un homme au passé obscur qui s’est fait ban ip sur bombparty. C'était un joueur rapide, mais qui aimait trop faire le dark sasuke et mentir aux gens, sur sa vie ou ses différents suicides #Pendu
+- Marylou: Alias la toupie beyblade. Meuf ayant des tocs (faire 500 fois le tour sur elle même), joue à bombparty sur son iphone. Adore mettre des photos de chien partout. A un penchant pour les mecs en jupe. Aime le cosplay et fais 1m55
+- Cobra: joueur charismatique et respecté de tous, fan des adverbes, qui a un très bon niveau de jeu  
+- Woebe: Un turc qui parle anglais dans des salons français et qui ne cesse de trouver de nouvelles filles à draguer. Aime les gros seins. Surement un mec de 40 ans dans un cybercafé
+- Adra: très bon joueur respecté de la communauté, militaire droitard et un peu raciste sur les bords, mais qui porte des boucles d’oreilles. Il mesure 1m63
+- Thibz: Homme sombre, inventeur de nombreuses expressions diverses, joueurs mot composé et rapide. Habite sur une île lointaine, aime jouer à Brawlhalla.
+- Oknn: Alias oumar coach. Utilise un peu trop d’emoji dans ses phrases, passionné par les trolls, n’est plus actif à cause de Valorant. 
+- Alice: Quasiment plus active car trop passionné par le sport, aime faire des dessins très particulier mettant en scène des joueurs de bombparty
+- xR: troll anciennement connu sous le pseudo TED, extrêmement bizarre qui a de multiples identités, qui envoie des vidéos de décapitations d’enfants. Idole de Laimargue. dactylographe probant qui voue un culte à HeavenBlades et ses mandarines
+- m6xw: Petit développeur qui hack des comptes tiktok et cherche des mots, s’ennuie tout le temps
+- Lexomyl: Alias Willy, joueur qui collectionne des papillons et des oiseaux, fan de pokémon et geoguessr, à tendance dépressive.
+- Lewisix67: Alias Lewis, n’est plus actif, également un peu trop fan de one piece. Il fait 1m83 est a le même IMC que Marylou
+- Spookier: Alias PannH, Développeur, un des joueurs les plus rapide de bombparty francophone
+- Ebous: joueur immature et hystérique, qui s’ébahit devant la moindre chose. N’hésite pas a mp toute sa liste de contact d’un live pour humilier un débutant sur un jeu
+- Kok: Adore faire du piano, bon joueur Osu et Brawlhalla
+- Robespierre: joueur qui adore flex dans des streams twitch, mais qui est souvent charrié par les habitués du jeu
+- StaffGold: joueur verbes à l’égo surdimensionné, qui drague toutes les filles qu’il croise. Il a assez de libido pour ken une chaise de bureau genre
+- Fidel : Adore troll les gens, joue à Lea. Homme plutot bien musclé
+- Fruh: joueur qui a tellement troll qu’il est devenu son propre troll, inintéressant qui insulte tout le monde, raciste et irrespectueux, mais qui reste un bon joueur rapide et de longs et adverbes
+- gogolo: joueur qui passe son temps à insulter et faire des pseudos analyses psychologiques foireuses de toute la communauté bombparty. Son besoin compulsif de critiquer vient peut être de sa déficience mentale suite au tryhard des sub15
+- Takarim: Alias taka. N’est plus actif, joueur LoL avec tristana qui se fait voler le pc par son frère car la copine de son frère veut jouer au sims. Ami dans la vrai vie de Macadelic, ils ont eu les mêmes petites amies (à croire qu’ils les partages)
+- Sparky: joueur calme et discret, qui ne se rapproche pas beaucoup des autres joueurs, mais qui a un bon niveau de jeu
+- Niragi: Rêve de devenir mannequin dans la vraie vie. Ressemble un peu à un vampire. Très amical et très sociable.
+- Saiki: saiki c une femme forte et indépendante elle est métisse bounty un peu bref elle est  belle vive agile rapide elle parlea beaucoup c une personne très à l'écoute elle est nigérienne bref je l'aime
+- Iraaz: Iraaz est un homme exceptionnel doté d’un humour à vous faire pisser dessus. Il tient à son anonymat, alors seules quelques personnes privilégiées le connaissent plus en détail. C’est un nerd confirmé, qui a lu une moitié de livre dans sa vie (sur les échecs) et aime les jeux de réflexion
+- Shaiz: Joueur sn, adverbe et gentillés. Aime beaucoup mais vraiment beaucoup insulter les gens. Ban ip du jeu
+- Fishfish: Se prend pour un empereur, Développeur plutôt orientée web.
+- Hibiscus: Ancien joueur de bombparty en anglais, il a un niveau C2 en anglais. Il est drole et aime les blagues immatures du genre "prout"
+- dFuzer: Alias Enzo, développeur et créateur du bot BirdBot, aime jouer a des jeux variés
+- Emilie: Elle aime les chats, bon niveau de jeu, aime trashtalk les gens, elle fût autours de nombreux drama, apparament hautaine
+
+

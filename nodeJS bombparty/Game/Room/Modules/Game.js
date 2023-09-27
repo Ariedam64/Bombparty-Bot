@@ -41,6 +41,20 @@ class InGame {
 
     /* FUNCTIONS */
 
+    toString() {
+        return `Game Room Information:
+    - Status: ${this.status}
+    - Syllable: ${this.syllable}
+    - Used Word Count: ${this.usedWordCount}
+    - Peer ID: ${this.peerId}
+    - Last Round Winner Name: ${this.lastRoundWinnerName}
+    - Rules Locked: ${this.rulesLocked}
+    - Total Players In Game: ${this.totalPlayerInGame}
+    - Current Player Peer ID Turn: ${this.currentPlayerPeerIdTurn}
+    - Last Correct Word: ${this.lastCorrectWord}
+    - Used Words: ${Array.from(this.usedWords).join(', ')}`;
+    }
+
     setup(jsonData) {
         this.set_status(jsonData[1].milestone.name)
         this.set_rulesLocked(jsonData[1].milestone.rulesLocked)

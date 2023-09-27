@@ -37,6 +37,18 @@ class Configuration {
 
     /* FUNCTIONS */
 
+    toString() {
+        return `Configuration Room Information:
+    - Max Bomb Duration: ${this.maxBombDuration}
+    - Max Players: ${this.maxPlayers}
+    - Max Word Length: ${this.maxWordLength}
+    - Min Bomb Duration: ${this.minBombDuration}
+    - Min Players: ${this.minPlayers}
+    - Start Timer Duration: ${this.startTimerDuration}
+    - Submit Rate Limit Interval: ${this.submitRateLimitInterval}
+    - Submit Rate Limit Max: ${this.submitRateLimitMax}`;
+    }
+
     setup(jsonData) {
 
         this.set_maxBombDuration(jsonData[1].constants.maxBombDuration)

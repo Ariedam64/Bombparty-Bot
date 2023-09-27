@@ -22,11 +22,13 @@ const joinRoom = require("../CommandsEvents/Bot/joinRoom");
 const generateToken = require("../CommandsEvents/Bot/generateToken.js");
 const precision = require("../CommandsEvents/Player/precision");
 const allPlayers = require("../CommandsEvents/Room/allPlayers");
-const disconnect = require("../CommandsEvents/Room//disconnect");
+const disconnect = require("../CommandsEvents/Room/disconnect");
+const realTimeInformation = require("../CommandsEvents/Room/realTimeInformation");
 const record = require("../CommandsEvents/Ranked/record");
 const personal = require("../CommandsEvents/Ranked/personal");
 const detail = require("../CommandsEvents/Ranked/detail");
 const global = require("../CommandsEvents/Ranked/global");
+const reloadData = require("../CommandsEvents/Bot/reloadData");
 
 function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -79,6 +81,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'rd':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             disconnect(chatterPlayer, arguments, bot)
+            break;
+
+        //-- REAL TIME INFORMATION
+        case 'realTimeInformation':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            realTimeInformation(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rr':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            realTimeInformation(chatterPlayer, arguments, bot)
             break;
 
         /* PLAYER */
@@ -239,6 +252,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'bwe':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             wordError(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Reload Data
+        case 'reloadData':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            reloadData(chatterPlayer, arguments, bot)
+            break;
+
+        case 'brd':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            reloadData(chatterPlayer, arguments, bot)
             break;
 
         //-- joinRoom

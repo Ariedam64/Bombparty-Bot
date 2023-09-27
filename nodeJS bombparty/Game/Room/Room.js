@@ -22,6 +22,7 @@ class Room {
         this.leaderPeerId = null;
         this.bonusAlphabet = null;
         this.lastPeerId = null;
+        this.isRealTimeInformation = false
 
         this.configuration = new Configuration() //Configuration Object
         this.game = new Game() //Ingame Object
@@ -81,6 +82,23 @@ class Room {
     
 
     /* Room functions */
+
+    toString() {
+        return `Room real time informations:
+- Beta: ${this.beta}
+- Language: ${this.language}
+- Chat Mode: ${this.chatMode}
+- Is Public: ${this.isPublic}
+- Nombre de joueurs dans la room: ${this.playerCount}
+- Room Code: ${this.roomCode}
+- Game ID: ${this.gameId}
+- Room Name: ${this.roomName}
+${this.configuration.toString()}
+${this.game.toString()}
+${this.rules.toString()}
+- Joueurs dans la room: ${this.players.map(player => player.toString())}`
+
+    }
 
     setup(jsonData) {
         this.set_leaderPeerId(jsonData[1].leaderPeerId)

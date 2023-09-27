@@ -130,6 +130,26 @@ class Player {
 
 
     /* FUNCTIONS */
+
+    toString() {
+        return `
+    ${this.nickname} Information:
+        - Peer ID: ${this.peerId}
+        - Nickname: ${this.nickname}
+        - Language/Nationality: ${this.language}
+        - Messages: ${this.messages.toString()}
+        - Lettres bonus: ${this.getNeededBonusLetters()}
+        - Roles: ${this.roles}
+        - Words per minutes (WPM): ${this.getWpmAverage()}
+        - Precision: ${this.getPrecisionAverage()}%
+        - Reaction time: ${this.getReactionTimeAverage()}ms
+        - Is Online: ${this.isOnline}
+        - Vies: ${this.lives}
+        - Total Correct Words: ${this.totalCorrectWord}
+        - Messages : ${this.messages.map(msg => msg.toString()) }`
+    }
+
+
     updateGeneralInfo(jsonData) {
         this.set_auth(jsonData[2].auth)
         this.set_language(jsonData[2].language)
@@ -168,7 +188,7 @@ class Player {
         this.totalCorrectWord = 0
     }
 
-    getNeededBonusLetters() {
+    async getNeededBonusLetters() {
         let bonusLetters = ""
         Object.entries(this.get_bonusLetters()).forEach(([key, value]) => {
             if (value > 0) {

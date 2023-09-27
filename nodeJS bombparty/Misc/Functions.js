@@ -1,4 +1,6 @@
-﻿
+﻿const fs = require('fs');
+const { jsonToPlainText } = require("json-to-plain-text");
+
 //Wait until the condition is true
 function waitFor(conditionFunction) {
     const poll = resolve => {
@@ -144,12 +146,19 @@ function tableauEnTexte(data) {
     return `${headerRow}\n${separator}\n${dataRows}`;
 }
 
-function integerToExponent(integer) {
+async function integerToExponent(integer) {
     const digits = integer.toString().split('').map(Number);
     const exponentMap = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
 
     return digits.map(digit => exponentMap[digit]).join('');
 }
+
+async function sauvegarderObjetDansFichier(objet, nomFichier) {
+
+    var objetJSON = objet.toString(); 
+    fs.writeFileSync(nomFichier, objetJSON);
+}
+
 
 function transformArray(arr) {
     arr = arr.map(parseFloat);
@@ -178,4 +187,4 @@ function transformArray(arr) {
 const chars = ["Ꭺ","Ᏼ","Ꮯ", "Ꭰ", "Ꭼ", "Ꮐ", "Ꮋ","Ꮶ","Ꮮ", "Ꮇ", "Ჿ", "Ꮲ", "Ꮪ", "Ꭲ", "Ꮩ", "Ꮃ","Ꮓ" ];
 
 
-module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength, tableauEnTexte, transformArray, integerToExponent }
+module.exports = { waitFor, binarySearch, removeSameElements, getLetterIndex, sleep, isInt, getCloseLetter, sortString, chars, averageWordLength, tableauEnTexte, transformArray, integerToExponent, sauvegarderObjetDansFichier }

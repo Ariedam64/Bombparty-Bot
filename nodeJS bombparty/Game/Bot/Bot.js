@@ -3,6 +3,7 @@ const funct = require('../../Misc/Functions')
 const RoomSocket = require('../../Socket/Sockets/RoomSocket.js');
 const Database = require('../../BD/dataBase')
 const api = require('../API/jklmAPI.js')
+const AI = require('../Bot/AI.js')
 
 const pic = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAABzlBMVEVHcExiFhVjHRtmTURrrqJjKCRiDw9+6dhql4tsem1jLSlxx7ZrcWRnU0lkMixjIB5oWlA90PBkOzRF0eVmSD9B0OpoYVZkNzE6zfNmRDw6zvM/0e5sTUdZSk//yTNmAADU//X/yjP/kDNjAQH/zDT///9mBgb/SUhtCwhlAADX//b+yz79xTR1EwiZ/+r/yjf/5JliCQn/9ev2vTQ7z/b9vTRwFhXg//l5IyCDJw5gLx57MS79lTjcni+MNBL8qDT9njOt8PWPIhLutDLtgTH4ijTO+/bH9vl6HQzmqjC8UyKaSBib6/X8sjXUkiuiURtz3/SAFgy89vZO1PXLiChe2vTeci3FgCerXR390lH61LuI5PS/eCWTPhWZMBby4dn+UVDj//vfysjNYyiGREG4byOaW1iyZiH87uP73ov+3Xfz7e6OU1GnPxv/AGb81WX6e0H/5puGODazgn3TubWla2XPq6WkYT7uxKz69Pbsy4j6XEXRoXZfGBXR6OLBmJWydUyG9e2gi4rFkWD4GnX0lDKXTDaMPSmW3tr3qsz5y+DvREPhsVT73cjGzsq4Kyvgunmvop7uv1KMuq95f31IstD2OYfVOTn2T5NUgJfuvRs6AAAAHnRSTlMA7+R6FdH4BiAvwQ0+abTZW7ufOIluS6nyk9qXwu3PFdVyAAATFklEQVR42sRZC08iWRYW5I08xLduwErhtYqqaqxAl9g0dNAMj4CCoBGCro+gBjXrczTa2tqx1364Wd3Znun5uXtuFSJIAa2TDSfGECGc757zne98t2xre3kY9XpVWwuj16xUqLtbB8GkQD6fwJtbhaBDSe3sFPw8394iAAOoUHgDQatbUwKtAflx/jeUUtcqAGL+N0KLALTZyAsJgGKgNQh6NQgjEIQobzFpW9GDbg3iBQFRm1lOY2tFEYwmtVJh6NNQmzNBZNC3ogsqkGKtVYmSsSRSd7RmFrAiqcnkVBap/y81MFoHBkzN+qtXo6wniww/xQNth2nAZus26X+Kt3qzBiFe3dtMlS1o0RPnbc2/U2s1K3hEUTyv6Oto/nEVqN1OQSCVzarbq+ACUxMaa7Mv1Nk0qHB4tLZ2fOhHiuaL1MT7N0BvL8imZ+vml9g5St2kCXoDf3C8PSLG9qWP72uCQGtGO6LYIUVfe69O27hWc+54k8UIH9pYHinHWqFZ07QGSto3vINCGmVfIzZaNUE2wFl0jcu0sz1SEcv+Jk2DCkj7huc215MTiLcM6OufjppxJ3lTQwPhWxupiiOqySpv53mc/4LkqYns3FyS45W1ELS6DlO3zaxEE8kgrbZ21G1VN38opv327fT02zf86nSDb1wCnYHmLy4uSOWAWclT8ZnYJl48xsrkvd0GpQYPlgBBIZrXWMztHUY5STEIuACnXz99+vPPT5++YgTHvK0pbRGJLNY2rb5draHigViW4s0PRdCZ+pQaRPlurq7P78/Ozu7vz6+vbnwUrzDI0EWnPMAM2P7jH2L8cYpZIDSzUyqTzdYuJVRZDTy37oHFY+kVFW1AySPfyfV9cWx/rLhVimLx7PzqM8Vb2p9C6FDs4JynlQC2/ZbnrFFVuxLFY54spTAZO/rAE5+cn41B7t0cw7jtOAi3m8ntbp2dnwjVvcLV1IgARr5+wvmlFjwTAJzCwE8E2EVOY1Dw/mvIjpNLuctB2J1Mbuv+hNL8rWpB6hUFEYCIQMo/sux7rqPVDWiiM2yWJH3XZ/vF3dyT5GUQ7tzu+Y2gtlZMhErtK6nQ1xIFYQ5R33O9lLFdE01y1BVOz9gbRW73SlC0V3y/DV2W5l8aQnEMTS9wYjzpPxd5t5trBIBhcteCpttYYSIPqoRw5PRIUD7fRHSo0c3Z/hjE/n6xPgI3wzAEE/Dx3drHHghVSrgNy6D7+fkt6KQo5scQtogG+YEfTCCqKXdBr/CvPZbgdHltAxmefakC83NVHHvIP1YPAOR3Y346nTOcwlpe7htrx5dr26enp9vby2vHhRe4OJ2h4vwQu7LZS8cXx8G5QJX6rDXTfr+AfBuXR0dHx5cbwqOk/jwBbfxN8TH9fpGpW/6H0rjZTSRd4FVqXqM09IF8CnCrh9Xa/vxLrUnjOytuPSKQ5aDbzlRqE+FZknyK1iqaGlggaovFYLO+4CqjV1LnxdyW1AKYgV233PBB9qq/OwOcsvrOYFSpjC+6A9jQFRx6t8SBYo6QnX7maV+IdWR+UcLa26j/bJewM2IP6uigWwaA3RNs7pd/RoQN6FpknTsH4a4nAG6m5i3nTFO/3LT6Wmw7Pxcbam/NRnJCiK/Y+F96kKTrGersHOoxoPMt93Pye2bW1wMsIfHQ8uISqHoGvd6M1/v7xfMKQEzFEUlTySmMgE2+uARdnd5M6iPEd/J66zn52SRJOxw0uYQRvLgEWl2nd/7jK4gvft9ZTq7PYIDkxhGIR4NJBghZ9i+UQAX5X4nxX/5EZvM4PQvJ5HrMLvNOlvx17VIABFxALAHV1Hypurp6erq6VBUeRjv0kP/Vd3Sek+nzkoMkyegiW4OAXcIG7JCEEmw6pUFoqAXarqHB/n6v19s/2NnT9YC1qz/zUcqPO8DU8jwOCRwOklqvwcYGsf1ZE2iaDrJSSxrJoW6oH7iWT+TzqfmMt7+zR1dqQCk/7kDt6nXOIRrRuM/cjPMpB5eEZQyA8jmimIYEyGFvI6rPJyLDwy7X8HA4nUhlvIMYQk+5Aa++09cyFEySheNDHyAglzxELQe2Rw5p/4YgArA7F+s7YGOnNxWB3A8RTucxhK7BcgFe7XD3Mh0IYpN3TNEOmnpaAig5KuwIjsKGMCGCI6YmFPUepPV4U2GcOBIuY8AQ+h8L8OWNv3b3Ep4o7vP2QZlp1ehIGt4AAHFWuq9s1isBFCAkZg0l0o9lSKe8jwBECtQg8ET92GTukAiRUpZKBCAEQFCfH82J2NhfbmcV8h6sqz8l5XSlE4nHVoQT8yURAgDkVY5w1zIdHeMKOA78ZLAagNNJsOsULg0Zl+jxdnT0Tt6Fa3u8iXLSUD5Ufh1J572lMfzuuJZZ/0SW9B8tHyJhYwdVASCcgc0pgp2boByctAzsr9+Pjv6oI0ZD3lBF5fP5iPQqEhkfT2S8KZGD1L/cdeRWQLQPAMSl/UtAOJ2eRY5ccIJOzsxJ69BOQAFGRycVcpOo7cxUtN4VTqRCZQCr6XmRCIXob04ZAJ4l0gEjIGwcoEWnnYhtzsWmpqYC60FEk1lCcgSlj/4yOrqyckd1y3IwExmujFAqIXYAAIyvhlNABNDB3wgZ8+MOcJhoyC9EY7CUFknERaNRyiEqQxUpcAVWVn5QZpk5UA0+AeBKp/JhVzgSBgCudBiI8OXN55y8/V/gYOnSJFqEDhEBrAgOKeiJKmlyTwMHVm45ORKoOjPh4WoE4XwqHY64AEA6tDqex2aEkQfgnglCVthG0uiL9ZAAcFPOKrO8tzI6ejsr9/+lmhZIIxgSOxACAOOJ3y9uGLn8Ig9mFuZi0kXIvS6dnxYBxIhqt74nslAvT0LXUwTDifmEBAB+j3+pBVC+/z1aT7szBpSYnZycxcysAcC83Xs/KavGMIa1AABBCAMQYfxbqAEg5//xdvr7LVT6x+xTAMBYgmCng7IAQIgkAC4xSgAiuAaroTwG8EGIl2UATzpRcf+t4nqAm73FA387+YSEpR0dlBXjBymOpEM40ulweNgFMhACBOkUpuIH38NQEfbX0+/eTb9mGDkjSBCb9B0GMPrDUbMcoEVTUdl/cuoG58UxwPkTCWxKwJqE0pHVUCYRTmEufvCXVqp9eu/9+5WVlfd771hZBJ4lx51YgdIKqgYQ4wzGtsYsFC1JJJ0AZ5QKhQFBCo/BeIETXQ37FqYZBGUFRmrvtSyC2IRj8u5u8mEFPXVQ8o+GezKJJyx04bWUms/nM/MiCX6lAk68UcX0+Adij5W9D8TioISl+0jNVUH+qZwWSBCumYJIBBRxHjwBCOLqf0is9e8eTi/FO0L+RhJYWAjINuifs3WeyqnklCASWf3wIQSuBHoAcwicYvckAA8I9hpcSv/Xu7U+J5Fl8QUS8iauo0ZHN73QPdfbsW9RTQtFD8+FRqEjICNCJvIoQwhUTSinkhBTNU5iZSvqB5Na3Z0P89/uud08GoSEYJzzJQmV4vzuveeex++cO+BjIVRBtiFZ4d2HL/r1rzx+fOzzbX/68IxuwcomSXA0pBt3YPAZ9NE13Y0JxSJDaYLvvjdG5NYOHCPvew/y/e+PF9oZVDUAAOH+/Qt2YKC4ww4VzQ6tDO52k6K2HPri/3n18a0X/fjnh5cvD71ydPnX+z0Sto9eqSb9jlzGdE5hcLs/IK0co9cPlrkHn9/GRd+nw5fHfJUL/WbUP8IJdJxX2OFQIgbWdgQrOPTGP1JT4h58fB1Hm5/OfPGE029AMNgPDFQfcoD+Ejp33qffClY+0Q3Q3QdA8KAdH18MCZ09+M3f1m93nkObQADS1IN+9vze9lS7OOmcAN/1pRSCF7GMGk66Q7FfQcJu+8Xrt9PAEabqHbmIeFFvHQrRJ8MAUAif8+8xUh3hkFsQaES8WLkA2v2a+phKxKULCRI4BGNacEx9Xy/9FpCxGnMAhqRb0MPyYNXwMSgP6Wunyy8h0yi88M3bz9v+8NG/nvwXpfutnAvIqKFo3+kHFEk33Yx2htDCIwhuqru1dE19g1hto4133IUauV0ePzr0kUAf8+LkEqtMphLrfLffHw6HQ1SSyaT2EzSDdP7BEQP17I/3FubnRiSEnj42nEEj9EUvTKoSVDJAGCQdCDFFLWGeZ3+3ilbb9KURHG4y6hdZhx2qMRZHVKWDoQ9MTNPvp2tXS4RhWR57379++340jkwj5Tpx8cyL1bD7S1IC7XgZUlJzXRAURcywfiVXaURoVhAH3R8/v/r51Uc8OxpfPnH34bN2pfpoDxCcJPs2gSvwzYPddx6EM5GGWskpihJri6LkchW1ESGYYXGplg1EW70T++egdcQG4dzN28+gLtMRnPmYUi7cC4HyMvv104M3zR0vRgwmJAOVAJVMhhBMMPZ4d7aansjJMsc5NYdAYf8bj8qUTt38/uHTtlc+20ZEVUJu43XgskzTVa+frh8c7L/ZbW692/F5NfHt7LxrNnff7B8crK97Iz35EvfzO3HklgFlh1/oRMnKo08+JKtK2C10vI49Qbxb+y5XeR90rYMcdGRdl9NyveyNJO29J3cJqnYONuH5k9Y5HB4jJtOoUFtoYXAWZMa753LV95q+vdP1Hjk9Pa3XXS7XhqfYa77OtUt1ib+7e7sFYeVwC8lxFgOGVNRNsz1AIeWxDxC4yr6jer1e3tson5ZP62X4nSqncsSrvbcnNJyjG8Lc/p1C+Omfj5qsHK3y4E4YnCmuFcCynWARBew9qrvqu97N7e0dz66rvNFW7aK/lDeJ0psQqZfuW838489nD589PUZ8UIjKWtkNMHhSzGvhP0/Q1gacwm6zebS1ubu74TJIvYkaJ25jQqRi82Wn/aYXfWcfnv/xO8PHo1wetXgPBqWjTr0JU2Q8zb2ypm9/v2zUv7GFiOJIaiajZSRKA5su3Tabu+fZ++GXbZZhoChqseIaMy5nJWoHTikbRNjXPAILqOtS3tg7OoJz8TBMBlxyUgCBnEBRMxfP4w0cYmr+skEbDnyB4xLxLgJcTGkQOCm1JmNEHQ9Ywvbmjs+DWNwEo1VJhHpmCJXhk5yaQeON3c6YvRu038BQFtaexW32ieEBQj5KuVDOKQWytXRRluMgcnC1VoBdWVVyuKRHw5waIch0fX68mds74pZPY3so3S7UOmagkUDxdDYhcJosC5IUjUYlSaAUZSCVSmfYkhYTMlg0TVpmxh35nTEzSNb05aEwldKMUeBakuBaPhCVBEFjicDvC1IiVUjLmOUZhJEomoYNdZ0fD+cXLBbLwsLCDZuVJVVMldFuhF1aZZg+DBDsCWx8eo1KejUoE8yztIOCJm13LOeMtZ03InLP6xERwBcRDjZkjQnVuxFfImi5BrYtPN+2E+vYI77zk55iNZ8vFKpV2N5cWqce9YYMnALimZFkcdyB/+lJXJMeOHXj4twnJ8IavQc8ynNaKlDDIyHgl8a1O4u4KnToN7vb4XCntEXzskb6cUI2zhohYDRQ/xjjUe0RTmPviQIItcNAWk+LuETx4mPgTePOWM/NalyUAUBYPwOQartFUOjdhAEylIi5WG6IxS67ZXdDdp0MYH1VON9OzBNrhD8XgnhtXP3ge0iiuwUCVHfh9uVjSb6VGdqXA2tx5hwMXzGuMW2WJUMiQcvLZKpl+TzutKi55UQ1iPkhGL5mWmNikaSWuc48QMihxPzJTihGa9HODQGnXwsShmeNMHjtj8WvmVexiGS1pgd80JJ0NHKOsN4X0r4/GOiMaNHAk8iuFcH9Ik01XEpMMhE89h1szUsuWkUUpBDs1ArVUswRrnUWyZJatDsvQRt0EIACqSz4znw+m4JqTR1jQq/PDG4t2KxIrgYkO+f2K3LF4TgJst0AJBckJ9fDR3BtxwkmkyOmK3jpMXdrySRiCLawogbNbXKZ7jmzOFiIOr8YG7EvJ/0aFXc1D8+mZiyz9CEEVH1YhatQIV0EkIPJ6VTUYKsaERqi+kvi0pUMjekYrt2wTZog5Fcogk4UQhhjxCI5nU9Iy5zeq4W8n97YWGnEZyaj24PFzIJl54x7QPVTq4eMSF6tZgMJyMVCJ1ppXrrqhzbXJkVcrCglou2BZgd0ih53biXLIkzisgy1uZwhWLxi/QsmnA4IcBNKGjuXi0BeAOpRTzjkuyJe8WOreTPJC2Bo4A4buATHoDQI7P/QIHDlz80sYk2zcyFEmU6iKn5/roSHpQCs+cof3F1HreSEBkVQnQEIsUpk4A6w1qWrf+d1R08EWwhANSKNiqJUSqQfA2+13foG7w2viUWp027y+2H1cACkpFYqaimDDQmgeenW3N++gUzMory92/GhECj3SImxTBzrFwBZzbaFmW/12vKauOq0t+ZSnA+SIY1/hXqzIdP5MWSatF2/4PnV1/pBM0lJUGxSXweVvpQ8AW+n8ZAItN+Yn/jm70wtVizLGIGvC2oixyH5EK2mySXL/F/y1nlqYda8aLtum1w0m00ms3lxcnbpjuXWzMRf98R2bhrOeGpienoGZHp6YupbqP4/iRpepULyvlQAAAAASUVORK5CYII="
 
@@ -42,6 +43,9 @@ class Bot extends Player {
         this.wpmTimer = 16300
         this.wpm = 130
         this.wordErrorPercentage = 0.08
+
+
+        this.initAI(this.nickname)
     }
 
     /* Getters */
@@ -109,8 +113,9 @@ class Bot extends Player {
 
         this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
-            this.room = room;
+        this.room = room;
         this.room.set_roomLink(webSocketLink)
+            funct.waitFor(_ => this.get_wsRoom().get_ready() === true) //Wait until ws is ready to send
             funct.waitFor(_ => this.get_wsRoom().get_ready() === true) //Wait until ws is ready to send
                 .then(_ => {
                     //Make the data
@@ -119,7 +124,7 @@ class Bot extends Player {
                         "language": this.get_language(),
                         "nickname": this.get_nickname(),
                         "roomCode": this.get_room().get_roomCode(),
-                        "token": this.recaptchaToken,
+                        "token": "03ADUVZwAUT5g8RAHVoQT1CbLy3WCyZ6zTmIQg-_Y-xeXiyJBhoSgHoJCzolRwYxO1EwzROvmlJsdzF9Z5LRweHJLxhr7_L1gtSrxWL8G5QS2-kfLCipw_XBrmerp2moGkeH58DvmH2gfke60NA5vVyPdkfR49h-DTtCfD-f52Ieo-KS3MCRgnr4F5_gi-yD04bdO1ZAyQGw4cjvtl8uiVopH2l2QF8zAfBvKDGuS50yB-3N1pZuOCVDuJXxKxzFVD4bH6Yb73LGAT-y0yXgqCw4iiLhUoIz6K6fRxo_k6ntOoOsmru-sq6-dZMGWKYmfcAiQaK0coyqhiE1eZ8vX0BhcLo-Dcq7OqETKZkbAkeGVSBlzRjWH7kbVn9hSq93xDA2ymDwxg7pZ38-QomhDg4PXzaYPS3soURR07pComV0dHwKUn_E0tAGrAOwiB_IE1o_P9NdkL3XUj4qRY_g1fGqVQnY41XfsWizPrUgkN7gxoYgxscVCxjzrwPnsVIEVa8zGMOUTQx20nQlxMf-oQmnAn5jM5IBDYMg",
                         "userToken": this.get_userToken(),      
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
@@ -310,6 +315,22 @@ class Bot extends Player {
             this.get_wsRoom().emit("chat", message)
         }
     }
+
+    async initRealTime() {
+        AI.initRealTime()
+    }
+
+    async initAI() {
+        AI.initDocument()
+    }
+
+    /* Player ask bot */
+    async asking(player, message) {
+
+        var response = await AI.getResponseData(player, message)
+        this.sendGameMessage(response)
+    }
+
 }
 
 //Export the class

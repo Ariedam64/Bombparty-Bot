@@ -11,7 +11,6 @@ class Rules {
         this.maxPromptAge = maxPromptAge;
         this.startingLives = startingLives;
         this.maxLives = maxLives;
-        this.bonusAlphabet = bonusAlphabet
     }
 
 
@@ -36,6 +35,17 @@ class Rules {
     set_bonusAlphabet(newBonusAlphabet) { this.bonusAlphabet = newBonusAlphabet }
 
     /* FUNCTIONS */
+
+    toString() {
+        return `Rules Information:
+    - Min Turn Duration: ${this.minTurnDuration}
+    - Prompt Difficulty: ${this.promptDifficulty}
+    - Custom Prompt Difficulty: ${this.customPromptDifficulty}
+    - Max Words Per Prompt: ${this.maxWordsPerPrompt}
+    - Max Prompt Age: ${this.maxPromptAge}
+    - Starting Lives: ${this.startingLives}
+    - Max Lives: ${this.maxLives}`;
+    }
 
     setup(jsonData) {
 
