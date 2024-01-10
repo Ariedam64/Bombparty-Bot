@@ -51,8 +51,7 @@ class InGame {
     - Rules Locked: ${this.rulesLocked}
     - Total Players In Game: ${this.totalPlayerInGame}
     - Current Player Peer ID Turn: ${this.currentPlayerPeerIdTurn}
-    - Last Correct Word: ${this.lastCorrectWord}
-    - Used Words: ${Array.from(this.usedWords).join(', ')}`;
+    - Last Correct Word: ${this.lastCorrectWord}`;
     }
 
     setup(jsonData) {

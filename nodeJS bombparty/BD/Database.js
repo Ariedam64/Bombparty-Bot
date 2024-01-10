@@ -247,22 +247,22 @@ class Database {
         FROM players.records r
         JOIN players.player p ON r."player_connectionid" = p.connectionId
         WHERE p.connectionId = '${player.auth.id}'
-        ORDER BY r.${categorie} ${order}
+        ORDER BY TO_DATE(r.${categorie}, 'DD/MM/YYYY') ${order}
         LIMIT ${limit};`
 
         try {
             const res = await this.client.query(query)
-            if (res == null) {return 0}
-            else {return res.rows}    
+            if (res == null) { return 0 }
+            else { return res.rows }
         }
-        catch (err) {return -1}     
+        catch (err) { return -1 }
     }
 
     async showGlobalRecord(categorie, order, max) {
         if (categorie == null) { categorie = "recordDate" }
         if (order == null) { order = "DESC" }
         let query = `
-        SELECT r.recordid, r.recordDate, p.nickname, r.totalwords, r.wpm, r.reactionTime, r.precision, r.averagewordslength
+        SELECT r.recordid AS "id", r.recordDate AS "Date", p.nickname AS "Pseudo", r.totalwords AS "Nombre total de mots", r.wpm  AS "Vitesse d'écriture moyenne", r.reactionTime AS "Temps de réaction moyen", r.precision AS "Précision moyenne", r.averagewordslength AS "Moyenne longueur des mots"
         FROM players.player p
         JOIN players.records r ON r."player_connectionid" = p.connectionId
         JOIN (
@@ -285,7 +285,8 @@ class Database {
         SELECT r.recordDate AS "Date", r.recordid AS "id", p.nickname AS "Pseudo", r.totalwords AS "Nombre total de mots", r.wpm  AS "Vitesse d'écriture moyenne", r.reactionTime AS "Temps de réaction moyen", r.precision AS "Précision moyenne", r.averagewordslength AS "Moyenne longueur des mots"
         FROM players.records r
         JOIN players.player p ON r."player_connectionid" = p.connectionId
-        ORDER BY r.recordDate DESC;`
+        ORDER BY TO_DATE(r.recordDate, 'DD/MM/YYYY') DESC;`
+
         try {
             const res = await this.client.query(query)
             if (res == null) { return 0 }
@@ -294,9 +295,32 @@ class Database {
         catch (err) { return -1 }
     }
 
+    async getLastRecordId() {
+        let query = `
+        SELECT MAX(recordid)
+        FROM players.records;`
+        try {
+            const res = await this.client.query(query)
+            if (res == null) { return 0 }
+            else { return res.rows[0].max }
+        }
+        catch (err) { return -1 }
+    }
+
+    async deleteRecord(recordId) {
+        let query = `
+        DELETE FROM players.records WHERE recordid = ${recordId};`
+        try {
+            const res = await this.client.query(query)
+            if (res == null) {return 0}
+            else {return 1}
+        }
+        catch (err) { return -1 }
+    }
+
     async showDetailRecord(id) {
         let query = `
-        SELECT DISTINCT r.recordid, r.recordDate, p.nickname,r.totalwords, r.wpm, r.reactionTime, r.precision, r.averagewordslength, r.words, r.syllables, r.wpms, r.reactionTimes, r.precisions
+        SELECT DISTINCT r.recordid AS "id", r.recordDate AS "Date", p.nickname AS "Pseudo",r.totalwords AS "Nombre total de mots", r.wpm AS "Vitesse d'écriture moyenne", r.reactionTime "Temps de réaction moyen", r.precision "Précision moyenne", r.averagewordslength AS "Moyenne longueur des mots", r.words AS "Mots", r.syllables AS "Syllables", r.wpms AS "Vitesse d'écriture", r.reactionTimes AS "Temps de réaction", r.precisions AS "Précisions"
         FROM players.records r
         JOIN players.player p ON r."player_connectionid" = p.connectionId
         WHERE r.recordid = ${id};`

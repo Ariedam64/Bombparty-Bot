@@ -31,8 +31,8 @@ class Bot extends Player {
         this.playerStaff = ["709512296036040817"]
 
         //Game state
-        this.playStyle = "drunk"
-        this.isAutoJoin = false
+        this.playStyle = "human"
+        this.isAutoJoin = true
         this.isPlaying = false
         this.isSuicide = false
         this.isRanked = false
@@ -41,7 +41,7 @@ class Bot extends Player {
         this.startRoundRanked = null
         this.rankedPlayer = null
         this.wpmTimer = 16300
-        this.wpm = 130
+        this.wpm = 120
         this.wordErrorPercentage = 0.08
 
 
@@ -111,7 +111,7 @@ class Bot extends Player {
         var webSocketLink = await api.joinRoom(room.get_roomCode())
         this.recaptchaToken = await api.bypassAntiBotToken()
 
-        this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
+        this.wsRoom = new RoomSocket("RoomSocket", this, true, true, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
         this.room = room;
         this.room.set_roomLink(webSocketLink)
@@ -124,7 +124,7 @@ class Bot extends Player {
                         "language": this.get_language(),
                         "nickname": this.get_nickname(),
                         "roomCode": this.get_room().get_roomCode(),
-                        "token": "03ADUVZwAUT5g8RAHVoQT1CbLy3WCyZ6zTmIQg-_Y-xeXiyJBhoSgHoJCzolRwYxO1EwzROvmlJsdzF9Z5LRweHJLxhr7_L1gtSrxWL8G5QS2-kfLCipw_XBrmerp2moGkeH58DvmH2gfke60NA5vVyPdkfR49h-DTtCfD-f52Ieo-KS3MCRgnr4F5_gi-yD04bdO1ZAyQGw4cjvtl8uiVopH2l2QF8zAfBvKDGuS50yB-3N1pZuOCVDuJXxKxzFVD4bH6Yb73LGAT-y0yXgqCw4iiLhUoIz6K6fRxo_k6ntOoOsmru-sq6-dZMGWKYmfcAiQaK0coyqhiE1eZ8vX0BhcLo-Dcq7OqETKZkbAkeGVSBlzRjWH7kbVn9hSq93xDA2ymDwxg7pZ38-QomhDg4PXzaYPS3soURR07pComV0dHwKUn_E0tAGrAOwiB_IE1o_P9NdkL3XUj4qRY_g1fGqVQnY41XfsWizPrUgkN7gxoYgxscVCxjzrwPnsVIEVa8zGMOUTQx20nQlxMf-oQmnAn5jM5IBDYMg",
+                        "token": "03AFcWeA5EHUaBbWAILUrP0IqBNTmfSC3SxN3KUC50dD5XN76HzK27S1mnUOQnL0UYL308jFS9pN0y_zwsnNUdDrwH--69gvOz9BONJmXi3Gp3L1bu3Plop-orYzDUFLz6Sv2x_jqNXftcprLPWZUWVF0aiXtJnn4LSqeq_NWIivZ8DQ6QDLBCMixYn4hezhBQXTCQLyEmcPaOKvUMH0bFEuMeWTES5P0Er2hlJlTKtFjqMsnNXz9SxYNmfgcuqrYo8GmEbpfNyCFqvDKqfrvB0ah5Vt9s3WTH7yT_lkdsq60c0SHmvPUfRk8OA2qxGIOhvF1hrVCA98zkv8zXq2-OxBxZZt9SsNuVm6UHJygJiA1KCxTuN_QNLA6o4Qaec94rQghu0zrxabcxOkiFBEFDKolDyfTmq00uhvbNZkQYWsbCJAA5J2G7wXda1OjxpaqfS1lPEGH29lP7V83iRtWN88Cui0s_frneKnOs6d5UBMCLrgoSD3zlv8K24cSwgOqXQCjf3xn5si2ZMG3IAfo64x1zCqnMulE2Ag",
                         "userToken": this.get_userToken(),      
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
@@ -175,99 +175,80 @@ class Bot extends Player {
         }
     }
 
-
-    //Simulate word
-    async simulateWord(word, WPM, errorPercentage, index = 0) { // Simulate human word
-
-        if (word.length > 15) { //If word is long, short a little bit the WPM
-            WPM = WPM * 0.8
+    // Simulate word
+    async simulateWord(word, WPM, errorPercentage, index = 0) {
+        if (word.length > 15) {
+            WPM *= 0.8; // If word is long, shorten the WPM
         }
 
-        var syllableOccurrence = await this.get_database().getSyllableOccurence("fr", this.get_room().game.get_syllable())
+        const syllableOccurrence = await this.get_database().getSyllableOccurence("fr", this.get_room().game.get_syllable());
+        const letterDelay = this.wpmTimer / WPM;
+        const error = Math.random();
 
-        var letterDelay = (this.wpmTimer / WPM)
-        var error = Math.random()
-
-        if (index == 0) { //Wait when round start
-            var min = -0.00018 * Math.pow(WPM, 3) + 0.0883358543417 * Math.pow(WPM, 2) - 15.2076554622 * WPM + 1843.42296919
-            var max = -0.00018 * Math.pow(WPM, 3) + 0.101378571429 * Math.pow(WPM, 2) - 19.9529285714 * WPM + 2089.57142857
-            if (syllableOccurrence < 20) {
-                var waitSec = Math.floor(Math.random() * (max * 0.7 - min * 0.5 + 1) + min * 0.5)
-            }
-            else {
-                var waitSec = Math.floor(Math.random() * (max - min + 1) + min)
-            }
-            await funct.sleep(Math.floor(waitSec));
+        // Wait when the round starts
+        if (index === 0) {
+            const min = -0.00018 * Math.pow(WPM, 3) + 0.0883358543417 * Math.pow(WPM, 2) - 15.2076554622 * WPM + 1843.42296919;
+            const max = -0.00018 * Math.pow(WPM, 3) + 0.101378571429 * Math.pow(WPM, 2) - 19.9529285714 * WPM + 2089.57142857;
+            const waitSec = Math.floor(Math.random() * ((syllableOccurrence < 20 ? (max * 0.7 - min * 0.5) : (max - min)) + 1) + (syllableOccurrence < 20 ? min * 0.5 : min));
+            console.log("start wait " + waitSec + "ms")
+            await funct.sleep(waitSec*0.8);
+            console.log("stop wait")
         }
 
         if (error <= errorPercentage) {
-            //Enter incorrect word
-            if (Math.floor(Math.random()) > 0.5) { this.simulateIncorrectWord(word, WPM, index, letterDelay) }
-            //Write incorrect word, but realised it, erase and write correct word
-            else { this.simulateIncorrectWord(word, WPM, index, letterDelay) }
-        }
-        //Enter correct word
-        else { this.simulateCorrectWord(word, WPM, index, letterDelay) }
-    }
-
-    //Simulate correcte word
-    async simulateCorrectWord(word, WPM, index = 0, letterDelay) {
-
-        var previousLetter = word.slice(index - 1, index)
-        var currentLetter = word.slice(index, index + 1)
-        var wordSinceStart = word.slice(0, index + 1)
-
-        if (index > -1) {
-            //If key is close to previous key speed up WPM
-            if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { var newLetterDelay = Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) }
-            else { var newLetterDelay = Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35) }
-        }
-
-        this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
-        index++;
-        if (index < word.length && this.isPlaying) {
-            setTimeout(() => {
-                this.simulateCorrectWord(word, WPM, index, letterDelay); //recursive function to emit the new letter
-            }, newLetterDelay);
+            console.log("simulate incorrect")
+            this.simulateIncorrectWord(word, 0, letterDelay);
+        } else {
+            console.log("simulate correct")
+            this.simulateCorrectWord(word, 0, letterDelay);
         }
     }
 
-    //Simulate incorrecte word
-    async simulateIncorrectWord(word, WPM, index = 0, letterDelay) { //Enter incorrect word
+    // Simulate correct word
+    async simulateCorrectWord(word, index = 0, letterDelay) {
+        while (index < word.length && this.isPlaying) {
+            const previousLetter = word.slice(index - 1, index);
+            const currentLetter = word.slice(index, index + 1);
+            const wordSinceStart = word.slice(0, index + 1);
 
-        var previousLetter = word.slice(index - 1, index)
-        var currentLetter = word.slice(index, index + 1)
-        var wordSinceStart = word.slice(0, index + 1)
+            if (index > -1) {
+                const newLetterDelay = funct.getCloseLetter(currentLetter).includes(previousLetter) ?
+                    Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) :
+                    Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35);
 
-        if (index == 0) {
-            let indexesToChange = [];
-            let maxIndexes = Math.floor(Math.random() * 2) + 1; // max letters change is 3
-            for (let i = 0; i < maxIndexes; i++) {
-                let randomIndex = Math.floor(Math.random() * word.length);
-                indexesToChange.push(randomIndex);
+                this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
+                index++;
+                await funct.sleep(newLetterDelay);
             }
-            for (let i = 0; i < indexesToChange.length; i++) {
-                let index = indexesToChange[i];
-                var closeLetters = funct.getCloseLetter(word[index])
-                var randomIndex = Math.floor(Math.random() * closeLetters.length);
-                var similarLetter = closeLetters[randomIndex];
-                var newWord = word.substr(0, index) + similarLetter + word.substr(index + 1);
+        }
+    }
+
+    // Simulate incorrect word
+    async simulateIncorrectWord(word, index = 0, letterDelay) {
+        if (index === 0) {
+            const indexesToChange = Array.from({ length: Math.floor(Math.random() * 2) + 1 }, () => Math.floor(Math.random() * word.length));
+            for (const changeIndex of indexesToChange) {
+                const closeLetters = funct.getCloseLetter(word[changeIndex]);
+                const randomIndex = Math.floor(Math.random() * closeLetters.length);
+                const similarLetter = closeLetters[randomIndex];
+                word = word.substr(0, changeIndex) + similarLetter + word.substr(changeIndex + 1);
             }
-            word = newWord
         }
 
-        if (index > -1) {
-            //If key is close to previous key speed up WPM
-            if (funct.getCloseLetter(currentLetter).includes(previousLetter)) { var newLetterDelay = Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) }
-            else { var newLetterDelay = Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35) }
-        }
+        while (index < word.length && this.isPlaying) {
+            const previousLetter = word.slice(index - 1, index);
+            const currentLetter = word.slice(index, index + 1);
+            const wordSinceStart = word.slice(0, index + 1);
 
-        this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
-        index++;
-        if (index < word.length && this.isPlaying) {
-            setTimeout(() => {
-                this.simulateIncorrectWord(word, WPM, index, letterDelay); //recursive function to emit the new letter
-            }, newLetterDelay);
+            if (index > -1) {
+                const newLetterDelay = funct.getCloseLetter(currentLetter).includes(previousLetter) ?
+                    Math.floor(Math.random() * (letterDelay * 1.5 - letterDelay + 1) + letterDelay) :
+                    Math.floor(Math.random() * (letterDelay - letterDelay * 0.35 + 1) + letterDelay * 0.35);
+
+                this.get_wsGame().emit("setWord", wordSinceStart, index === word.length - 1);
+                index++;
+                await funct.sleep(newLetterDelay);
+            }
         }
     }
 

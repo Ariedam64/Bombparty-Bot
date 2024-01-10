@@ -29,8 +29,15 @@ const personal = require("../CommandsEvents/Ranked/personal");
 const detail = require("../CommandsEvents/Ranked/detail");
 const global = require("../CommandsEvents/Ranked/global");
 const reloadData = require("../CommandsEvents/Bot/reloadData");
+const unsetUserModerator = require("../CommandsEvents/Room/unsetUserModerator");
+const kickPlayer = require("../CommandsEvents/Room/kickPlayer");
+const setUserBanned = require("../CommandsEvents/Room/setUserBanned");
+const unsetUserBanned = require("../CommandsEvents/Room/unsetUserBanned");
+const setUserModerator = require("../CommandsEvents/Room/setUserModerator");
+const setLeader = require("../CommandsEvents/Room/setLeader");
+const deleteRecord = require("../CommandsEvents/Ranked/deleteRecord");
 
-function processEvent(chatterPlayer, data, bot, DEBUG) {
+async function processEvent(chatterPlayer, data, bot, DEBUG) {
 
     event = data.substring(1).split(' ')[0]
     arguments = data.split(' ')
@@ -48,7 +55,79 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
          * 
          */
 
+        //-- TEST
+        case 'test':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            resultRequest = await bot.get_database().getLastRecordId();
+            break;
+
         /* ROOM */
+
+        //-- Mod
+        case 'mod':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            setUserModerator(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rm':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            setUserModerator(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Unmod
+        case 'unmod':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            unsetUserModerator(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rum':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            unsetUserModerator(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Lead
+        case 'lead':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            setLeader(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rl':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            setLeader(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Ban
+        case 'ban':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            setUserBanned(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rb':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            setUserBanned(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Unban
+        case 'unban':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            unsetUserBanned(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rub':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            unsetUserBanned(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Kick
+        case 'kick':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            kickPlayer(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rk':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            kickPlayer(chatterPlayer, arguments, bot)
+            break;
 
         //-- SEARCH MESSAGE
         case 'searchMessage':
@@ -89,7 +168,7 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
             realTimeInformation(chatterPlayer, arguments, bot)
             break;
 
-        case 'rr':
+        case 'rtm':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             realTimeInformation(chatterPlayer, arguments, bot)
             break;
@@ -365,6 +444,17 @@ function processEvent(chatterPlayer, data, bot, DEBUG) {
         case 'rd':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
             detail(chatterPlayer, arguments, bot)
+            break;
+
+        //-- delete record
+        case 'deleteRecord':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            deleteRecord(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rdr':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            deleteRecord(chatterPlayer, arguments, bot)
             break;
 
         //-- global

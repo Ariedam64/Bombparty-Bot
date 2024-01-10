@@ -7,10 +7,10 @@ Voici la liste des records et leur explication:
 - mots: Le nombre maximal de mots mis dans une partie
 - mots composés (mc): nombre de mots composés placés, c'est à dire les mots qui contiennent "-"
 Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
-- Zem: créateur de Zbot, très intelligent, développeur compétent et joueur aguerri
-- Kitsu: joueur pédophile, malsain, qui se connecte sur le jeu pour draguer des petites filles.
+- Zem: créateur de Zbot, joueur moyen, il prend bombparty un peu pour la vrai
+- Kitsu: joueur pédophile, malsain, qui se connecte sur le jeu pour draguer des petites filles et petit garçon.
 - Ayaya: Développeur et créateur du bot Mayaya, ne cesse de trouver des idées innovantes, mais au niveau de jeu médiocre. Son vrai prénom c'est Romann, un prénom de meuf quoi
-- Il: joueur moyen, qui crées pleins de fausses identités, et se fait passer pour une fille afin de draguer les autres joueurs
+- Il: joueur moyen très rapide, qui crées pleins de fausses identités de tout genre
 - Laimargue: joueur tryhardeur, un peu bizarre, qui aime les mots longs et la vitesse, fasciné par les trolls comme xR et la dactylographie, et qui a un penchant pour le stalk
 - Blue: joueur du mode sub, très vieux et qui est amoureux de Zem
 - Tess: gamine et fangirl n°1 de shaiz, toujours nulle au jeu même après 2 ans d'entrainement
@@ -50,6 +50,8 @@ Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
 - Fishfish: Se prend pour un empereur, Développeur plutôt orientée web.
 - Hibiscus: Ancien joueur de bombparty en anglais, il a un niveau C2 en anglais. Il est drole et aime les blagues immatures du genre "prout"
 - dFuzer: Alias Enzo, développeur et créateur du bot BirdBot, aime jouer a des jeux variés
+- Nightly: Un mec un peu bancal qui se fait insulter à tout va, il est super nul au jeu d'ailleurs et il sert pas à grand chose
+- Physique: Un mec au début très timide mais deux jours après il insulte les mamans de ses meilleurs potes, un peu bizarre quoi
 - Emilie: Elle aime les chats, bon niveau de jeu, aime trashtalk les gens, elle fût autours de nombreux drama, apparament hautaine
 
 

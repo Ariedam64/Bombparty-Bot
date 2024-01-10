@@ -137,7 +137,7 @@ class Player {
         - Peer ID: ${this.peerId}
         - Nickname: ${this.nickname}
         - Language/Nationality: ${this.language}
-        - Messages: ${this.messages.toString()}
+        - Messages : ${this.messages.map(msg => msg.toString())}
         - Lettres bonus: ${this.getNeededBonusLetters()}
         - Roles: ${this.roles}
         - Words per minutes (WPM): ${this.getWpmAverage()}
@@ -145,8 +145,7 @@ class Player {
         - Reaction time: ${this.getReactionTimeAverage()}ms
         - Is Online: ${this.isOnline}
         - Vies: ${this.lives}
-        - Total Correct Words: ${this.totalCorrectWord}
-        - Messages : ${this.messages.map(msg => msg.toString()) }`
+        - Total Correct Words: ${this.totalCorrectWord}`
     }
 
 
@@ -188,7 +187,7 @@ class Player {
         this.totalCorrectWord = 0
     }
 
-    async getNeededBonusLetters() {
+    getNeededBonusLetters() {
         let bonusLetters = ""
         Object.entries(this.get_bonusLetters()).forEach(([key, value]) => {
             if (value > 0) {

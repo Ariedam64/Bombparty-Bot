@@ -28,7 +28,7 @@ async function messages(chatterPlayer, arguments, bot) {
             else {
                 var messageToPaste = "Player: " + player.nickname + "\n\n"
                 for (const message of player.get_messages()) {
-                    messageToPaste += message._toString() + "\n"
+                    messageToPaste += message.toString() + "\n"
                 }
                 var pastLink = await pasteBin.pasteMessage(messageToPaste)
                 bot.sendGameMessage("Messages du joueur " + player.nickname + ": " + pastLink)

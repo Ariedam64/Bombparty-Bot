@@ -1,6 +1,7 @@
 ﻿const performance = require('performance-now');
 
 const funct = require('../../../Misc/Functions.js')
+const pasteBin = require('../../../Misc/PasteBin/api')
 
 async function setMilestone(jsonData, bot) {
 
@@ -132,33 +133,110 @@ async function setMilestone(jsonData, bot) {
 
         /* RANKED MODE */
         if (bot.get_isRanked()) {
+            var player = bot.get_room().getPlayerByPeerId(currentPlayerPlaying);
+            if (currentPlayerPlaying != bot.get_peerId()) {
+                player.rankedSyllables.push(syllable);
+                /* player.set_isTracked(true) */
+            }
 
-            var player = bot.get_room().getPlayerByPeerId(currentPlayerPlaying)
-            if (currentPlayerPlaying != bot.get_peerId()) { player.rankedSyllables.push(syllable); /*player.set_isTracked(true)*/ }         
-            bot.set_playStyle("bot")
+            bot.set_playStyle("bot");
 
-            bot.isTimerExpired = false
-            bot.timerRanked = setTimeout(function () {
-                bot.set_isSuicide(true)
+            bot.isTimerExpired = false;
+
+            // Utilisation d'une fonction asynchrone pour utiliser await dans setTimeout
+            const timerFunction = async () => {
+                bot.set_isSuicide(true);
                 for (const key in playersPlaying) {
                     if (key != bot.peerId) {
-                        bot.rankedPlayer = bot.get_room().getPlayerByPeerId(key)
-                        const totalWord = bot.rankedPlayer.totalCorrectWord
-                        if (totalWord < 20) { bot.sendGameMessage('Vous avez fourni moins de 20 mots, vos scores ne seront pas sauvegardés'); player.set_isTracked(false) }
-                        else if (bot.rankedPlayer.auth == null) { bot.sendGameMessage("Vous n'êtes pas connecté, vos scores ne seront pas sauvegardés"); player.set_isTracked(false) }
-                        else {
-                            const WPM = bot.rankedPlayer.getWpmAverage()
-                            const reactionTime = bot.rankedPlayer.getReactionTimeAverage()
-                            const precision = bot.rankedPlayer.getPrecisionAverage()
-                            bot.sendGameMessage(bot.rankedPlayer.nickname + ': Mots: ' + totalWord + ", WPM: " + WPM + ", temps de réaction: " + reactionTime + "ms, précision: " + precision + "%");
-                            bot.get_database().addRecord(bot.rankedPlayer)
+                        bot.rankedPlayer = bot.get_room().getPlayerByPeerId(key);
+                        const totalWord = bot.rankedPlayer.totalCorrectWord;
+                        if (totalWord < 20) {
+                            bot.sendGameMessage('Vous avez fourni moins de 20 mots, vos scores ne seront pas sauvegardés');
+                            player.set_isTracked(false);
+                        } else if (bot.rankedPlayer.auth == null) {
+                            const WPM = bot.rankedPlayer.getWpmAverage();
+                            const reactionTime = bot.rankedPlayer.getReactionTimeAverage();
+                            const precision = bot.rankedPlayer.getPrecisionAverage();
+                            bot.sendGameMessage(
+                                bot.rankedPlayer.nickname +
+                                ': Mots: ' +
+                                totalWord +
+                                ", WPM: " +
+                                WPM +
+                                ", temps de réaction: " +
+                                reactionTime +
+                                "ms, précision: " +
+                                precision +
+                                "%"
+                            );
+                            bot.sendGameMessage("Vous n'êtes pas connecté, vos scores ne seront pas sauvegardés");
+                            player.set_isTracked(false);
+                        } else {
+                            const WPM = bot.rankedPlayer.getWpmAverage();
+                            const reactionTime = bot.rankedPlayer.getReactionTimeAverage();
+                            const precision = bot.rankedPlayer.getPrecisionAverage();
+                            bot.sendGameMessage(
+                                bot.rankedPlayer.nickname +
+                                ': Mots: ' +
+                                totalWord +
+                                ", WPM: " +
+                                WPM +
+                                ", temps de réaction: " +
+                                reactionTime +
+                                "ms, précision: " +
+                                precision +
+                                "%"
+                            );
+                            bot.get_database().addRecord(bot.rankedPlayer);
+
+                            let resultRequest0 = null;
+                            resultRequest0 = await bot.get_database().getLastRecordId();
+
+                            if (resultRequest0 != null) {
+                                let resultRequest = null
+                                resultRequest = await bot.get_database().showDetailRecord(resultRequest0)
+                                if (resultRequest != null) {
+                                    const recordid = resultRequest[0].recordid;
+                                    const recorddate = resultRequest[0].recorddate;
+                                    const nickname = resultRequest[0].nickname;
+                                    const totalwords = resultRequest[0].totalwords;
+                                    const wpm = resultRequest[0].wpm;
+                                    const reactiontime = resultRequest[0].reactiontime;
+                                    const precision = resultRequest[0].precision;
+                                    const averagewordslength = resultRequest[0].averagewordslength;
+                                    const words = resultRequest[0].words.split(",");
+                                    const syllables = resultRequest[0].syllables.split(",")
+                                    const wpms = resultRequest[0].wpms.split(",");
+                                    const reactiontimes = resultRequest[0].reactiontimes.split(",");
+                                    const precisions = resultRequest[0].precisions.split(",");
+                                    newPrecision = funct.transformArray(precisions)
+                                    const data = [];
+                                    for (let i = 0; i < totalwords; i++) {
+                                        data.push({
+                                            'Tour': i + 1,
+                                            'Mot': words[i],
+                                            'Syllabe': syllables[i],
+                                            "Vitesse d'écriture": parseInt(wpms[i]) + " mots/min",
+                                            'Temps de réaction': parseFloat(reactiontimes[i]) + " ms",
+                                            'Précision': ((parseFloat(newPrecision[i])) * 100).toFixed(2) + '%'
+                                        });
+                                    }
+                                    let message = "Record id: " + recordid + "\nJoueur: " + nickname + "\nDate: " + recorddate + "\n\n"
+                                    message += "Nombre total de mots: " + totalwords + "\nLongueur moyenne des mots: " + averagewordslength + "\nVitesse d'écriture moyenne: " + wpm + " mots/minute\nTemps de réaction moyen: " + reactiontime + " ms\nPrécision moyenne: " + precision + "%\n\n"
+                                    message += funct.tableauEnTexte(data)
+                                    var pastLink = await pasteBin.pasteMessage(message)
+                                    bot.sendGameMessage("Voici les détails du record: " + pastLink)
+                                }
+                            }
                         }
                     }
                 }
                 //bot.rankedPlayer.set_isTracked(false)
-                bot.rankedPlayer = null
-                bot.isTimerExpired = true
-            }, 60000);
+                bot.rankedPlayer = null;
+                bot.isTimerExpired = true;
+            };
+
+            bot.timerRanked = setTimeout(timerFunction, 60000);
         }
 
     }

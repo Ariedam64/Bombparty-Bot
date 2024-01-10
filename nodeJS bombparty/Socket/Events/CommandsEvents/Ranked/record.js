@@ -7,7 +7,7 @@
     else if (arguments.split(" ").length == 1 && chatterPlayer.auth == null || !bot.get_playerStaff().includes(chatterPlayer.auth.id) && chatterPlayer.auth.id != bot.get_creatorId() && arguments.split(" ").length == 1) {
         bot.sendGameMessage('Vous ne disposez pas des droits requis pour exécuter cette commande')
     }
-    else if (bot.roles[0] != "leader") {
+    else if (!bot.roles.includes("leader")) {
         bot.sendGameMessage('Vous ne pouvez pas exécuter cette commande dans ce salon')
     }
     else if (arguments.split(" ").length > 1) {
@@ -20,6 +20,7 @@
         if (arguments.toLowerCase() == "on" && !bot.get_isRanked()) {
             bot.set_isRanked(true)
             bot.set_isAutoJoin(true)
+            bot.playStyle = "bot"
             bot.get_wsGame().emit("joinRound")
             bot.sendGameMessage('Début du mode ranked')
             bot.get_wsGame().emit("setRulesLocked", false)
@@ -31,6 +32,7 @@
         else if (arguments.toLowerCase() == "off" && bot.get_isRanked()) {
             bot.set_isRanked(false)
             bot.set_isAutoJoin(false)
+            bot.get_wsGame().emit("setRulesLocked", true)
             bot.get_wsGame().emit("leaveRound")
             bot.sendGameMessage('Fin du mode ranked')
         }  

@@ -146,7 +146,7 @@ function tableauEnTexte(data) {
     return `${headerRow}\n${separator}\n${dataRows}`;
 }
 
-async function integerToExponent(integer) {
+function integerToExponent(integer) {
     const digits = integer.toString().split('').map(Number);
     const exponentMap = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
 

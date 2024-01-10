@@ -72,13 +72,20 @@
     <Content Include="Socket\Events\CommandsEvents\Player\nationality.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Socket\Events\CommandsEvents\Ranked\deleteRecord.js" />
     <Content Include="Socket\Events\CommandsEvents\Ranked\detail.js" />
     <Content Include="Socket\Events\CommandsEvents\Ranked\global.js" />
     <Content Include="Socket\Events\CommandsEvents\Ranked\personal.js" />
     <Content Include="Socket\Events\CommandsEvents\Ranked\record.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\disconnect.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\allPlayers.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\kickPlayer.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\realTimeInformation.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\setLeader.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\setUserBanned.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\setUserModerator.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\unsetUserBanned.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\unsetUserModerator.js" />
     <Content Include="Socket\Events\EventsManager\CommandEventManager.js">
       <SubType>Code</SubType>
     </Content>

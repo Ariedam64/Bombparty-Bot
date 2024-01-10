@@ -22,8 +22,10 @@
         /* Find player bonus letters */
         if (player != null) {
             const bonusLetters = player.getNeededBonusLetters()
+            console.log("length: " + bonusLetters.length)
+            console.log("bl: " + bonusLetters)
             if (bonusLetters.length > 0) {
-                bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + player.nickname + " : " + player.getNeededBonusLetters())
+                bot.sendGameMessage("Lettre(s) bonus manquante(s) du joueur " + player.nickname + " : " + bonusLetters)
             }
             else {
                 bot.sendGameMessage("Le joueur " + player.nickname + " n'est pas dans la partie")
