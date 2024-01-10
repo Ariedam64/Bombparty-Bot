@@ -320,7 +320,7 @@ class Database {
 
     async showDetailRecord(id) {
         let query = `
-        SELECT DISTINCT r.recordid AS "id", r.recordDate AS "Date", p.nickname AS "Pseudo",r.totalwords AS "Nombre total de mots", r.wpm AS "Vitesse d'écriture moyenne", r.reactionTime "Temps de réaction moyen", r.precision "Précision moyenne", r.averagewordslength AS "Moyenne longueur des mots", r.words AS "Mots", r.syllables AS "Syllables", r.wpms AS "Vitesse d'écriture", r.reactionTimes AS "Temps de réaction", r.precisions AS "Précisions"
+        SELECT DISTINCT r.recordid, r.recordDate, p.nickname,r.totalwords, r.wpm, r.reactionTime, r.precision, r.averagewordslength ,r.words , r.syllables, r.wpms, r.reactionTimes, r.precisions
         FROM players.records r
         JOIN players.player p ON r."player_connectionid" = p.connectionId
         WHERE r.recordid = ${id};`

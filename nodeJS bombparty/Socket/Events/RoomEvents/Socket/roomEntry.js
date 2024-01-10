@@ -6,7 +6,7 @@ function roomEntry(jsonData, bot) {
     bot.get_room().updateGlobalInformation(jsonData) //Update room info
     bot.get_wsRoom().emitCustom(1, "getChatterProfiles") //Get players infos
 
-    bot.set_wsGame(new GameSocket("GameSocket", bot, false, false, bot.get_room().get_roomLink() + '/socket.io/?EIO=4&transport=websocket'))
+    bot.set_wsGame(new GameSocket("GameSocket", bot, true, true, bot.get_room().get_roomLink() + '/socket.io/?EIO=4&transport=websocket'))
 
 }
 

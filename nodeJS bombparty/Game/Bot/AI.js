@@ -20,7 +20,7 @@ Mayaya:`;
 
     try {
         // Initialize the LLM to use to answer the question.
-        const model = new OpenAI({ openAIApiKey: "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", modelName: "gpt-3.5-turbo-16k", temperature:1 });
+        const model = new OpenAI({ openAIApiKey: "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", modelName: "gpt-3.5-turbo-16k", temperature:1 });
         const projetPath = __dirname.split(path.sep);
         const dataPath = path.join(...projetPath.slice(0, -2), "data");
         const loader = new DirectoryLoader(dataPath, {
@@ -29,7 +29,7 @@ Mayaya:`;
         const docs = await loader.load();
 
         // Create a vector store require(the documents.
-        const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "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" }));
+        const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "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" }));
 
         // Create a chain that uses a Refine chain and HNSWLib vector store.
         chain = new RetrievalQAChain({

@@ -6,7 +6,7 @@ const Room = require('./Game/Room/Room.js');
 
 async function main() {
     const frBot = new Bot();
-    const frRoom = new Room('TGZZ')
+    const frRoom = new Room('ZGDC')
     frBot.connectToRoom(frRoom)
 }
 

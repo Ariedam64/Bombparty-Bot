@@ -7,8 +7,9 @@
         bot.sendGameMessage('Cette commande permet de kick un joueur du salon. La commande prend en paramètre le pseudo (jklm, twitch ou discord) ou le peerId du joueur')
         bot.sendGameMessage('Utilisation: $kick Ayaya OU $rk Ayaya')
     }
-    else if (!bot.roles.includes("leader")) {
-        bot.sendGameMessage('Impossible d\'effectuer la commande, le bot n\'est pas leader du salon')
+    else if (!bot.roles.includes("leader") && !bot.roles.includes("moderator")) {
+        console.log(bot.roles)
+        bot.sendGameMessage("Impossible d'effectuer la commande, le bot n'a pas les autorisations requises")
     }
     else {
 
@@ -25,6 +26,9 @@
         else { bot.sendGameMessage("Plusieurs joueurs trouvés, renseignez plutôt le peerId du joueur") }
 
         if (player != null) {
+            if (player.roles.includes("moderator") && bot.roles.includes("leader")) {
+                bot.get_wsRoom().emitCustom(5, "setUserModerator", player.get_peerId(), false)
+            }
             bot.get_wsRoom().emitCustom(5, "setUserBanned", player.get_peerId(), true)
             bot.get_wsRoom().emitCustom(5, "setUserBanned", player.get_peerId(), false)
         }

@@ -15,7 +15,9 @@ Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
 - Blue: joueur du mode sub, très vieux et qui est amoureux de Zem
 - Tess: gamine et fangirl n°1 de shaiz, toujours nulle au jeu même après 2 ans d'entrainement
 - nes: Une meuf qui se prend pour une créature imaginaire
+- Osyth: Alias Hugo, sa plus grande fierté est qu'il est à peine plus grand que Adra
 - Bwipou: Meuf un peu trop fan des chats, joueuse discrète
+- Hoxido: Meuf ban ip, qui montre son amour en insultant les gens
 - Ange: Joueuse occasionnel qui habite dans le sud-ouest. Elle aime les gens avec un accent basque et la cuisine.
 - Lain: Alias Léo, il a apprit aux plus anciens du jeu comment jouer. Il est plutôt bon mais à un clavier tout cassé. Il a dû respect envers les personnes ayant du vocabulaire
 - Romane: Joueuse de base popsauce mais récemment bombparty, modératrice, ne mange que des pâtes bolognaise. Dessine les abeilles bizarrement
@@ -63,5 +65,3 @@ Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
 - Nightly: Un mec un peu bancal qui se fait insulter à tout va, il est super nul au jeu d'ailleurs et il sert pas à grand chose
 - Physique: Un mec au début très timide mais deux jours après il insulte les mamans de ses meilleurs potes, un peu bizarre quoi
 - Emilie: Elle aime les chats, bon niveau de jeu, aime trashtalk les gens, elle fût autours de nombreux drama, apparament hautaine
-
-

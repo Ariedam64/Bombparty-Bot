@@ -24,7 +24,7 @@ async function chat(jsonData, bot) {
         /* AI */
         var nicknameBot = chatMessage.toLowerCase().includes(bot.get_nickname().toLowerCase().toLowerCase())
 
-        if (nicknameBot && chatterPeerId != bot.get_peerId() && chatterNickname != "ℤbot") {
+        if (nicknameBot && chatterPeerId != bot.get_peerId() && chatterNickname != "ℤbot" && bot.get_isAi()) {
             const projetPath = __dirname.split(path.sep);
             const dataPath = path.join(...projetPath.slice(0, -4), "realTime");
 

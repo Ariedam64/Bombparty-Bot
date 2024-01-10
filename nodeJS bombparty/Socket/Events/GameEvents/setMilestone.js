@@ -196,6 +196,7 @@ async function setMilestone(jsonData, bot) {
                                 let resultRequest = null
                                 resultRequest = await bot.get_database().showDetailRecord(resultRequest0)
                                 if (resultRequest != null) {
+                                    console.log(resultRequest[0])
                                     const recordid = resultRequest[0].recordid;
                                     const recorddate = resultRequest[0].recorddate;
                                     const nickname = resultRequest[0].nickname;

@@ -36,6 +36,7 @@ const unsetUserBanned = require("../CommandsEvents/Room/unsetUserBanned");
 const setUserModerator = require("../CommandsEvents/Room/setUserModerator");
 const setLeader = require("../CommandsEvents/Room/setLeader");
 const deleteRecord = require("../CommandsEvents/Ranked/deleteRecord");
+const enableAI = require("../CommandsEvents/Bot/enableAI");
 
 async function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -321,6 +322,12 @@ async function processEvent(chatterPlayer, data, bot, DEBUG) {
             break;
 
         /* BOT */
+
+        //-- Enable AI
+        case 'ai':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            enableAI(chatterPlayer, arguments, bot)
+            break;
 
         //-- Word error
         case 'wordError':

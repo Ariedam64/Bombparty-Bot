@@ -46,6 +46,7 @@ class Bot extends Player {
 
 
         this.initAI(this.nickname)
+        this.isAI = false
     }
 
     /* Getters */
@@ -63,6 +64,7 @@ class Bot extends Player {
     get_playerStaff() { return this.playerStaff }
     get_creatorId() { return this.creatorId }
     get_isRanked() { return this.isRanked }
+    get_isAi() {return this.isAI }
 
     /* Setter */
     set_room(newRoom) { this.room = newRoom }
@@ -78,6 +80,7 @@ class Bot extends Player {
     set_playerStaff(newPlayerStaff) { this.playerStaff = newPlayerStaff }
     set_creatorId(newCreatorId) { this.creatorId = newCreatorId }
     set_isRanked(newIsRanked) { this.isRanked = newIsRanked }
+    set_isAi(newIsAI) { this.isAI = newIsAI }
 
     /* FUNCTIONS */
 
@@ -111,7 +114,7 @@ class Bot extends Player {
         var webSocketLink = await api.joinRoom(room.get_roomCode())
         this.recaptchaToken = await api.bypassAntiBotToken()
 
-        this.wsRoom = new RoomSocket("RoomSocket", this, true, true, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
+        this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
         this.room = room;
         this.room.set_roomLink(webSocketLink)
@@ -124,7 +127,7 @@ class Bot extends Player {
                         "language": this.get_language(),
                         "nickname": this.get_nickname(),
                         "roomCode": this.get_room().get_roomCode(),
-                        "token": "03AFcWeA5EHUaBbWAILUrP0IqBNTmfSC3SxN3KUC50dD5XN76HzK27S1mnUOQnL0UYL308jFS9pN0y_zwsnNUdDrwH--69gvOz9BONJmXi3Gp3L1bu3Plop-orYzDUFLz6Sv2x_jqNXftcprLPWZUWVF0aiXtJnn4LSqeq_NWIivZ8DQ6QDLBCMixYn4hezhBQXTCQLyEmcPaOKvUMH0bFEuMeWTES5P0Er2hlJlTKtFjqMsnNXz9SxYNmfgcuqrYo8GmEbpfNyCFqvDKqfrvB0ah5Vt9s3WTH7yT_lkdsq60c0SHmvPUfRk8OA2qxGIOhvF1hrVCA98zkv8zXq2-OxBxZZt9SsNuVm6UHJygJiA1KCxTuN_QNLA6o4Qaec94rQghu0zrxabcxOkiFBEFDKolDyfTmq00uhvbNZkQYWsbCJAA5J2G7wXda1OjxpaqfS1lPEGH29lP7V83iRtWN88Cui0s_frneKnOs6d5UBMCLrgoSD3zlv8K24cSwgOqXQCjf3xn5si2ZMG3IAfo64x1zCqnMulE2Ag",
+                        "token": "03AFcWeA5kRxJ8Mt7xPE6q0_W98ONUBvnA3184LilrO_xitBR2n6lGLGiRnRjyZskaYJtDb5NOspxoIxDLMTeL3mBULYg5P2dDWm_CHYAy4ib-3HNwFD-8K_tRCdslPJsLJWPIg6UoCUpHZe7VOileE2zpNSs8llHX_k_zAGCkKh-P13bEqe85hNSMZhQxuOEUudhfkCWi3gEZ58XSzfudsbSqCtNqwcv92BI6xOb2CutxINl-J9_F_HGdcN0xuXr-1qPz96mCcXQky0a-ytU5bHMGI5VbJ0SYFjddH6-olZPND-n0KJLRJ3ZIc8zDubwoi9_27kCkTF8J0POcy_vvlQ2c8xYBnrKEpZTU5Yyl8tV7J5CzAkfMb1PHWJaWbiF_TrbcHveP2EaQLud_XRSbiN38a94WsfkqcalBnZId8xh5GghEbEGkJSDEjlO5QNj_scvlhrlqP3A03AYA7vEp2MaAh9PlRmCL8IlvNEI7t2OC14DhwfR0Z356u78DnxwDVEQnTk7jmJlfae9s8uEbwsp5EmRCgc2R6Q",
                         "userToken": this.get_userToken(),      
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
