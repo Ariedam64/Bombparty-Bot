@@ -247,8 +247,23 @@ class Database {
         FROM players.records r
         JOIN players.player p ON r."player_connectionid" = p.connectionId
         WHERE p.connectionId = '${player.auth.id}'
-        ORDER BY TO_DATE(r.${categorie}, 'DD/MM/YYYY') ${order}
-        LIMIT ${limit};`
+        ORDER BY r.${categorie} ${order}`
+
+        try {
+            const res = await this.client.query(query)
+            if (res == null) { return 0 }
+            else { return res.rows }
+        }
+        catch (err) { return -1 }
+    }
+
+    async showAllRecord(player) {
+        let query = `
+        SELECT r.recordDate AS "Date", r.recordid AS "id", r.totalwords AS "Nombre total de mots", r.wpm AS "Vitesse d'écriture moyenne", r.reactionTime AS "Temps de réaction moyen", r.precision AS "Précision moyenne", r.averagewordslength AS "Moyenne longueur des mots"
+        FROM players.records r
+        JOIN players.player p ON r."player_connectionid" = p.connectionId
+        WHERE p.connectionId = '${player.auth.id}'
+        ORDER BY TO_DATE(r.recordDate, 'DD/MM/YYYY') DESC;`
 
         try {
             const res = await this.client.query(query)

@@ -4,7 +4,7 @@ const funct = require('../../../../Misc/Functions')
 async function global(chatterPlayer, arguments, bot) {
 
     if (arguments == null || arguments == "") {
-        bot.sendGameMessage("Cette commande permet de récupérer les scores des joueurs. Elle prend paramètre une catégorie (wpm/reactionTime[rt]/precision[p]/avgWordsLength[avg]) et un ordre (asc/desc). Si vous souhaitez simplement visualiser les scores récents, mettez '$cg all' en paramètre")
+        bot.sendGameMessage("Cette commande permet de récupérer les scores des joueurs. Elle prend paramètre une catégorie (words[w] - wpm - reactionTime[rt] - precision[p] - avgWordsLength[avg]) et un ordre (asc/desc). Si vous souhaitez simplement visualiser les scores récents, mettez '$cg all' en paramètre")
         bot.sendGameMessage('Utilisation: $global wpm dsc on OU $rg all')
     }
     else if (arguments.split(" ").length > 2) {
@@ -25,9 +25,10 @@ async function global(chatterPlayer, arguments, bot) {
         try {
             for (const oldArgument of arguments.split(" ")) {
                 argument = oldArgument.toLowerCase()
-                    if (argument == "wpm" || argument == "reactiontime" || argument == "precision" || argument == "rt" || argument == "p" || argument == "avgwordslength" || argument == "avg") {
-                        if (argument == "rt") { categorie = "reactionTime" }
+                if (argument == "words" || argument == "w" || argument == "wpm" || argument == "reactiontime" || argument == "precision" || argument == "rt" || argument == "p" || argument == "avgwordslength" || argument == "avg") {
+                        if (argument == "rt") { categorie = "reactiontime" }
                         else if (argument == "p") { categorie = "precision" }
+                        else if (argument == "w" || argument == "words") { categorie = "totalwords" }
                         else if (argument == "avg") { categorie = "averagewordslength" }
                         else if (argument == "avgWordsLength") { categorie = "averagewordslength" }
                         else { categorie = argument }
@@ -42,19 +43,20 @@ async function global(chatterPlayer, arguments, bot) {
                     bot.sendGameMessage("Les paramètres fournis sont incorrects")
             }
             else {
-                    let ordre = null
-                    let select = null
-                    if (categorie == null) { categorie = "recordDate" }
-                    if (order == null) { order = "DESC" }
-                    if (max == null) { max = "MAX" }
-                    if (order.toUpperCase() == "DESC") { ordre = "décroissant" } else { ordre = "croissant" }
-                    if (categorie == "wpm") { select = "vitesse d'écriture moyenne" }
-                    if (categorie == "reactionTime") { select = "vitesse de réaction moyen" }
-                    if (categorie == "precision") { select = "précision moyenne" }
-                    if (categorie == "averagewordslength") { select = "longueur moyenne des mots" }
+                let ordre = null
+                let select = null
+                if (categorie == null) { categorie = "recordDate" }
+                if (order == null) { order = "DESC" }
+                if (max == null) { max = "MAX" }
+                if (order.toUpperCase() == "DESC") { ordre = "décroissant" } else { ordre = "croissant" }
+                if (categorie == "wpm") { select = "vitesse d'écriture moyenne" }
+                if (categorie == "totalwords") { select = "nombre total de mots" }
+                if (categorie == "reactionTime") { select = "vitesse de réaction moyen" }
+                if (categorie == "precision") { select = "précision moyenne" }
+                if (categorie == "averagewordslength") { select = "longueur moyenne des mots" }
                 let bodyMessage = await bot.get_database().showGlobalRecord(categorie, order, max)
-                    var pastLink = await pasteBin.pasteMessage(funct.tableauEnTexte(bodyMessage))
-                    bot.sendGameMessage("Voici les scores des joueurs triés par " + select + " par ordre " + ordre + ": " + pastLink)
+                var pastLink = await pasteBin.pasteMessage(funct.tableauEnTexte(bodyMessage))
+                bot.sendGameMessage("Voici les scores des joueurs triés par " + select + " par ordre " + ordre + ": " + pastLink)
             }
         }
         catch {

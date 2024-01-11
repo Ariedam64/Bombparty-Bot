@@ -127,7 +127,7 @@ class Bot extends Player {
                         "language": this.get_language(),
                         "nickname": this.get_nickname(),
                         "roomCode": this.get_room().get_roomCode(),
-                        "token": "03AFcWeA5kRxJ8Mt7xPE6q0_W98ONUBvnA3184LilrO_xitBR2n6lGLGiRnRjyZskaYJtDb5NOspxoIxDLMTeL3mBULYg5P2dDWm_CHYAy4ib-3HNwFD-8K_tRCdslPJsLJWPIg6UoCUpHZe7VOileE2zpNSs8llHX_k_zAGCkKh-P13bEqe85hNSMZhQxuOEUudhfkCWi3gEZ58XSzfudsbSqCtNqwcv92BI6xOb2CutxINl-J9_F_HGdcN0xuXr-1qPz96mCcXQky0a-ytU5bHMGI5VbJ0SYFjddH6-olZPND-n0KJLRJ3ZIc8zDubwoi9_27kCkTF8J0POcy_vvlQ2c8xYBnrKEpZTU5Yyl8tV7J5CzAkfMb1PHWJaWbiF_TrbcHveP2EaQLud_XRSbiN38a94WsfkqcalBnZId8xh5GghEbEGkJSDEjlO5QNj_scvlhrlqP3A03AYA7vEp2MaAh9PlRmCL8IlvNEI7t2OC14DhwfR0Z356u78DnxwDVEQnTk7jmJlfae9s8uEbwsp5EmRCgc2R6Q",
+                        "token": "03AFcWeA5CN4I16_pNNG16yCY4O9YSYQyURQAn75fjaRdKOUPk4yio3qJbznFUsbQ2C5nSgLqJBDL9GDzLUsIWjierg5ZMQBLI5BJPiWtzQgml22dwSEaIGRlmBm49TUA2z4alpVhTVbbN0nt-QcRu-yA2c-w9VTddHZI_aOVP7lxxEqjuZxsubSQUWFPIIu8mTw21dJtfdVKymmbZfC2pkWHNPShH146KQz6eBcAh0pO2NmWnNDexCVfLjHUEYmwq_gDJx3YjUV-WBMyQs2wM29oBeDuO70yJDzLqN5S_jFpfvRIDUlKn9Qg8ANvzJEb717sy559wu7nv3lbIIr5febWrS7AchfcmYMZWCCjmhLRD3Xe89-5uSKwskA40bppthS6xFa7cF10Bguh0xyv4SOqmIyTE075STZn4-AIXOWgUMRSao4morWEKUdEvVddgwFcq3fGrIsJOJrHH3_HWMBOt4n1ZcO8gVm_7tBdIfTKF4Aq0x0iFZciZWWg8XPVuo6e38oMa7oTxM0PPgn3pHPTo9KCKsyXF5g",
                         "userToken": this.get_userToken(),      
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
@@ -193,16 +193,12 @@ class Bot extends Player {
             const min = -0.00018 * Math.pow(WPM, 3) + 0.0883358543417 * Math.pow(WPM, 2) - 15.2076554622 * WPM + 1843.42296919;
             const max = -0.00018 * Math.pow(WPM, 3) + 0.101378571429 * Math.pow(WPM, 2) - 19.9529285714 * WPM + 2089.57142857;
             const waitSec = Math.floor(Math.random() * ((syllableOccurrence < 20 ? (max * 0.7 - min * 0.5) : (max - min)) + 1) + (syllableOccurrence < 20 ? min * 0.5 : min));
-            console.log("start wait " + waitSec + "ms")
             await funct.sleep(waitSec*0.8);
-            console.log("stop wait")
         }
 
         if (error <= errorPercentage) {
-            console.log("simulate incorrect")
             this.simulateIncorrectWord(word, 0, letterDelay);
         } else {
-            console.log("simulate correct")
             this.simulateCorrectWord(word, 0, letterDelay);
         }
     }
