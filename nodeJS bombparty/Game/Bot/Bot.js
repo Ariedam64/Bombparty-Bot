@@ -140,13 +140,13 @@ class Bot extends Player {
                         "userToken": this.get_userToken(), 
                         "nickname": this.get_nickname(),
                         "language": this.get_language(),
-                        "auth": {
+                        "auth": { //Si y'a tu co le bot à discord
                             "expiration": 1707123922220,
                             "service":"discord",
                             "token": "JUa3WuSwjqpvR1F5Xf-4PlgU4hfAmMZw",
                             "username":"Mayaya"
                         },
-                        "token": "03AFcWeA5zyUrTY8W1rOXuwHzc0oaG_RME05pAYXdYbxEYDKdsD-gH6yBGDKoX2QXqtcQxJPyuxxj83tzuD7T2c9A11eqzuv5LgLW7t1tTHAV1plRMlVUDW6amhODwThDRHIGyoOm7EcdY5ZmV5jyi5XeWLvjRZOY87esOwppqiLVVvXdar28GV4SdV1Zv-LDxCWYJ5ahLsgEEef58o2_x6boQWE9-FjLAlanhNpzac8h3gI3HJxWsz2fYlijW9rajWhO3VvyjfEaqYBcDjdNNZW0QvGKL2j_uQSB4LY4IkbMnJ1yUgSD_a7ZPWC2hjwbIKGjtxPa139vfMB0rQmLgNgxCGde0l56fEouSKEz3PPYO2Nwwdcrowbq93IumozwMSOtp7Y73j4LcqxWDsLDdr_BE8JP3xG1x3pzqLASi1qm1XG_3yItEr6Eq_m7s260UN2pwvkeN9nUE8BUWsYwZitmJd1s4nvFfflAPHuBhERNH0Yj1q7gLnMkAY0gjNJmZDea2S3KWCB81OOWSCgp9FW0RI24VJyABV0gLjRCA4XzBdMBMmNFwau0"                          
+                        "token": "ton Token"                          
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
                     if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)
