@@ -51,7 +51,7 @@ async function global(chatterPlayer, arguments, bot) {
                 if (order.toUpperCase() == "DESC") { ordre = "décroissant" } else { ordre = "croissant" }
                 if (categorie == "wpm") { select = "vitesse d'écriture moyenne" }
                 if (categorie == "totalwords") { select = "nombre total de mots" }
-                if (categorie == "reactionTime") { select = "vitesse de réaction moyen" }
+                if (categorie == "reactiontime") { select = "vitesse de réaction moyen" }
                 if (categorie == "precision") { select = "précision moyenne" }
                 if (categorie == "averagewordslength") { select = "longueur moyenne des mots" }
                 let bodyMessage = await bot.get_database().showGlobalRecord(categorie, order, max)

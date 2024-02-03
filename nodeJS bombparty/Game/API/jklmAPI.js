@@ -2,7 +2,6 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const FormData = require('form-data');
 const regex = /\[\"rresp\",\"(.*?)\",null,120/;
-const ac = require("@antiadmin/anticaptchaofficial");
 
 async function getRooms() {
     return axios.get('https://jklm.fun/api/rooms')
@@ -26,7 +25,7 @@ async function joinRoom(room) {
 
     return axios.post('https://jklm.fun/api/joinRoom', data, {
         headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 
         }
         })
@@ -48,18 +47,17 @@ async function bypassAntiBotToken() {
 
 
     
+   
     const ar = "1"
     const k = "6LdzYGslAAAAACxOZaQA5J0CxlfdJQUdWvJYoAFM"
     const co = "aHR0cHM6Ly9qa2xtLmZ1bjo0NDM."
-    const v = "pCoGBhjs9s8EhFOHJFe8cqis"
-    const chr = encodeURIComponent("[22,81,69]");
-    const vh = "-958022297"
+    const v = "Ya-Cd6PbRI5ktAHEhm9JuKEu"
+    const vh = "-14784349052"
     const hl = "fr"
-    const sa = "joinRoom"
     const reason = "q"
     const size = "invisible"
-    const cb = "2ng0aiqri2s2"
-    const bg = "!9vCg8PUKAAQeDgRLbQEHDwJW_h9CUMV9s59RB91OWQP8SrIgiue_Y33E2tY2Extcq_lYxmL6XIgTeXx1DECH2rKL6ozd1dP9iKguRVe4ULcnEUKEbr9YzMYImucMrwidEXfgTykCxjnuQ-01V0XL0uUOpGQuINs_m4eSRd3m3BL5FOcYIYX-s5AQKfddiu2TCeI5kEH1hOu3WwboFsC8hoSLKDBd7h5G1653Q6YcYcCM7FqVn3bhL1D8nJ3mcVvNdc_Rvxt6bb7U-8vT9-rW3Jc1Hk_aGDWs3eJ3mSoEEx9O2Dmoy3Lelf5t4Su8iowXURl_gc87O_c0WT2_wTrtSu1gPdBvLCKFstX4ckmYwRtxVJfP57Eb0QgSths77Erm6GNKgJhNvl5-8GG2vn9pvuhNBhQadPsSmPlerBXjDHtFrmD1NREh8-sxi8gT8gatFYmZ7BiPhuIsPE4S8uG-cqSBzEGrNQ9F30qQNgW_PrPWCSJ2a_66dhpMSU4XLgq7YrqPNYxNJq3ViPZCQ2clN-6Ss_d5eos1z9nIhJ9ttWYd_rsEj4ciWZlBQLXR4rPkSqu_WYM8vGehTHooXU4YQKBNcC8yHfyh6krQ8YESdJTdsrsOt9H4qg-kw9v665Oya-1YFISIjWMWvIltJWoqiUiTaOf5Pwvd7J9lprrC3cpXOv7YoEzx7vFX8PRRvSJjJ4ixsNsZV2U-1d1Yj3dhngPeL5bG_u2TMZcr6RjERReB6WJBEgwIGdYiTaqngZzbeBLz0SEtZELdrXMaapyIH-ujwqeLeVC1QWBmMoz271g2kW6dZ28wrZwAFi_qlFzQ_GbUFVHWO3gMkMqmu6O62fI*"
+    const cb = "z2sorkb6kn2o"
+    const bg = "!yc-gz8oKAAQeAvdebQEHDwGYTNF9LK-KWjciQPL4zN25FhPrWHrq4raXKAQyDQLfZdnQms-A0s5RYoW0oXf2yphvDAr4vN0O8ZP6ynYL0InZZKN6QTklSvJIYemu4ixmOC-wg0xMJZDuAl9M71tgPbWAi4fyYNIyNl7SsAma_p9_LRBXL2kpwZJMPKPv7Tmf2EDwsN5mhfAl9Eoxc2a3hJpCHdcuUN3Nd6RPSdXphaNEbjotJlmhni5kXcwn1oMlfV8T8X4xeATJQQEO4Q76n4Eselkr-9FUvfu1CpM8H7Ai_R5Dbp9jWglJzOfs1jeZ1bmmZr6MWEDa_qvjo9IWe5932_s2o48wpxrFIwVRriGv1zigk1KNJtbfkesZ1awaJVa2-X6kCXO57tr5eVjxXYKruG0SCxgvo2vHNz2BtruLdcqbPH9XEtGu3kGwMClrfksQD4WbCeMIzajtZ02DUtDB3EEsm77GFOGArczYx423rFFWAKFq2S4zXeHuDAmEVT1hwjRtMMiZ3Fp47NA2ke-Z96CBOMvU8_b9BpQru94xvjEemvlTm6BVnADW4-QzPvF2ArapuqFpmwbvPist9q5bEboMtcH2W-o1mOBgwdwLf7Szj2rCKYBnVJhK13DM-pLWG4IK5WqbPTUzdPN_wQyFMs_1d_JllXiU_-RvjzRBS3Y0CEIvDKySSSndYnLh_6A5em-BFMg4gaRTgVwTvF1Lyv72Ff_BXwuYyKgXNX3Xl8_rBGUDogYv5RHGvduiXb_lJL-qtdf-sfp0OhRYCDYPGdbpi7Q2vrgvbTGjCrvqxQvnF76kcbKoQfzdCu03TuCmZ81zO8BfVTXgubjhyZvi6A*"
 
     const urlGET = "https://www.google.com/recaptcha/api2/anchor?ar=" + ar + "&k=" + k + "&co=" + co + "&hl=" + hl + "&v=" + v + "&size=" + size + "&cb=" + cb
     const urlPOST = "https://www.google.com/recaptcha/api2/reload?k=" + k
@@ -93,8 +91,6 @@ async function bypassAntiBotToken() {
             formData.append('c', token);
             formData.append('k', k);
             formData.append('co', co);
-            formData.append('sa', sa);
-            formData.append('chr', chr);
             formData.append('vh', vh);
             formData.append('bg', bg);
 
@@ -113,7 +109,7 @@ async function bypassAntiBotToken() {
                     'Sec-Fetch-Dest': 'empty',
                     'Sec-Fetch-Mode': 'cors',
                     'Sec-Fetch-Site': 'same-origin',
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',                
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',                
                 }           
             });
         })
@@ -125,8 +121,10 @@ async function bypassAntiBotToken() {
         .catch(error => {
             return -1
         });
+    
+    
+    /*
 
-       /*
 
     ac.setAPIKey('ae2d88cbfdcdcbad3baa6a3a13643f7e');
     ac.setSoftId(0);

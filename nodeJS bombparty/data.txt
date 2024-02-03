@@ -1,3 +1,4 @@
+La reine d'Angleterre a deux anniversaires.
 Le but du jeu Bombparty est de trouver un mot pour une syllabe donnée le plus rapidement possible, si tu ne trouves pas la réponse dans le temps imparti tu perds une vie.
 Pour regagner une vie sur le jeu, il suffit de mettre des mots contenant les lettres bonus situées à droite de l’écran, une fois toutes les lettres bonus misent, vous regagnez une vie.
 Dans le jeu, il y a le "min", qui définit la rareté des syllabes qui apparraissent en jeu, par exemple min500 veut dire que toutes les syllabes qui apparaissent ont au moins 500 mots comme solution, et le "sub" c'est l'inverse, sub200 par exemple veut dire qu'il y a maximum 200 mots comme solutions pour les syllabes données.
@@ -8,16 +9,23 @@ Voici la liste des records et leur explication:
 - mots composés (mc): nombre de mots composés placés, c'est à dire les mots qui contiennent "-"
 Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
 - Zem: créateur de Zbot, joueur moyen, il prend bombparty un peu pour la vrai
+- Vex: Modératrice du jeu. Très forte en sub
 - Kitsu: joueur pédophile, malsain, qui se connecte sur le jeu pour draguer des petites filles et petit garçon.
 - Ayaya: Développeur et créateur du bot Mayaya, ne cesse de trouver des idées innovantes, mais au niveau de jeu médiocre. Son vrai prénom c'est Romann, un prénom de meuf quoi. Il n'ajoute aucune meuf de bombparty sur discord (trop de drama avec les meufs)
 - Il: joueur très rapide, qui crées pleins de fausses identités de tout genre, un vrai caméléon
 - Laimargue: joueur tryhardeur, un peu bizarre, qui aime les mots longs et la vitesse, fasciné par les trolls comme xR et la dactylographie, et qui a un penchant pour le stalk
 - Blue: joueur du mode sub, très vieux et qui est amoureux de Zem
-- Tess: gamine et fangirl n°1 de shaiz, toujours nulle au jeu même après 2 ans d'entrainement
-- nes: Une meuf qui se prend pour une créature imaginaire
+- Nicko: Un modo anglais qui vient parfois dans les salons français pour voir son meilleur ami Toki
+- Tess: Alias L'hoTess, c'est une gentille gamine,  fangirl n°1 de shaiz, toujours nulle au jeu même après 2 ans d'entrainement. Elle insulte souvent pour montrer son affection pour la personne
+- nes: Une meuf qui se prend pour une créature imaginaire. Elle joue dans les rooms anglaise aussi. Elle est devenu modératrice y'a pas longtemps
 - Osyth: Alias Hugo, sa plus grande fierté est qu'il est à peine plus grand que Adra
 - Bwipou: Meuf un peu trop fan des chats, joueuse discrète
+- N3verlate: Alias Alexandre, il a 25 ans et c'est un streameur Gaming et batteur. C'est un fan du joueur Robespierre
+- Zey: Un ancien de bp, le fameux "planteux" car il adore la catégorie plante. Il est aimable, il vient encore de temps en temps mais la vieillesse le rattrape
+- Seb: Très mystérieux. Considérer pour beaucoup comme le joueur le plus fort de bp (ou alors le plus gros tricheur aussi). Il ne parle jamais et change de pseudo un peu comme Il.
 - Hoxido: Meuf ban ip, qui montre son amour en insultant les gens
+- Erza: Jeune maman d'un enfant de 4 ans. Elle aime beaucoup les coups de boules
+- Marki: Quelqu'un de très chill un peu obèse sur les bords (y'a qu'à voir sa photo de profil pour comprendre). Ragequit souvent sur les syllabes du sub450.
 - Ange: Joueuse occasionnel qui habite dans le sud-ouest. Elle aime les gens avec un accent basque et la cuisine.
 - Lain: Alias Léo, il a apprit aux plus anciens du jeu comment jouer. Il est plutôt bon mais à un clavier tout cassé. Il a dû respect envers les personnes ayant du vocabulaire
 - Romane: Joueuse de base popsauce mais récemment bombparty, modératrice, ne mange que des pâtes bolognaise. Dessine les abeilles bizarrement
@@ -25,6 +33,7 @@ Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
 - Anarkitty: Joueuse pas très forte mais très sympatique, adore mettre des kaomojis à la fin de ses phrases. Elle est anglaise
 - Macadelic: Administrateur de jklm.fun, a une petite amie qui est Strychnine
 - Bwipou: Meuf un peu trop fan des chats, joueuse discrète
+- Léa: Meuf fan de cars mais un peu moins fan de l'SES
 - Danny: Administrateur de jklm.fun, créateur d’un très beau overlay bombparty, Niveau moyen
 - Elisee: Créateur officiel de jklm.fun mais ne jouait pas trop, mais a cédé les droits a Macadelic depuis un peu près 1 ans. Il serait temps qu'il revienne pour corriger les problèmes de connection sur le site
 - aqrt: C’est un homme qui se prend parfois pour une femme, n’est plus actif sur son compte principal mais a beaucoup d’alt
@@ -47,7 +56,7 @@ Sur ce jeu il y a plusieurs joueurs dont voici les descriptions de certains:
 - Robespierre: joueur qui adore flex dans des streams twitch, mais qui est souvent charrié par les habitués du jeu
 - StaffGold: joueur verbes à l’égo surdimensionné, qui drague toutes les filles qu’il croise. Il a assez de libido pour ken une chaise de bureau genre
 - Fidel : Adore troll les gens, joue à Lea. Homme plutot bien musclé. Il souhaite devenir commentateur de match de foot.
-- Achly : Ancien du jeu qui rejoue depuis peu, il aime les appels téléphoniques
+- Achly : Ancien du jeu qui rejoue depuis peu, il aime les appels téléphoniques. Faut pas regarder son historique sur LoL
 - Valen88 : Un modérateur espagnol de bombparty, il vient parfois dans les salons français. Traine vers Bayonne. Il adore le chiffre 8
 - Fruh: joueur qui a tellement troll qu’il est devenu son propre troll, inintéressant qui insulte tout le monde, raciste et irrespectueux, mais qui reste un bon joueur rapide et de longs et adverbes
 - gogolo: joueur qui passe son temps à insulter et faire des pseudos analyses psychologiques foireuses de toute la communauté bombparty. Son besoin compulsif de critiquer vient peut être de sa déficience mentale suite au tryhard des sub15

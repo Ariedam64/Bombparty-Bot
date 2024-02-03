@@ -37,6 +37,10 @@ const setUserModerator = require("../CommandsEvents/Room/setUserModerator");
 const setLeader = require("../CommandsEvents/Room/setLeader");
 const deleteRecord = require("../CommandsEvents/Ranked/deleteRecord");
 const enableAI = require("../CommandsEvents/Bot/enableAI");
+const gamemode = require("../CommandsEvents/Room/gamemode");
+const fonct = require("../../../Misc/Functions");
+const reset = require("../CommandsEvents/Room/reset");
+const nightVision = require("../CommandsEvents/Room/nightVision");
 
 async function processEvent(chatterPlayer, data, bot, DEBUG) {
 
@@ -59,10 +63,43 @@ async function processEvent(chatterPlayer, data, bot, DEBUG) {
         //-- TEST
         case 'test':
             if (DEBUG) { console.log("Command event: " + event + " OK") }
-            resultRequest = await bot.get_database().getLastRecordId();
+            bot.get_wsGame().emit("setRulesLocked", false)
+            bot.get_wsGame().emit("setRules", { "startingLives": 50 })
+            bot.get_wsGame().emit("setRules", { "minTurnDuration": 60 })
+            bot.get_wsGame().emit("setRules", { "maxPlayers": 60 })
+            bot.get_wsGame().emit("setRulesLocked", true)
             break;
 
         /* ROOM */
+
+        //-- Night vision
+        case 'nightVision':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            nightVision(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rnv':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            nightVision(chatterPlayer, arguments, bot)
+            break;
+
+        //-- Reset
+        case 'reset':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            reset(chatterPlayer, arguments, bot)
+            break;
+
+
+        //-- Gamemode
+        case 'gamemode':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            gamemode(chatterPlayer, arguments, bot)
+            break;
+
+        case 'rgm':
+            if (DEBUG) { console.log("Command event: " + event + " OK") }
+            gamemode(chatterPlayer, arguments, bot)
+            break;
 
         //-- Mod
         case 'mod':

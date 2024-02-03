@@ -12,7 +12,7 @@ let chain
 
 async function initDocument() {
 
-    const promptTemplate = `Tu es Mayaya, tu parles à la manière d'un jeune des cités de 16 ans(avec des émojis). Tes réponses ne doivent pas dépasser 300 caractères.Tu mentionne également le joueur qui te parle avec "@Player"
+    const promptTemplate = `Tu es Mayaya, tu parle à la manière d'un jeune de façon très sarcastique (avec des émojis). Tes réponses ne doivent pas dépasser 300 caractères.Tu mentionne également le joueur qui te parle
 {context}  
 {question}
 Mayaya:`;
@@ -20,7 +20,7 @@ Mayaya:`;
 
     try {
         // Initialize the LLM to use to answer the question.
-        const model = new OpenAI({ openAIApiKey: "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", modelName: "gpt-3.5-turbo-16k", temperature:1 });
+        const model = new OpenAI({ openAIApiKey: "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", modelName: "gpt-3.5-turbo-16k", temperature:1 });
         const projetPath = __dirname.split(path.sep);
         const dataPath = path.join(...projetPath.slice(0, -2), "data");
         const loader = new DirectoryLoader(dataPath, {
@@ -29,7 +29,7 @@ Mayaya:`;
         const docs = await loader.load();
 
         // Create a vector store require(the documents.
-        const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "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" }));
+        const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "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" }));
 
         // Create a chain that uses a Refine chain and HNSWLib vector store.
         chain = new RetrievalQAChain({

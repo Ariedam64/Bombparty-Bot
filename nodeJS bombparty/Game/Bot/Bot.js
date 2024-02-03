@@ -32,7 +32,7 @@ class Bot extends Player {
 
         //Game state
         this.playStyle = "human"
-        this.isAutoJoin = true
+        this.isAutoJoin = false
         this.isPlaying = false
         this.isSuicide = false
         this.isRanked = false
@@ -41,8 +41,13 @@ class Bot extends Player {
         this.startRoundRanked = null
         this.rankedPlayer = null
         this.wpmTimer = 16300
-        this.wpm = 120
-        this.wordErrorPercentage = 0.08
+        this.wpm = 125
+        this.wordErrorPercentage = 0.15
+        this.is_nightVision = false
+
+        //Gamemode
+        this.isGamemode = false
+        this.gamemode = null
 
 
         this.initAI(this.nickname)
@@ -64,7 +69,10 @@ class Bot extends Player {
     get_playerStaff() { return this.playerStaff }
     get_creatorId() { return this.creatorId }
     get_isRanked() { return this.isRanked }
-    get_isAi() {return this.isAI }
+    get_isAi() { return this.isAI }
+    get_isGamemode() { return this.isGamemode }
+    get_gamemode() { return this.gamemode }
+    get_isNightVision() { return this.is_nightVision }
 
     /* Setter */
     set_room(newRoom) { this.room = newRoom }
@@ -81,6 +89,9 @@ class Bot extends Player {
     set_creatorId(newCreatorId) { this.creatorId = newCreatorId }
     set_isRanked(newIsRanked) { this.isRanked = newIsRanked }
     set_isAi(newIsAI) { this.isAI = newIsAI }
+    set_isGamemode(newGamemode) { this.isGamemode = newGamemode }
+    set_gamemode(newGamemode) { this.gamemode = newGamemode }
+    set_isNightVision(newNightVision) { this.is_nightVision = newNightVision }
 
     /* FUNCTIONS */
 
@@ -113,6 +124,7 @@ class Bot extends Player {
 
         var webSocketLink = await api.joinRoom(room.get_roomCode())
         this.recaptchaToken = await api.bypassAntiBotToken()
+        console.log(this.recaptchaToken)
 
         this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
@@ -124,11 +136,17 @@ class Bot extends Player {
                     //Make the data
                     
                     var data = {
-                        "language": this.get_language(),
-                        "nickname": this.get_nickname(),
                         "roomCode": this.get_room().get_roomCode(),
-                        "token": "03AFcWeA5CN4I16_pNNG16yCY4O9YSYQyURQAn75fjaRdKOUPk4yio3qJbznFUsbQ2C5nSgLqJBDL9GDzLUsIWjierg5ZMQBLI5BJPiWtzQgml22dwSEaIGRlmBm49TUA2z4alpVhTVbbN0nt-QcRu-yA2c-w9VTddHZI_aOVP7lxxEqjuZxsubSQUWFPIIu8mTw21dJtfdVKymmbZfC2pkWHNPShH146KQz6eBcAh0pO2NmWnNDexCVfLjHUEYmwq_gDJx3YjUV-WBMyQs2wM29oBeDuO70yJDzLqN5S_jFpfvRIDUlKn9Qg8ANvzJEb717sy559wu7nv3lbIIr5febWrS7AchfcmYMZWCCjmhLRD3Xe89-5uSKwskA40bppthS6xFa7cF10Bguh0xyv4SOqmIyTE075STZn4-AIXOWgUMRSao4morWEKUdEvVddgwFcq3fGrIsJOJrHH3_HWMBOt4n1ZcO8gVm_7tBdIfTKF4Aq0x0iFZciZWWg8XPVuo6e38oMa7oTxM0PPgn3pHPTo9KCKsyXF5g",
-                        "userToken": this.get_userToken(),      
+                        "userToken": this.get_userToken(), 
+                        "nickname": this.get_nickname(),
+                        "language": this.get_language(),
+                        "auth": {
+                            "expiration": 1707123922220,
+                            "service":"discord",
+                            "token": "JUa3WuSwjqpvR1F5Xf-4PlgU4hfAmMZw",
+                            "username":"Mayaya"
+                        },
+                        "token": "03AFcWeA5zyUrTY8W1rOXuwHzc0oaG_RME05pAYXdYbxEYDKdsD-gH6yBGDKoX2QXqtcQxJPyuxxj83tzuD7T2c9A11eqzuv5LgLW7t1tTHAV1plRMlVUDW6amhODwThDRHIGyoOm7EcdY5ZmV5jyi5XeWLvjRZOY87esOwppqiLVVvXdar28GV4SdV1Zv-LDxCWYJ5ahLsgEEef58o2_x6boQWE9-FjLAlanhNpzac8h3gI3HJxWsz2fYlijW9rajWhO3VvyjfEaqYBcDjdNNZW0QvGKL2j_uQSB4LY4IkbMnJ1yUgSD_a7ZPWC2hjwbIKGjtxPa139vfMB0rQmLgNgxCGde0l56fEouSKEz3PPYO2Nwwdcrowbq93IumozwMSOtp7Y73j4LcqxWDsLDdr_BE8JP3xG1x3pzqLASi1qm1XG_3yItEr6Eq_m7s260UN2pwvkeN9nUE8BUWsYwZitmJd1s4nvFfflAPHuBhERNH0Yj1q7gLnMkAY0gjNJmZDea2S3KWCB81OOWSCgp9FW0RI24VJyABV0gLjRCA4XzBdMBMmNFwau0"                          
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
                     if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)

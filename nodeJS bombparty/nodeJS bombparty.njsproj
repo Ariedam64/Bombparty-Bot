@@ -80,8 +80,12 @@
     <Content Include="Socket\Events\CommandsEvents\Ranked\record.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\disconnect.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\allPlayers.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\gamemode.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\GameMods\MayayaSays.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\kickPlayer.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\nightVision.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\realTimeInformation.js" />
+    <Content Include="Socket\Events\CommandsEvents\Room\reset.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\setLeader.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\setUserBanned.js" />
     <Content Include="Socket\Events\CommandsEvents\Room\setUserModerator.js" />
@@ -237,6 +241,7 @@
     <Folder Include="Socket\Events\CommandsEvents\Ranked\" />
     <Folder Include="Socket\Events\CommandsEvents\Room\" />
     <Folder Include="Socket\Events\CommandsEvents\Player\" />
+    <Folder Include="Socket\Events\CommandsEvents\Room\GameMods\" />
     <Folder Include="Socket\Events\GameEvents\" />
     <Folder Include="Socket\Events\GameEvents\Socket\" />
     <Folder Include="Socket\Events\GameEvents\Player\" />

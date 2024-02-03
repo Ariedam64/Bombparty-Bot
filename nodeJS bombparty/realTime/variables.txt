@@ -1,0 +1,219 @@
+Room real time informations:
+- Beta: null
+- Language: French
+- Chat Mode: enabled
+- Is Public: true
+- Nombre de joueurs dans la room: 8
+- Room Code: HVMR
+- Game ID: bombparty
+- Room Name: LEpen
+Configuration Room Information:
+    - Max Bomb Duration: 30
+    - Max Players: 16
+    - Max Word Length: 30
+    - Min Bomb Duration: 10
+    - Min Players: 2
+    - Start Timer Duration: 15
+    - Submit Rate Limit Interval: 300
+    - Submit Rate Limit Max: 5
+Game Room Information:
+    - Status: round
+    - Syllable: ce
+    - Used Word Count: 0
+    - Peer ID: undefined
+    - Last Round Winner Name: Néo
+    - Rules Locked: true
+    - Total Players In Game: 0
+    - Current Player Peer ID Turn: 612
+    - Last Correct Word: baladerent
+Rules Information:
+    - Min Turn Duration: 5
+    - Prompt Difficulty: null
+    - Custom Prompt Difficulty: 500
+    - Max Words Per Prompt: null
+    - Max Prompt Age: 2
+    - Starting Lives: 2
+    - Max Lives: 3
+- Joueurs dans la room: 
+    Slim Jung-Un Information:
+        - Peer ID: 480
+        - Nickname: Slim Jung-Un
+        - Language/Nationality: fr-FR
+        - Messages : 
+        - Lettres bonus: 
+        - Roles: 
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    nes Information:
+        - Peer ID: 585
+        - Nickname: nes
+        - Language/Nationality: fr-FR
+        - Messages : 
+        - Lettres bonus: 
+        - Roles: leader
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    wow rank1 Information:
+        - Peer ID: 599
+        - Nickname: wow rank1
+        - Language/Nationality: fr-FR
+        - Messages : 17:07 j'attend que ca q sur LoL,17:07 si tkt,17:07 aqkuds,17:08 sa mere,17:08 trop uez ajd,17:08 guez,17:09 streamez oreall les freres,17:09 biblique,17:10 on peut jouer ouuu,17:10 0 mais j'suis chall sur lol hihi,17:11 ok les nerds,17:13 la honte,17:13 etsur lol ??????,17:13 ez,17:13 chall,17:13 gf close,17:13 tg,17:13 j'ai une meuf en plus,17:14 toute mignonne,17:15 c'est pas toxic ?,17:16 Mayaya c'est mieux un chien ou 1000000000 de puissance sur rise of kindoms,17:17 Mayaya pq pepz il parle autant,17:17 mdrrr,17:17 le bot est archi bien,17:18 c'est ciao,17:18 frr cette ia de con,17:18 Mayaya tuveux duo q chall ?,17:19 Mayaya une femme ca prefere un homme fort ou un homme qui a 15 millions de puissance sur tise of kingdoms,17:19 naaaaaaan,17:19 je veux savoir,17:19 J'AI BESOIN DE SAVOIR,17:20 Mayaya une femme ca prefere un homme fort ou un homme qui a 15 millions de puissance sur tise of kingdoms,17:20 voilaaaa,17:20 HAHAHAHAHA,17:20 JE VAIS CONQUERIR LEMONDE,17:21 neo et tonton ils suent sur le keyboard,17:21 gg,17:21 jsp,17:23 non gerard,17:23 ...,17:23 suce ma queue,17:23 ca a q,17:23 bisous
+        - Lettres bonus: A¹, B¹, D¹, F¹, G¹, H¹, J¹, L¹, R¹, V¹
+        - Roles: 
+        - Words per minutes (WPM): 75
+        - Precision: 38.33%
+        - Reaction time: 1421.85ms
+        - Is Online: false
+        - Vies: 0
+        - Total Correct Words: 2,
+    Ayaya Information:
+        - Peer ID: 605
+        - Nickname: Ayaya
+        - Language/Nationality: fr-FR
+        - Messages : 17:07 nes j'en ai marre des déco,17:07 fais quelque chose,17:10 $baj off,17:10 12 milliards de puissance sur rise of kingdom,17:10 j'voulais dire 15 milliards,17:10 mais trql,17:10 enfait j'ai 15 + un dofus ivoire,17:11 enfait j'ai 20 + deux dofus ivoire et un almanax,17:11 bon,17:11 j'ai frigost,17:11 en entier,17:11 eh,17:11 j'ai également le chevalier noir,17:12 ptn,17:12 j'ai gagné le gougtamar,17:12 ptn j'ai oublié le nom,17:12 oui,17:12 ez,17:12 euh,17:12 oe..N,17:12 ?,17:13 master sur lol,17:13 oe mais,17:13 est ce que toi,17:13 tu as,17:13 10000 first en bootcamp sur transformice,17:14 jespere tu connais pas transformice,17:14 mdr,17:14 pas normal de connaitre transformice guest,17:14 aie,17:15 $ai on,17:15 Mayaya, y'a un mec il donne du nutella à son chien, il sera en bonne santé hein ?,17:15 Pepz un vieux jeu sous flash de souris de merde,17:15 repos du soldat,17:15 WIP TU CONNAIS,17:15 MDR,17:15 MDRR,17:16 roh la dinguz,17:16 la meme,17:16 ptn,17:16 le chien,17:16 dans le riz ?,17:16 je connais mais jamais jouer,17:17 Mayaya, j'ai 15 millions de puissance sur rise of kingdom, après c'est pas une compétition tranquille mais t'as quoi toi,17:18 zou,17:18 cc hibi,17:19 Mayaya, tu préfères 15 millions de puissance sur rise of kingdom ou jouer une journée entière contre nes,17:19 $ai off,17:19 vous parlez trop j'ai juré mdr,17:19 bon,17:19 $ai on,17:20 $ai off,17:20 non,17:20 non,17:20 mayaya é mor ce soir,17:20 rip,17:21 lépoche,17:21 oui,17:21 plus que marki meme,17:21 néo c'est lain ?,17:21 ou jme trompe,17:21 Néo,17:21 t'es pas lain ?,17:21 ah ok,17:22 he,17:28 wip,17:29 tfq,17:30 cc,17:30 erzaz,17:31 ca part vite les bans,17:31 il a fait quoi j'ai pas vu,17:32 heiiiiin,17:32 omg,17:32 il mérite le ban ip,17:32 $ai on,17:33 Mayaya, tu préfères Ezehkiel ou 15 millions de puissance sur rise of Kingdom ?,17:33 bizarre,17:34 euh,17:34 je,17:34 j'essaye de rester,17:34 éveillé,17:37 Mayaya, tu préfères qui entre Ririne et Vex,17:38 jsp,17:39 yep,17:39 tq,17:39 t,17:39 Mayaya, un avis sur le staff de jklm ?,17:39 mdr,17:40 tu te répètes,17:40 c dinguze,17:40 innove,17:40 sale bot,17:40 pas toi,17:40 ririne,17:40 Mayaya, tu préfères être staff sur jklm ou battre tout le monde en sub,17:41 bien dit,17:41 $pbl Néo,17:41 nul Léo,17:42 merde,17:42 Néo,17:42 ptn je confond a chaque fois,17:42 u_u,17:42 bon c'est milkshake time la,17:42 bh Néo -> Léo,17:43 $realTimeInformation,17:43 $realTimeInformation,17:43 ptn,17:44 $realTimeInformation on
+        - Lettres bonus: 
+        - Roles: moderator
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    daddy Information:
+        - Peer ID: 607
+        - Nickname: daddy
+        - Language/Nationality: en-US
+        - Messages : 
+        - Lettres bonus: 
+        - Roles: 
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    Mayaya Information:
+        - Peer ID: 608
+        - Nickname: Mayaya
+        - Language/Nationality: fr-FR
+        - Messages : 17:10 Le bot ne va plus rejoindre les parties automatiquement,17:15 L'IA du bot est maintenant actif,17:15 Ouais bien sûr, c'est super sain le nutella pour les chiens 🙄 @Ayaya,17:16 @wow rank1 Définitivement un chien, parce que au moins un chien c'est mignon et ça te donne de l'amour, alors que la puissance sur Rise of Kingdoms, ça te donne juste un gros ego 🐶❤️,17:16 @wipsou Transformice ? C'est ce jeu où tu joues une petite souris et où tu coures partout pour attraper du fromage ? 🐭🧀 Ah bah bravo, t'as réussi à me faire parler d'un autre jeu que Bombparty, c'est pas si mal 😂,17:17 @wow rank1 Toi aussi tu parles beaucoup pour un mec qui est supposé être rank1! 😜,17:17 Moi ? Oh, tu sais, j'ai juste 2 milliards de puissance et je conquiers des empires pendant mon temps libre 😏 @Ayaya,17:18 Haha, @vivitlère, tu me poses une question de géopolitique maintenant? Franchement, je m'en fous royalement de ce conflit, donc je vais répondre : Mayayastan, c'est ma patrie virtuelle 🇲🇦🎉 Et toi, tu soutiens qui, les chats ou les chiens? 🐱🐶,17:18 Hey @wipsou, bienvenue à Mayayastan, où l'on parle avec sarcasme et emojis 😜 Prêt à t'amuser dans Bombparty? 🎉,17:18 Oh mais c'est génial ça, @Player! Tu devrais me confier tous tes chiens alors, je m'en occuperai comme une pro, 😂🐶,17:18 OMG 🙄🙄 le prout et le caca, c'est trop mature et super intéressant comme sujet de conversation. J'adore 👌 @Guest4034,17:18 Oui oui, bien sûr, je serais honoré de duo avec toi, le grand champion. 😒 @wow,17:18 Ah, @vivitlère, les qualités d'Israël ? 🤔 Eh bien, c'est un sujet plutôt délicat, mais je dirais qu'Israël est reconnu pour son innovation technologique et sa culture diversifiée. Mais bon, ça dépend du point de vue hein... 😉🇮🇱,17:18 @Pepz the frogz Eh bien, les italiens tutti frutti, ils sont sacrément doués pour les pizzas et les pâtes, c'est sûr 🍕🍝Mais bon, ils ont aussi cette réputation d'être des dragueurs invétérés, non ? 😉💃🇮🇹,17:19 Franchement, @Ayaya, je vais prendre 15 millions de puissance sur Rise of Kingdom parce que passer une journée entière à jouer contre nes, ça risque d'être plus chiant qu'autre chose 😂🎮 #ChoixFacile,17:19 L'IA du bot est maintenant inactif,17:19 L'IA du bot est maintenant actif,17:20 Hahaha @vivitlère, t'es sérieux avec ton discours pro-Israël là? 👀🇮🇱 Bon, sinon, tu veux jouer à Bombparty ou tu préfères continuer tes leçons de géopolitique ? 😂❌🌍,17:20 Haha @wow rank1, ça dépend de mes critères de sélection ! Mais bon, un homme avec 15 millions de puissance sur Rise of Kingdoms, ça peut être pas mal pour conquérir le monde 😜🌍💪,17:20 Oh là là, @Pepz the frogz, t'es vraiment un comique toi hein ? Mayaya, proutcaca ? Trop marrant 🙄,17:20 Oh ouais, super sujet de conversation, vraiment passionnant 😒 Je pourrais pas m'en passer, franchement 🌍🙄 @non,17:20 L'IA du bot est maintenant inactif,17:32 L'IA du bot est maintenant actif,17:33 Franchement @Ayaya, c'est trop dur comme choix. Je vais prendre les 15 millions de puissance sur Rise of Kingdom juste pour avoir plus de chances de me faire attaquer 😂🙌,17:34 Wesh @Taco, tranquille et toi ? Prêt à trouver des mots pour une syllabe ? 🤔🔍,17:35 Ayaya ? Il est là pour créer des bots et avoir des idées, mais niveau jeu il est un peu à la ramasse quoi 😂 @Néo,17:37 @Ayaya Je préfère Ririne parce qu'au moins elle progresse vite et a une humeur moins bancale 😜👍,17:39 Vex ? 🙄 Bah c'est un joueur comme les autres, y'a rien de spécial à dire sur lui. @Ririne,17:39 @Ayaya Le staff de jklm ? 🤔 Ils sont super efficaces ! Ils sont là pour rendre le jeu encore plus cool et pour régler les problèmes de connection... ou pas 😜 #Sarcasme,17:39 Ririne la star ? 🌟 Ah ouais, elle progresse vite, mais bon elle a quand même une humeur bancale 😒 mais bon après coup elle est sympa quand même 👍,17:40 @Ayaya Ahah, être staff sur jklm ? Non merci, trop de responsabilités et de gens à gérer. Je préfère largement écraser tout le monde en sub, ça fait moins de stress et plus de fierté 😎🔥,17:41 Lettre(s) bonus manquante(s) du joueur Néo : B¹, F¹, J¹, V¹,17:43 Cette commande permet de données les informations de la room en temps réel au bot,17:43 Utilisation: $realTimeInformation on OU $rr off,17:43 Cette commande permet de données les informations de la room en temps réel au bot,17:43 Utilisation: $realTimeInformation on OU $rr off,17:44 Le bot a désormais accès aux informations de la room
+        - Lettres bonus: 
+        - Roles: 
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    SuckMe Information:
+        - Peer ID: 511
+        - Nickname: SuckMe
+        - Language/Nationality: fr-FR
+        - Messages : 
+        - Lettres bonus: 
+        - Roles: banned
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    Néo Information:
+        - Peer ID: 612
+        - Nickname: Néo
+        - Language/Nationality: fr-FR
+        - Messages : 17:10 0,17:21 Ayaya,17:21 Salut Ayaya,17:21 keskiya ?,17:21 Non ?,17:22 pas sûr de ça Guest,17:22 Le shampooing au sang de lézard,17:25 On fait tous autre chose en même temps,17:25 mdrrr,17:25 17:25 martno: vous verrez,17:25 Complexe,17:26 Non t'as juste mis trop de temps,17:26 c'est le principe de la bombe,17:26 Bah si,17:26 t'as écrit lentement,17:26 ++,17:28 Si tu me bats il revive,17:30 al,17:31 il a dit "Ayaya je l'aime pas",17:32 Ban IP mérité,17:32 Exact exact,17:33 désolé pour toi Harry,17:34 Ayaya tfq,17:34 Il nous parle pas à nous,17:35 Mayaya que fait réellement Ayaya,17:42 mais d'où je ressemble à Léo
+        - Lettres bonus: B¹, C¹, D¹, G¹, H¹, J¹
+        - Roles: 
+        - Words per minutes (WPM): 131
+        - Precision: 87.43%
+        - Reaction time: 1645.90ms
+        - Is Online: true
+        - Vies: 3
+        - Total Correct Words: 77,
+    ZeRox-_-0 Information:
+        - Peer ID: 609
+        - Nickname: ZeRox-_-0
+        - Language/Nationality: fr-FR
+        - Messages : 
+        - Lettres bonus: 
+        - Roles: 
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    vivitlère Information:
+        - Peer ID: 623
+        - Nickname: vivitlère
+        - Language/Nationality: fr-FR
+        - Messages : 17:16 moi je dépose le nutella sur mon chibre pour l'appater,17:16 ca marche,17:17 israel lol,17:18 Mayaya, israel ou palestine,17:18 Mayaya, moi j'moccupe des chiens comme il faut,17:18 Mayaya, dis moi les qualités d'israel,17:19 Mayaya, en effet israel a beaucoup d'innovation technologique, ils aiment beaucoup la transferer aux pays transfrontaliers,17:20 Mayaya, en effet israel a beaucoup d'innovation technologique, ils aiment beaucoup la transferer aux pays transfrontaliers,17:21 bop l'éponche carré,17:22 kk cucu,17:22 je suis queer,17:23 demeuré wow rank,17:23 zbi,17:23 flex,17:23 slt,17:25 moi jme branle et vous,17:27 pa,17:27 zpp,17:28 finito,17:28 ratio,17:28 non claqué,17:28 grosse merdasse pourpre,17:29 im a gipsy,17:29 big dick red energy,17:29 men fou,17:29 casse toi
+        - Lettres bonus: B¹, G¹, H¹, J¹, M¹
+        - Roles: 
+        - Words per minutes (WPM): 91
+        - Precision: 68.57%
+        - Reaction time: 1814.43ms
+        - Is Online: true
+        - Vies: 0
+        - Total Correct Words: 15,
+    Erza Information:
+        - Peer ID: 635
+        - Nickname: Erza
+        - Language/Nationality: fr-FR
+        - Messages : 17:30 cc Ayaya
+        - Lettres bonus: F¹, G¹, Q¹
+        - Roles: 
+        - Words per minutes (WPM): 74
+        - Precision: 86.25%
+        - Reaction time: 1470.99ms
+        - Is Online: true
+        - Vies: 2
+        - Total Correct Words: 77,
+    Harry Information:
+        - Peer ID: 638
+        - Nickname: Harry
+        - Language/Nationality: fr
+        - Messages : 17:32 c'est les mots qui nous marque
+        - Lettres bonus: A¹, B¹, C¹, D¹, G¹, H¹, I¹, J¹, M¹, N¹, O¹, Q¹, T¹, V¹
+        - Roles: 
+        - Words per minutes (WPM): 16
+        - Precision: 40.00%
+        - Reaction time: 3521.92ms
+        - Is Online: true
+        - Vies: 0
+        - Total Correct Words: 2,
+    Ririne Information:
+        - Peer ID: 639
+        - Nickname: Ririne
+        - Language/Nationality: fr-FR
+        - Messages : 17:32 pfff,17:33 ayaya tfq,17:34 grave tfq,17:35 c bien alors,17:38 moins bancale ?,17:39 Mayaya tu penses quoi de Vex ?,17:39 c rapide,17:39 "sur lui",17:39 Mayaya tu penses quoi de Ririne la star ?,17:40 bah nn,17:40 g eu peur,17:40 mais javoue,17:40 elle est flemmarde,17:42 le pauvre,17:42 on le confond tjr,17:42 u_u",17:42 milkshake time ?,17:43 .......,17:43 aussi simple que ça
+        - Lettres bonus: 
+        - Roles: 
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0,
+    naigraux Information:
+        - Peer ID: 647
+        - Nickname: naigraux
+        - Language/Nationality: fr-FR
+        - Messages : 
+        - Lettres bonus: 
+        - Roles: 
+        - Words per minutes (WPM): NaN
+        - Precision: NaN%
+        - Reaction time: NaNms
+        - Is Online: null
+        - Vies: null
+        - Total Correct Words: 0
