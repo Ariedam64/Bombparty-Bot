@@ -20,7 +20,7 @@ Mayaya:`;
 
     try {
         // Initialize the LLM to use to answer the question.
-        const model = new OpenAI({ openAIApiKey: "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", modelName: "gpt-3.5-turbo-16k", temperature:1 });
+        const model = new OpenAI({ openAIApiKey: "token AI", modelName: "gpt-3.5-turbo-16k", temperature:1 });
         const projetPath = __dirname.split(path.sep);
         const dataPath = path.join(...projetPath.slice(0, -2), "data");
         const loader = new DirectoryLoader(dataPath, {
@@ -29,7 +29,7 @@ Mayaya:`;
         const docs = await loader.load();
 
         // Create a vector store require(the documents.
-        const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "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" }));
+        const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "token AI" }));
 
         // Create a chain that uses a Refine chain and HNSWLib vector store.
         chain = new RetrievalQAChain({
@@ -55,7 +55,7 @@ Mayaya:`;
 
 
     // Initialize the LLM to use to answer the question.
-    const model = new OpenAI({ openAIApiKey: "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", modelName: "gpt-3.5-turbo", temperature:0.4 });
+    const model = new OpenAI({ openAIApiKey: "token AI", modelName: "gpt-3.5-turbo", temperature:0.4 });
     const projetPath = __dirname.split(path.sep);
     const dataPath = path.join(...projetPath.slice(0, -2), "realTime");
     const loader = new DirectoryLoader(dataPath, {
@@ -65,7 +65,7 @@ Mayaya:`;
     const docs = await loader.load();
 
     // Create a vector store require(the documents.
-    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "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" }));
+    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: "token AI" }));
 
     // Create a chain that uses a Refine chain and HNSWLib vector store.
     chain = new RetrievalQAChain({

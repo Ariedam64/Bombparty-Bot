@@ -123,8 +123,7 @@ class Bot extends Player {
     async connectToRoom(room) {
 
         var webSocketLink = await api.joinRoom(room.get_roomCode())
-        this.recaptchaToken = await api.bypassAntiBotToken()
-        console.log(this.recaptchaToken)
+        //this.recaptchaToken = await api.bypassAntiBotToken() Marche plus
 
         this.wsRoom = new RoomSocket("RoomSocket", this, false, false, webSocketLink + '/socket.io/?EIO=4&transport=websocket')
 
@@ -141,12 +140,12 @@ class Bot extends Player {
                         "nickname": this.get_nickname(),
                         "language": this.get_language(),
                         "auth": { //Si y'a tu co le bot à discord
-                            "expiration": 1707123922220,
+                            "expiration": 00000,
                             "service":"discord",
-                            "token": "JUa3WuSwjqpvR1F5Xf-4PlgU4hfAmMZw",
-                            "username":"Mayaya"
+                            "token": "ton token",
+                            "username":"username"
                         },
-                        "token": "ton Token"                          
+                        "token": "ton Token recaptcha"                          
                     }
                     if (this.get_picture() != null) { data["picture"] = this.get_picture() }; //check if bot has pic
                     if (this.get_auth() != null) { data["auth"] = this.get_auth() }; //check if bot has auth (Discord/Twitch)
