@@ -60,3 +60,5 @@ Mayaya is a bot created for the game JKLM.FUN, whose goal is to find a word cont
 - **$setUserModerator** : Allows the bot to make a player a moderator.
 - **$unsetUserBanned** : Allows the bot to unban a player.
 - **$unsetUserModerator** : Allows the bot to remove the moderator role from a player.
+
+***Please note that I do not provide the databases for existing player statistics and vocabulary.***
